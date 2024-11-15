@@ -1,4 +1,3 @@
-import { number } from "astro:schema";
 import type {
   FillLayerSpecification,
   CircleLayerSpecification,
