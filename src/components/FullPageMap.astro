@@ -4,7 +4,7 @@ import maplibregl from "maplibre-gl";
 
 import fs from "fs";
 import yaml from "js-yaml";
-import { type GeoJSONFeatureLayer, type RasterLayer } from "@types";
+import type { GeoJSONFeatureLayer, RasterLayer, ImageLayer } from "@types";
 
 // Load and parse the YAML file
 const fileContents = fs.readFileSync(
@@ -13,7 +13,7 @@ const fileContents = fs.readFileSync(
 );
 
 export interface LayerGroup {
-  layers: (GeoJSONFeatureLayer | RasterLayer)[];
+  layers: (GeoJSONFeatureLayer | RasterLayer | ImageLayer)[];
 }
 
 export interface Props {
@@ -28,12 +28,7 @@ export interface Props {
   containerstyle?: string;
   pitch?: number;
   bearing?: number;
-  layers?: GeoJSONFeatureLayer[];
 }
-
-// const layers: GeoJSONFeatureLayer[] = yaml.load(
-//   fileContents
-// ) as GeoJSONFeatureLayer[];
 
 const layers: LayerGroup[] = yaml.load(fileContents) as LayerGroup[];
 
@@ -76,7 +71,7 @@ const {
       />
       <script>
         import maplibregl from "maplibre-gl";
-        import type { GeoJSONFeatureLayer, RasterLayer } from "@types";
+        import type { GeoJSONFeatureLayer, RasterLayer, ImageLayer } from "@types";
 
         class MapLibreFullPageMap extends HTMLElement {
           constructor() {
@@ -104,7 +99,7 @@ const {
                 : undefined;
               if (layers) {
                 // Add toggle buttons if set to be so
-                layers.forEach((layer: GeoJSONFeatureLayer | RasterLayer) => {
+                layers.forEach((layer: GeoJSONFeatureLayer | RasterLayer | ImageLayer) => {
                   if (layer.toggle) {
                     const toggleButton = document.createElement("a");
                     const menu = document.getElementById("menu");
@@ -134,7 +129,7 @@ const {
                   }
                 });
 
-                layers.forEach((layer: GeoJSONFeatureLayer | RasterLayer) => {
+                layers.forEach((layer: GeoJSONFeatureLayer | RasterLayer | ImageLayer) => {
                   if (layer["data-type"] === "geojson") {
                     fetch(layer.url)
                       .then((response) => response.json())
@@ -209,6 +204,29 @@ const {
                             },
                           });
                         }
+                    } else if (layer["data-type"] === "image") {
+                      // Add source if it doesn't exist
+                      if (!map.getSource(layer.id)) {
+                        map.addSource(layer.id, {
+                          type: "image",
+                          url: layer.url || "",
+                          coordinates: layer.coordinates || [],
+                        });
+                      }
+
+                      // Add layer if it doesn't already exist
+                      if (!map.getLayer(layer.id)) {
+                        map.addLayer({
+                          id: layer.id,
+                          type: "raster",
+                          source: layer.id,
+                          // @ts-expect-error expect partial paint defs
+                          paint: layer.paint || {}, // Include paint if it exists
+                          layout: {
+                            visibility: layer.visible ? "visible" : "none",
+                          },
+                        });
+                      }
                     }
                     // Handle mouse events if defined
                     if (layer.mouseEvent) {

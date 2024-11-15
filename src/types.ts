@@ -1,3 +1,4 @@
+import { number } from "astro:schema";
 import type {
   FillLayerSpecification,
   CircleLayerSpecification,
@@ -68,6 +69,24 @@ export interface RasterLayer {
   paint?: RasterLayerSpecification;
   mouseEvent: MapEvent[];
 }
+
+/**
+ * Image Layer
+ * @see https://maplibre.org/maplibre-style-spec/sources/#image
+ **/
+export interface ImageLayer {
+  "data-type": "image";
+  id: string;
+  label?: string;
+  url: string;
+  // make coordinates as an array of four coordinate pair arrays
+  coordinates: [CoordinatePair, CoordinatePair, CoordinatePair, CoordinatePair];
+  toggle?: boolean; // currently used in full page map map toggle
+  visible?: boolean;
+  mouseEvent: MapEvent[];
+}
+
+type CoordinatePair = [number, number];
 
 export interface MapEvent {
   type: "click" | "mousemove" | "mouseenter" | "mouseleave";
