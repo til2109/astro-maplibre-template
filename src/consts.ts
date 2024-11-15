@@ -1,4 +1,4 @@
-import type { Site, Socials } from "@types";
+import type { Metadata, Site, Socials } from "@types";
 
 export const SITE: Site = {
   NAME: "Project Website",
@@ -6,10 +6,9 @@ export const SITE: Site = {
   DESCRIPTION: "<A description of your website>",
 };
 
-export const HOME: Site = {
-  NAME: "Home",
-  EMAIL: "<your email address here>",
-  DESCRIPTION: "<A description of your website>",
+export const HOME: Metadata = {
+  TITLE: "Home",
+  DESCRIPTION: "<A description of your home page>",
 };
 
 export const SOCIALS: Socials = [
