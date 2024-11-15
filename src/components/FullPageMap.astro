@@ -191,8 +191,7 @@ const {
                         if (!map.getSource(layer.id)) {
                           map.addSource(layer.id, {
                             type: "raster",
-                            tiles: [layer.url || ""],
-                            url: layer.url || "",
+                            tiles: [layer.url || ""],                            
                             tileSize: layer.tileSize || 256,
                           });
                         }

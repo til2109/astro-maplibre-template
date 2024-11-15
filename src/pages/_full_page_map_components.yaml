@@ -10,14 +10,13 @@
     line-width: 3
 
 - id: 'test-raster'
-  label: 'raster tiles'
+  label: 'OSM Tiles'
   toggle: true  
   visible: false
   data-type: 'raster'
   layer-type: 'raster'
   url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
-  
 
 - id: 'pizza'
   label: 'Pizza Places'

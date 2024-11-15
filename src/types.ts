@@ -49,12 +49,16 @@ export interface GeoJSONFeatureLayer {
   mouseEvent: MapEvent[];
 }
 
+/**
+ * Raster Tile Layer
+ * @see https://maplibre.org/maplibre-style-spec/sources/#raster
+ **/
 export interface RasterLayer {
   "data-type": "raster";
   id: string;
   label?: string;
   url?: string;
-  tiles: string[];
+  tiles?: string[];
   bounds?: number[];
   minzoom?: number;
   maxzoom?: number;
