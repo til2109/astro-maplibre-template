@@ -61,7 +61,6 @@ export interface RasterLayer {
   tileSize?: number;
   toggle?: boolean;
   visible?: boolean;
-  "layer-type": "raster";
   paint?: RasterLayerSpecification;
   mouseEvent: MapEvent[];
 }

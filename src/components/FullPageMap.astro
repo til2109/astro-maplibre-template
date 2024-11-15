@@ -4,13 +4,17 @@ import maplibregl from "maplibre-gl";
 
 import fs from "fs";
 import yaml from "js-yaml";
-import { type GeoJSONFeatureLayer } from "@types";
+import { type GeoJSONFeatureLayer, type RasterLayer } from "@types";
 
 // Load and parse the YAML file
 const fileContents = fs.readFileSync(
   "src/pages/_full_page_map_components.yaml",
   "utf8"
 );
+
+export interface LayerGroup {
+  layers: (GeoJSONFeatureLayer | RasterLayer)[];
+}
 
 export interface Props {
   latitude: number;
@@ -27,9 +31,11 @@ export interface Props {
   layers?: GeoJSONFeatureLayer[];
 }
 
-const layers: GeoJSONFeatureLayer[] = yaml.load(
-  fileContents
-) as GeoJSONFeatureLayer[];
+// const layers: GeoJSONFeatureLayer[] = yaml.load(
+//   fileContents
+// ) as GeoJSONFeatureLayer[];
+
+const layers: LayerGroup[] = yaml.load(fileContents) as LayerGroup[];
 
 const {
   latitude,
@@ -70,7 +76,7 @@ const {
       />
       <script>
         import maplibregl from "maplibre-gl";
-        import type { GeoJSONFeatureLayer } from "@types";
+        import type { GeoJSONFeatureLayer, RasterLayer } from "@types";
 
         class MapLibreFullPageMap extends HTMLElement {
           constructor() {
@@ -98,7 +104,7 @@ const {
                 : undefined;
               if (layers) {
                 // Add toggle buttons if set to be so
-                layers.forEach((layer: GeoJSONFeatureLayer) => {
+                layers.forEach((layer: GeoJSONFeatureLayer | RasterLayer) => {
                   if (layer.toggle) {
                     const toggleButton = document.createElement("a");
                     const menu = document.getElementById("menu");
@@ -128,7 +134,7 @@ const {
                   }
                 });
 
-                layers.forEach((layer: GeoJSONFeatureLayer) => {
+                layers.forEach((layer: GeoJSONFeatureLayer | RasterLayer) => {
                   if (layer["data-type"] === "geojson") {
                     fetch(layer.url)
                       .then((response) => response.json())
@@ -180,7 +186,31 @@ const {
                           });
                         }
                       });
+                      } else if (layer["data-type"] === "raster") {
+                        // Add source if it doesn't exist
+                        if (!map.getSource(layer.id)) {
+                          map.addSource(layer.id, {
+                            type: "raster",
+                            tiles: [layer.url || ""],
+                            url: layer.url || "",
+                            tileSize: layer.tileSize || 256,
+                          });
+                        }
 
+                        // Add layer if it doesn't already exist
+                        if (!map.getLayer(layer.id)) {
+                          map.addLayer({
+                            id: layer.id,
+                            type: "raster",
+                            source: layer.id,
+                            // @ts-expect-error expect partial paint defs
+                            paint: layer.paint || {}, // Include paint if it exists
+                            layout: {
+                              visibility: layer.visible ? "visible" : "none",
+                            },
+                          });
+                        }
+                    }
                     // Handle mouse events if defined
                     if (layer.mouseEvent) {
                       const popup = new maplibregl.Popup({ offset: 15 });
@@ -255,7 +285,7 @@ const {
                         });
                       });
                     }
-                  }
+                  
                 });
               }
             });

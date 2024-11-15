@@ -9,6 +9,16 @@
     line-color: '#000000'
     line-width: 3
 
+- id: 'test-raster'
+  label: 'raster tiles'
+  toggle: true  
+  visible: false
+  data-type: 'raster'
+  layer-type: 'raster'
+  url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+
+  
+
 - id: 'pizza'
   label: 'Pizza Places'
   toggle: true

@@ -6,6 +6,12 @@ export const SITE: Site = {
   DESCRIPTION: "<A description of your website>",
 };
 
+export const HOME: Site = {
+  NAME: "Home",
+  EMAIL: "<your email address here>",
+  DESCRIPTION: "<A description of your website>",
+};
+
 export const SOCIALS: Socials = [
   {
     NAME: "twitter-x",
