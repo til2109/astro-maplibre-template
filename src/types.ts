@@ -85,6 +85,37 @@ export interface ImageLayer {
   mouseEvent: MapEvent[];
 }
 
+export interface VectorTileLayer {
+  "data-type": "vector";
+  id: string;
+  label?: string;
+  url?: string;
+  "source-layer"?: string;
+  tiles?: string[]; // array of tile urls; use in favor of url
+  bounds?: number[];
+  minzoom?: number;
+  maxzoom?: number;
+  toggle?: boolean;
+  "layer-type":
+    | "symbol"
+    | "fill"
+    | "custom"
+    | "raster"
+    | "line"
+    | "circle"
+    | "heatmap"
+    | "fill-extrusion"
+    | "hillshade"
+    | "background";
+  visible?: boolean;
+  mouseEvent: MapEvent[];
+  paint?:
+    | FillLayerSpecification
+    | LineLayerSpecification
+    | CircleLayerSpecification
+    | SymbolLayerSpecification;
+}
+
 type CoordinatePair = [number, number];
 
 export interface MapEvent {
