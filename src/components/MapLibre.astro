@@ -64,7 +64,11 @@ const layersJson = JSON.stringify(layers);
 >
 
   <div id={container} style={containerstyle} class="maplibre-inline">
-    <nav id="menu"></nav>
+    {
+      layersJson && JSON.parse(layersJson).some((layer: { toggle: boolean; }) => layer.toggle === true) ? 
+      <nav id="menu"></nav> : 
+      null
+    }
   </div>
 
   <link
