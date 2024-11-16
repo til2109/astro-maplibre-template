@@ -46,7 +46,11 @@ export function dateRange(startDate: Date, endDate?: Date | string): string {
   return `${startMonth}${startYear} - ${endMonth}${endYear}`;
 }
 
-export function loadMapLayers(map: maplibregl.Map, layers: LayerGroup) {
+export function loadMapLayers(
+  map: maplibregl.Map,
+  layers: LayerGroup,
+  visibility: boolean = false
+) {
   if (layers) {
     // Add toggle buttons if set to be so
     Object.values(layers).forEach(
@@ -76,7 +80,7 @@ export function loadMapLayers(map: maplibregl.Map, layers: LayerGroup) {
       }
     );
 
-    layers.forEach(
+    Object.values(layers).forEach(
       (
         layer: GeoJSONFeatureLayer | RasterLayer | ImageLayer | VectorTileLayer
       ) => {
@@ -126,9 +130,14 @@ export function loadMapLayers(map: maplibregl.Map, layers: LayerGroup) {
                   // @ts-expect-error expect partial paint defs
                   paint: layer.paint || {}, // Include paint if it exists
                   layout: {
-                    visibility: layer.visible ? "visible" : "none",
+                    visibility: visibility
+                      ? "visible"
+                      : layer.visible
+                        ? "visible"
+                        : "none",
                   },
                 });
+                console.log("added layer: ", layer.id);
               }
             });
         } else if (layer["data-type"] === "raster") {
@@ -150,7 +159,11 @@ export function loadMapLayers(map: maplibregl.Map, layers: LayerGroup) {
               // @ts-expect-error expect partial paint defs
               paint: layer.paint || {}, // Include paint if it exists
               layout: {
-                visibility: layer.visible ? "visible" : "none",
+                visibility: visibility
+                  ? "visible"
+                  : layer.visible
+                    ? "visible"
+                    : "none",
               },
             });
           }
@@ -173,7 +186,11 @@ export function loadMapLayers(map: maplibregl.Map, layers: LayerGroup) {
               // @ts-expect-error expect partial paint defs
               paint: layer.paint || {}, // Include paint if it exists
               layout: {
-                visibility: layer.visible ? "visible" : "none",
+                visibility: visibility
+                  ? "visible"
+                  : layer.visible
+                    ? "visible"
+                    : "none",
               },
             });
           }
@@ -195,10 +212,14 @@ export function loadMapLayers(map: maplibregl.Map, layers: LayerGroup) {
               type: layer["layer-type"],
               source: layer.id,
               "source-layer": layer["source-layer"] ?? layer.id,
-
+              // @ts-expect-error expect partial paint defs
               paint: layer.paint || {}, // Include paint if it exists
               layout: {
-                visibility: layer.visible ? "visible" : "none",
+                visibility: visibility
+                  ? "visible"
+                  : layer.visible
+                    ? "visible"
+                    : "none",
               },
             });
           }
