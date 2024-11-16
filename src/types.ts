@@ -124,3 +124,7 @@ export interface MapEvent {
     [key: string]: string | ((e: maplibregl.MapLayerMouseEvent) => string);
   }>;
 }
+
+export interface LayerGroup {
+  layers: (GeoJSONFeatureLayer | RasterLayer | ImageLayer | VectorTileLayer)[];
+}
