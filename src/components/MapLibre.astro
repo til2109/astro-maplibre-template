@@ -62,7 +62,10 @@ const layersJson = JSON.stringify(layers);
   data-bearing={bearing}
   data-layers={layersJson}
 >
-  <div id={container} style={containerstyle} class="maplibre-inline"></div>
+
+  <div id={container} style={containerstyle} class="maplibre-inline">
+    <nav id="menu"></nav>
+  </div>
 
   <link
     rel="stylesheet"
@@ -110,6 +113,29 @@ const layersJson = JSON.stringify(layers);
                   | ImageLayer
                   | VectorTileLayer
               ) => {
+                if (layer.toggle) {
+                  const toggleButton = document.createElement("a");
+                  const menu = document.getElementById("menu");
+                  toggleButton.textContent = layer.label ?? layer.id;
+                  if (layer.visible === true) {
+                    toggleButton.className = "active";
+                  }
+                  toggleButton.onclick = () => {
+                    if (
+                      map.getLayoutProperty(layer.id, "visibility") ===
+                      "visible"
+                    ) {
+                      map.setLayoutProperty(layer.id, "visibility", "none");
+                      toggleButton.className = "";
+                    } else {
+                      map.setLayoutProperty(layer.id, "visibility", "visible");
+                      toggleButton.className = "active";
+                    }
+                  };
+                  if (menu) {
+                    menu.appendChild(toggleButton);
+                  }
+                }
                 if (layer["data-type"] === "geojson") {
                   fetch(layer.url)
                     .then((res) => res.json())
