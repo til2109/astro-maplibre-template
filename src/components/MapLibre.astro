@@ -117,9 +117,10 @@ const layersJson = JSON.stringify(layers);
                   const toggleButton = document.createElement("a");
                   const menu = document.getElementById("menu");
                   toggleButton.textContent = layer.label ?? layer.id;
+                  
                   if (layer.visible === true) {
                     toggleButton.className = "active";
-                  }
+                  } 
                   toggleButton.onclick = () => {
                     if (
                       map.getLayoutProperty(layer.id, "visibility") ===
@@ -171,6 +172,9 @@ const layersJson = JSON.stringify(layers);
                         source: layer.id,
                         // @ts-expect-error expect partial paint defs
                         paint: layer.paint || {}, // Include paint if it exists
+                        layout: {
+                          visibility: layer.visible ? "visible" : "none",
+                        },
                       });
                     });
                 } else if (layer["data-type"] === "raster") {
