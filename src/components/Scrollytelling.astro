@@ -1,14 +1,17 @@
 ---
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import maplibregl from "maplibre-gl";
 import type {
-  FillLayerSpecification,
-  CircleLayerSpecification,
-  LineLayerSpecification,
-  SymbolLayerSpecification,
-} from "maplibre-gl";
+  GeoJSONFeatureLayer,
+  RasterLayer,
+  ImageLayer,
+  VectorTileLayer,
+} from "@types";
 import fs from "fs";
 import yaml from "js-yaml";
+
+export interface LayerGroup {
+  layers: (GeoJSONFeatureLayer | RasterLayer | ImageLayer | VectorTileLayer)[];
+}
 
 // Load and parse the YAML file
 const fileContents = fs.readFileSync(
@@ -24,7 +27,7 @@ interface MapStep {
   bearing?: number;
   media?: string;
   position?: "left" | "right" | "centered" | "full";
-  layers?: GeoJSONFeatureLayer[];
+  layers?: LayerGroup[];
   persist?: boolean;
 }
 
@@ -42,29 +45,7 @@ export interface Props {
   containerstyle?: string;
   pitch?: number;
   bearing?: number;
-  layers?: GeoJSONFeatureLayer[];
-}
-
-export interface GeoJSONFeatureLayer {
-  "data-type": "geojson";
-  id: string;
-  url: string;
-  layerType:
-    | "symbol"
-    | "fill"
-    | "custom"
-    | "raster"
-    | "line"
-    | "circle"
-    | "heatmap"
-    | "fill-extrusion"
-    | "hillshade"
-    | "background";
-  paint?:
-    | FillLayerSpecification
-    | LineLayerSpecification
-    | CircleLayerSpecification
-    | SymbolLayerSpecification;
+  layers?: LayerGroup[];
 }
 
 const {
@@ -107,7 +88,12 @@ const layersJson = layers ? JSON.stringify(layers) : undefined;
       />
       <script>
         import maplibregl from "maplibre-gl";
-        import type { GeoJSONFeatureLayer } from "./MapLibre.astro";
+        import type {
+          GeoJSONFeatureLayer,
+          RasterLayer,
+          ImageLayer,
+          VectorTileLayer,
+        } from "@types";
 
         class MapLibreScrollytellingMap extends HTMLElement {
           constructor() {
@@ -152,56 +138,144 @@ const layersJson = layers ? JSON.stringify(layers) : undefined;
                         ? JSON.parse(layersAttr)
                         : undefined;
                       if (layers) {
-                        layers.forEach((layer: GeoJSONFeatureLayer) => {
-                          if (layer["data-type"] === "geojson") {
-                            fetch(layer.url)
-                              .then((response) => response.json())
-                              .then((data) => {
-                                data.features.forEach(
-                                  (feature: {
-                                    geometry: {
-                                      type: string;
-                                      coordinates: number[];
-                                    };
-                                    properties: {
-                                      longitude: number;
-                                      latitude: number;
-                                    };
-                                  }) => {
-                                    // check if there's already a valid geometry, otherwise reconstruct it
-                                    if (!feature.geometry) {
-                                      feature.geometry = {
-                                        type: "Point",
-                                        coordinates: [
-                                          Number(feature.properties.longitude),
-                                          Number(feature.properties.latitude),
-                                        ],
+                        layers.forEach(
+                          (
+                            layer:
+                              | GeoJSONFeatureLayer
+                              | RasterLayer
+                              | ImageLayer
+                              | VectorTileLayer
+                          ) => {
+                            if (layer["data-type"] === "geojson") {
+                              fetch(layer.url)
+                                .then((response) => response.json())
+                                .then((data) => {
+                                  data.features.forEach(
+                                    (feature: {
+                                      geometry: {
+                                        type: string;
+                                        coordinates: number[];
                                       };
+                                      properties: {
+                                        longitude: number;
+                                        latitude: number;
+                                      };
+                                    }) => {
+                                      // check if there's already a valid geometry, otherwise reconstruct it
+                                      if (!feature.geometry) {
+                                        feature.geometry = {
+                                          type: "Point",
+                                          coordinates: [
+                                            Number(
+                                              feature.properties.longitude
+                                            ),
+                                            Number(feature.properties.latitude),
+                                          ],
+                                        };
+                                      }
                                     }
+                                  );
+                                  // if source already exists, continue, else add it
+                                  if (!map.getSource(layer.id)) {
+                                    map.addSource(layer.id, {
+                                      type: "geojson",
+                                      data: data,
+                                    });
                                   }
-                                );
-                                // if source already exists, continue, else add it
-                                if (!map.getSource(layer.id)) {
-                                  map.addSource(layer.id, {
-                                    type: "geojson",
-                                    data: data,
-                                  });
-                                }
 
-                                // if layer doesn't already exist, add it
-                                if (!map.getLayer(layer.id)) {
-                                  map.addLayer({
-                                    id: layer.id,
-                                    type: layer["layer-type"],
-                                    // @ts-expect-error expect source to be string via source above
-                                    source: layer.id,
-                                    // @ts-expect-error expect partial paint defs
-                                    paint: layer.paint || {},
-                                  });
-                                }
-                              });
+                                  // if layer doesn't already exist, add it
+                                  if (!map.getLayer(layer.id)) {
+                                    map.addLayer({
+                                      id: layer.id,
+                                      type: layer["layer-type"],
+                                      // @ts-expect-error expect source to be string via source above
+                                      source: layer.id,
+                                      // @ts-expect-error expect partial paint defs
+                                      paint: layer.paint || {},
+                                    });
+                                  }
+                                });
+                            } else if (layer["data-type"] === "raster") {
+                              // Add source if it doesn't exist
+                              if (!map.getSource(layer.id)) {
+                                map.addSource(layer.id, {
+                                  type: "raster",
+                                  tiles: [layer.url || ""],
+                                  tileSize: layer.tileSize || 256,
+                                });
+                              }
+
+                              // Add layer if it doesn't already exist
+                              if (!map.getLayer(layer.id)) {
+                                map.addLayer({
+                                  id: layer.id,
+                                  type: "raster",
+                                  source: layer.id,
+                                  // @ts-expect-error expect partial paint defs
+                                  paint: layer.paint || {}, // Include paint if it exists
+                                  layout: {
+                                    visibility: layer.visible
+                                      ? "visible"
+                                      : "none",
+                                  },
+                                });
+                              }
+                            } else if (layer["data-type"] === "image") {
+                              // Add source if it doesn't exist
+                              if (!map.getSource(layer.id)) {
+                                map.addSource(layer.id, {
+                                  type: "image",
+                                  url: layer.url || "",
+                                  coordinates: layer.coordinates || [],
+                                });
+                              }
+
+                              // Add layer if it doesn't already exist
+                              if (!map.getLayer(layer.id)) {
+                                map.addLayer({
+                                  id: layer.id,
+                                  type: "raster",
+                                  source: layer.id,
+                                  // @ts-expect-error expect partial paint defs
+                                  paint: layer.paint || {}, // Include paint if it exists
+                                  layout: {
+                                    visibility: layer.visible
+                                      ? "visible"
+                                      : "none",
+                                  },
+                                });
+                              }
+                            } else if (layer["data-type"] === "vector") {
+                              // Add source if it doesn't exist
+                              if (!map.getSource(layer.id)) {
+                                map.addSource(layer.id, {
+                                  type: "vector",
+                                  tiles: [layer.url || ""],
+                                  minzoom: layer.minzoom || 0,
+                                  maxzoom: layer.maxzoom || 22,
+                                });
+                              }
+
+                              // Add layer if it doesn't already exist
+                              if (!map.getLayer(layer.id)) {
+                                map.addLayer({
+                                  id: layer.id,
+                                  type: layer["layer-type"],
+                                  source: layer.id,
+                                  "source-layer":
+                                    layer["source-layer"] ?? layer.id,
+                                  // @ts-expect-error expect partial paint defs
+                                  paint: layer.paint || {}, // Include paint if it exists
+                                  layout: {
+                                    visibility: layer.visible
+                                      ? "visible"
+                                      : "none",
+                                  },
+                                });
+                              }
+                            }
                           }
-                        });
+                        );
                       }
 
                       // Update the MapLibre map
