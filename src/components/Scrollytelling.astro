@@ -1,17 +1,8 @@
 ---
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type {
-  GeoJSONFeatureLayer,
-  RasterLayer,
-  ImageLayer,
-  VectorTileLayer,
-} from "@types";
+import type { LayerGroup } from "@types";
 import fs from "fs";
 import yaml from "js-yaml";
-
-export interface LayerGroup {
-  layers: (GeoJSONFeatureLayer | RasterLayer | ImageLayer | VectorTileLayer)[];
-}
 
 // Load and parse the YAML file
 const fileContents = fs.readFileSync(
@@ -138,7 +129,7 @@ const layersJson = layers ? JSON.stringify(layers) : undefined;
                         ? JSON.parse(layersAttr)
                         : undefined;
                       if (layers) {
-                        loadMapLayers(map, layers, "visible");
+                        loadMapLayers(map, layers, true);
                       }
 
                       // Update the MapLibre map
@@ -161,14 +152,22 @@ const layersJson = layers ? JSON.stringify(layers) : undefined;
                           ? JSON.parse(layersAttr)
                           : undefined;
                         if (layers) {
-                          layers.forEach((layer: GeoJSONFeatureLayer) => {
-                            if (map.getLayer(layer.id)) {
-                              map.removeLayer(layer.id);
+                          layers.forEach(
+                            (
+                              layer:
+                                | GeoJSONFeatureLayer
+                                | RasterLayer
+                                | ImageLayer
+                                | VectorTileLayer
+                            ) => {
+                              if (map.getLayer(layer.id)) {
+                                map.removeLayer(layer.id);
+                              }
+                              if (map.getSource(layer.id)) {
+                                map.removeSource(layer.id);
+                              }
                             }
-                            if (map.getSource(layer.id)) {
-                              map.removeSource(layer.id);
-                            }
-                          });
+                          );
                         }
                       }
                     }

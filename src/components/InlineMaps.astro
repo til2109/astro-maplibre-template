@@ -1,0 +1,160 @@
+---
+import type { LayerGroup } from "@types";
+import fs from "fs";
+import yaml from "js-yaml";
+import { default as MapLibre } from "@components/MapLibre.astro";
+// Load and parse the YAML file
+const fileContents = fs.readFileSync(
+  "src/pages/_inline_map_components.yaml",
+  "utf8"
+);
+
+const pageData = yaml.load(fileContents) as ContentBlock[];
+export interface ContentBlock {
+    type: "map" | "content";
+    content: MapBlock | MixedBlock;
+}
+
+export interface MapBlock {
+    type: "map";
+    latitude: number;
+    longitude: number;
+    zoom: number;
+    mapstyle: string;
+    container: string;
+    interactive?: boolean;
+    containerstyle?: string;
+    pitch?: number;
+    bearing?: number;
+    layers?: LayerGroup[];
+}
+
+export interface MixedBlock {
+    type: "content";
+    content: ContentTag[];
+}
+
+export interface ContentTag {
+  [key: string]:
+    | string
+    | {
+        property?: string; // Indicates a feature property to pull data from
+        else?: string;     // Fallback value if the property doesn't exist
+        str?: string;      // A raw string value to display
+        href?: string;     // Hyperlink for anchor tags
+        text?: string;     // Display text for anchor tags
+        src?: string;      // Image source URL for img tags
+        alt?: string;      // Alternate text for img tags
+      };
+}
+
+export interface Props {
+  fileContents: string;
+}
+
+// Function to dynamically load MapLibre map
+function loadMap(mapData: MapBlock, index: number) {
+  const {
+    latitude,
+    longitude,
+    zoom,
+    mapstyle,
+    interactive = true,
+    containerstyle = "height: 61.8vh;",
+    pitch = 0,
+    bearing = 0,
+    layers,
+  } = mapData;
+
+  const layersJson = layers ? JSON.stringify(layers) : undefined;
+
+  return (<div><p>hi</p></div>);
+}
+
+
+// Function to dynamically render HTML content
+function renderHTMLContent(contentBlock: MixedBlock) {
+  return contentBlock.content.map((tag, index) => {
+    if (typeof tag === "string") {
+      return <p key={index}>{tag}</p>;
+    }
+    return Object.entries(tag).map(([key, value], tagIndex) => {
+      if (key === "a" && typeof value === "object") {
+        return (
+          <a
+            key={`link-${tagIndex}`}
+            href={value.href || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {value.text || value.href}
+          </a>
+        );
+      }
+      if (key === "img" && typeof value === "object") {
+        return (
+          <img
+            key={`img-${tagIndex}`}
+            src={value.src || ""}
+            alt={value.alt || ""}
+          />
+        );
+      }
+      return null;
+    });
+  });
+}
+---
+
+<div class="inline-content-container">
+  {pageData.map((block, index) => {
+    if (block.type === "map") {
+      return loadMap(block.content as MapBlock, index);
+    }
+    if (block.type === "content") {
+      return (
+        <div class="content-block my-4" key={`content-${index}`}>
+          {renderHTMLContent(block.content as MixedBlock)}
+        </div>
+      );
+    }
+    return null;
+  })}
+</div>
+
+<script>
+  import maplibregl from "maplibre-gl";
+  import { loadMapLayers } from "@lib/utils";
+
+  // Initialize MapLibre for all map containers
+  document.addEventListener("DOMContentLoaded", () => {
+    const mapContainers = document.querySelectorAll(".map-container");
+    mapContainers.forEach((container) => {
+      const {
+        latitude,
+        longitude,
+        zoom,
+        mapstyle,
+        interactive,
+        pitch,
+        bearing,
+        layers,
+      } = container.dataset;
+
+      const map = new maplibregl.Map({
+        container: container.id,
+        style: mapstyle,
+        center: [parseFloat(longitude), parseFloat(latitude)],
+        zoom: parseFloat(zoom),
+        pitch: parseFloat(pitch),
+        bearing: parseFloat(bearing),
+        interactive: interactive === "true",
+      });
+
+      if (layers) {
+        loadMapLayers(map, JSON.parse(layers));
+      }
+    });
+  });
+</script>
+
