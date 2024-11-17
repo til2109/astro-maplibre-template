@@ -167,7 +167,7 @@ section {
 }
 
 .maplibregl-popup-content {
-  color: var(--text-color); /* Replace 'your-color' with the desired color */
+  color: var(--text-color); 
 }
 
 #maplibre-scrollytelling-map {
