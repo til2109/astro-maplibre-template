@@ -6,6 +6,8 @@ import type {
   ImageLayer,
   VectorTileLayer,
   LayerGroup,
+  MixedBlock,
+  ContentTag,
 } from "../types";
 import maplibregl from "maplibre-gl";
 export function cn(...inputs: ClassValue[]) {
@@ -52,7 +54,6 @@ export function loadMapLayers(
   visibility: boolean = false
 ) {
   if (layers) {
-    console.log(map);
     // Add toggle buttons if set to be so
     Object.values(layers).forEach(
       (
@@ -138,7 +139,6 @@ export function loadMapLayers(
                         : "none",
                   },
                 });
-                console.log("added layer: ", layer.id);
               }
             });
         } else if (layer["data-type"] === "raster") {
@@ -232,7 +232,7 @@ export function loadMapLayers(
           layer.mouseEvent.forEach((event) => {
             map.on(event.type, layer.id, (e) => {
               const popupContent = event.content
-                .map((tag) => {
+                .map((tag: { [key: string]: unknown }) => {
                   const tagName = Object.keys(tag)[0];
                   console.log(tag[tagName]);
                   const value = Array.isArray(tag[tagName])
@@ -296,4 +296,53 @@ export function loadMapLayers(
       }
     );
   }
+}
+
+export function parseMixedContent(block: ContentTag[]) {
+  return block
+    ? block
+        .map((tag) => {
+          const tagName = Object.keys(tag)[0];
+          console.log(tag[tagName]);
+          const value = Array.isArray(tag[tagName])
+            ? tag[tagName]
+                .map(
+                  (item: {
+                    [key: string]:
+                      | string
+                      | {
+                          property?: string;
+                          else?: string;
+                          str?: string;
+                          href?: string;
+                          text?: string;
+                          src?: string;
+                          alt?: string;
+                        };
+                  }) => {
+                    if ("str" in item) {
+                      return item.str;
+                    } else if (
+                      tagName === "a" &&
+                      "href" in item &&
+                      "text" in item
+                    ) {
+                      // Handle link tag with href and text
+                      return `<a href="${item.href}" target="_blank">${item.text}</a>`;
+                    } else if (tagName === "img" && "src" in item) {
+                      // Handle image tag with src and optional alt
+                      const altText = item.alt || "";
+                      return `<img src="${item.src}" alt="${altText}" />`;
+                    } else {
+                      return ""; // Fallback for any unexpected structure
+                    }
+                  }
+                )
+                .join(" ") // Join all parts together to form the full tag content
+            : tag[tagName];
+
+          return `<${tagName}>${value}</${tagName}>`;
+        })
+        .join(" ")
+    : "not yet";
 }
