@@ -45,7 +45,7 @@ const {
     class="maplibre-inline map-container"
     style={{ width: "100vw", height: "100vh" }}
   >
-    <nav id="menu"></nav>
+    <nav id={`${container}-menu`} class="menu"></nav>
     <maplibre-fullpage-map
       data-latitude={latitude}
       data-longitude={longitude}

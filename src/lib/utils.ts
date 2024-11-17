@@ -52,6 +52,7 @@ export function loadMapLayers(
   visibility: boolean = false
 ) {
   if (layers) {
+    console.log(map);
     // Add toggle buttons if set to be so
     Object.values(layers).forEach(
       (
@@ -59,7 +60,7 @@ export function loadMapLayers(
       ) => {
         if (layer.toggle) {
           const toggleButton = document.createElement("a");
-          const menu = document.getElementById("menu");
+          const menu = document.getElementById(`${map._container.id}-menu`);
           toggleButton.textContent = layer.label ?? layer.id;
           if (layer.visible === true) {
             toggleButton.className = "active";

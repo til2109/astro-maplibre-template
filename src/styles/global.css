@@ -216,7 +216,7 @@ section {
 }
 
 
-#menu {
+.menu {
   background: #fff;
   position: absolute;
   z-index: 1;
@@ -227,7 +227,7 @@ section {
   border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
-#menu a {
+.menu a {
   font-size: 13px;
   color: #404040;
   display: block;
@@ -239,20 +239,20 @@ section {
   text-align: center;
 }
 
-#menu a:last-child {
+.menu a:last-child {
   border: none;
 }
 
-#menu a:hover {
+.menu a:hover {
   background-color: #f8f8f8;
   color: #404040;
 }
 
-#menu a.active {
+.menu a.active {
   background-color: black;
   color: #ffffff;
 }
 
-#menu a.active:hover {
+.menu a.active:hover {
   background: rgb(236, 55, 19);
 }

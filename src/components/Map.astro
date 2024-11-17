@@ -19,21 +19,27 @@ export interface Props {
   containerstyle, // use containerstyle from block 
 } = block;
 
+const layersJson = JSON.stringify(layers);
+
 ---
 
 <maplibre-map-inline
-  data-latitude={latitude}   
-  data-longitude={longitude}
-  data-zoom={zoom}
-  data-mapstyle={mapstyle}
-  data-container={container}
-  data-layers={JSON.stringify(layers)}
-  data-pitch={pitch}
-  data-bearing={bearing}
+    data-latitude={latitude}   
+    data-longitude={longitude}
+    data-zoom={zoom}
+    data-mapstyle={mapstyle}
+    data-container={container}
+    data-layers={layersJson}
+    data-pitch={pitch}
+    data-bearing={bearing}
     data-interactive={interactive}
 >
   <div id={container} class="map-container maplibre-inline" style={containerstyle}>
-
+    {
+        layersJson && JSON.parse(layersJson).some((layer: { toggle: boolean; }) => layer.toggle === true) ? 
+        <nav id=`${container}-menu` class="menu"></nav> : 
+        null
+      }
   </div>
   <link
     rel="stylesheet"
