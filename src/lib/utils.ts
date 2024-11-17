@@ -6,7 +6,6 @@ import type {
   ImageLayer,
   VectorTileLayer,
   LayerGroup,
-  MixedBlock,
   ContentTag,
 } from "../types";
 import maplibregl from "maplibre-gl";

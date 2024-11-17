@@ -5,18 +5,18 @@ export interface Props {
     block: MapBlock;
   }
   const { block } = Astro.props;
-
+// use props from block
   const {
   latitude,
   longitude,
   zoom,
   mapstyle,
   interactive,
-  container, // use container prop from block
+  container, 
   layers,
   pitch,
   bearing,
-  containerstyle, // use containerstyle from block 
+  containerstyle,
 } = block;
 
 const layersJson = JSON.stringify(layers);
