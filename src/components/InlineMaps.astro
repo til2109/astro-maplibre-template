@@ -2,136 +2,37 @@
 import fs from "fs";
 import yaml from "js-yaml";
 import type { ContentBlock, MapBlock, MixedBlock } from "@types";
-
+import {default as Map} from "../components/Map.astro";
 // Load and parse the YAML file
 const fileContents = fs.readFileSync(
   "src/pages/_inline_map_components.yaml",
   "utf8"
 );
-const pageData = yaml.load(fileContents) as ContentBlock[];
+const pageData = yaml.load(fileContents) as { blocks: ContentBlock[] };
 
-// Function to dynamically load MapLibre map
-export function loadMap(mapData: MapBlock, index: number) {
-  const {
-    latitude,
-    longitude,
-    zoom,
-    mapstyle,
-    container = `map-${index ?? 0}`,
-    interactive = true,
-    containerstyle = "height: 61.8vh;",
-    pitch = 0,
-    bearing = 0,
-    layers,
-  } = mapData;
+const {blocks} = pageData;
 
-  const layersJson = layers ? JSON.stringify(layers) : undefined;
-  console.log(mapData);
-  return (
-    <div
-      id={container}
-      class="map-container my-4"
-      style={containerstyle}
-      data-latitude={latitude}
-      data-longitude={longitude}
-      data-zoom={zoom}
-      data-mapstyle={mapstyle}
-      data-interactive={interactive}
-      data-pitch={pitch}
-      data-bearing={bearing}
-      data-layers={layersJson}
-    >
-      {/* Map will initialize dynamically */}
-    </div>
-  );
+
+// pass pagedata as props
+export interface Props {
+  blocks: ContentBlock[];
 }
 
-// Function to dynamically render HTML content
-export function renderHTMLContent(contentBlock: MixedBlock) {
-  return contentBlock.content.map((tag, index) => {
-    if (typeof tag === "string") {
-      return <p key={index}>{tag}</p>;
-    }
-    return Object.entries(tag).map(([key, value], tagIndex) => {
-      if (key === "a" && typeof value === "object") {
-        return (
-          <a
-            key={`link-${tagIndex}`}
-            href={value.href || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {value.text || value.href}
-          </a>
-        );
-      }
-      if (key === "img" && typeof value === "object") {
-        return (
-          <img
-            key={`img-${tagIndex}`}
-            src={value.src || ""}
-            alt={value.alt || ""}
-          />
-        );
-      }
-      return null;
-    });
-  });
-}
 ---
 
+<div class="inline-maps-container">
 <main>
-  <div class="inline-content-container">
-    {
-      pageData.map((block, index) => {
-        console.log(block);
-        if (block.type === "map") {
-          return loadMap(block.content as MapBlock, index);
-        }
-        if (block.type === "content") {
-          return (
-            <div class="content-block my-4" key={`content-${index}`}>
-              {renderHTMLContent(block.content as MixedBlock)}
-            </div>
-          );
-        }
-        return null;
-      })
+  {blocks.map((block, index) => {
+    if (block.type == "map") {
+      return (
+        <div id={`${block.type}-${index}`} class="inline-map">
+          <Map block={block.content as MapBlock} />
+        </div>
+      );
+    } else {
+      return null;
     }
-  </div>
+  })}
 </main>
 
-<script>
-  import maplibregl from "maplibre-gl";
-  import { loadMapLayers } from "@lib/utils";
-  // Initialize MapLibre for all map containers
-  document.addEventListener("DOMContentLoaded", () => {
-    const mapContainers = document.querySelectorAll(".map-container");
-    mapContainers.forEach((mapObject) => {
-      const {        
-        latitude,
-        longitude,
-        zoom,
-        mapstyle,
-        interactive,
-        pitch,
-        bearing,
-        layers,
-      } = mapObject.dataset;
-
-      const map = new maplibregl.Map({
-        container: mapObject.id,
-        style: mapstyle,
-        center: [parseFloat(longitude), parseFloat(latitude)],
-        zoom: parseFloat(zoom),
-        pitch: parseFloat(pitch),
-        bearing: parseFloat(bearing),
-        interactive: interactive === "true",
-      });
-
-      if (layers) {
-        loadMapLayers(map, JSON.parse(layers));
-      }
-    });
-  });
-</script>
+</div> 

@@ -1,0 +1,59 @@
+---
+import type { MapBlock } from "@types";
+
+export interface Props {
+    block: MapBlock;
+  }
+  const { block } = Astro.props;
+
+  const {
+  latitude,
+  longitude,
+  zoom,
+  mapstyle,
+  container, // use container prop from block
+  layers,
+  pitch,
+  bearing,
+  containerstyle, // use containerstyle from block 
+} = block;
+
+---
+
+<maplibre-map-inline
+  data-latitude={latitude}   
+  data-longitude={longitude}
+  data-zoom={zoom}
+  data-mapstyle={mapstyle}
+  data-container={container}
+  data-layers={JSON.stringify(layers)}
+  data-pitch={pitch}
+  data-bearing={bearing}
+>
+  <div id={container} class="map-container maplibre-inline" style={containerstyle}>
+
+  </div>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css"
+  />
+  <script>
+    import maplibregl from "maplibre-gl";
+    class MapLibreMap extends HTMLElement {
+        constructor() {
+          super();
+          var map = new maplibregl.Map({
+            container: this.dataset.container || "maplibre-map",
+            interactive: this.dataset.interactive === "true",
+            style: this.dataset.mapstyle || "mapbox://styles/mapbox/streets-v11",
+            center: [parseFloat(this.dataset.longitude ?? "0"), parseFloat(this.dataset.latitude ?? "0")],
+            zoom: parseFloat(this.dataset.zoom ?? "3") || 3,
+            pitch: parseFloat(this.dataset.pitch ?? "0") || 0,
+            bearing: parseFloat(this.dataset.bearing ?? "0") || 0,
+          });
+          
+        }
+    }
+    window.customElements.define("maplibre-map-inline", MapLibreMap);
+  </script>
+</maplibre-map-inline>
