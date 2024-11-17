@@ -1,20 +1,25 @@
 ---
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import maplibregl from "maplibre-gl";
-import type {
-  FillLayerSpecification,
-  CircleLayerSpecification,
-  LineLayerSpecification,
-  SymbolLayerSpecification,
-} from "maplibre-gl";
+
 import fs from "fs";
 import yaml from "js-yaml";
+import type {
+  GeoJSONFeatureLayer,
+  RasterLayer,
+  ImageLayer,
+  VectorTileLayer,
+} from "@types";
 
 // Load and parse the YAML file
 const fileContents = fs.readFileSync(
   "src/pages/_full_page_map_components.yaml",
   "utf8"
 );
+
+export interface LayerGroup {
+  layers: (GeoJSONFeatureLayer | RasterLayer | ImageLayer | VectorTileLayer)[];
+}
 
 export interface Props {
   latitude: number;
@@ -28,45 +33,9 @@ export interface Props {
   containerstyle?: string;
   pitch?: number;
   bearing?: number;
-  layers?: GeoJSONFeatureLayer[];
 }
 
-export interface MapEvent {
-  type: "click" | "mousemove" | "mouseenter" | "mouseleave";
-  content: Array<{
-    [key: string]: string | ((e: maplibregl.MapLayerMouseEvent) => string);
-  }>;
-}
-
-export interface GeoJSONFeatureLayer {
-  "data-type": "geojson";
-  id: string;
-  label?: string;
-  url: string;
-  toggle?: boolean;
-  visible?: boolean;
-  "layer-type":
-    | "symbol"
-    | "fill"
-    | "custom"
-    | "raster"
-    | "line"
-    | "circle"
-    | "heatmap"
-    | "fill-extrusion"
-    | "hillshade"
-    | "background";
-  paint?:
-    | FillLayerSpecification
-    | LineLayerSpecification
-    | CircleLayerSpecification
-    | SymbolLayerSpecification;
-  mouseEvent: MapEvent[];
-}
-
-const layers: GeoJSONFeatureLayer[] = yaml.load(
-  fileContents
-) as GeoJSONFeatureLayer[];
+const layers: LayerGroup[] = yaml.load(fileContents) as LayerGroup[];
 
 const {
   latitude,
@@ -107,7 +76,12 @@ const {
       />
       <script>
         import maplibregl from "maplibre-gl";
-        import type { GeoJSONFeatureLayer } from "./FullPageMap.astro";
+        import type {
+          GeoJSONFeatureLayer,
+          RasterLayer,
+          ImageLayer,
+          VectorTileLayer,
+        } from "@types";
 
         class MapLibreFullPageMap extends HTMLElement {
           constructor() {
@@ -135,89 +109,175 @@ const {
                 : undefined;
               if (layers) {
                 // Add toggle buttons if set to be so
-                layers.forEach((layer: GeoJSONFeatureLayer) => {
-                  if (layer.toggle) {
-                    const toggleButton = document.createElement("a");
-                    const menu = document.getElementById("menu");
-                    toggleButton.textContent = layer.label ?? layer.id;
-                    if (layer.visible === true) {
-                      toggleButton.className = "active";
-                    }
-                    toggleButton.onclick = () => {
-                      if (
-                        map.getLayoutProperty(layer.id, "visibility") ===
-                        "visible"
-                      ) {
-                        map.setLayoutProperty(layer.id, "visibility", "none");
-                        toggleButton.className = "";
-                      } else {
-                        map.setLayoutProperty(
-                          layer.id,
-                          "visibility",
-                          "visible"
-                        );
+                layers.forEach(
+                  (
+                    layer:
+                      | GeoJSONFeatureLayer
+                      | RasterLayer
+                      | ImageLayer
+                      | VectorTileLayer
+                  ) => {
+                    if (layer.toggle) {
+                      const toggleButton = document.createElement("a");
+                      const menu = document.getElementById("menu");
+                      toggleButton.textContent = layer.label ?? layer.id;
+                      if (layer.visible === true) {
                         toggleButton.className = "active";
                       }
-                    };
-                    if (menu) {
-                      menu.appendChild(toggleButton);
+                      toggleButton.onclick = () => {
+                        if (
+                          map.getLayoutProperty(layer.id, "visibility") ===
+                          "visible"
+                        ) {
+                          map.setLayoutProperty(layer.id, "visibility", "none");
+                          toggleButton.className = "";
+                        } else {
+                          map.setLayoutProperty(
+                            layer.id,
+                            "visibility",
+                            "visible"
+                          );
+                          toggleButton.className = "active";
+                        }
+                      };
+                      if (menu) {
+                        menu.appendChild(toggleButton);
+                      }
                     }
                   }
-                });
+                );
 
-                layers.forEach((layer: GeoJSONFeatureLayer) => {
-                  if (layer["data-type"] === "geojson") {
-                    fetch(layer.url)
-                      .then((response) => response.json())
-                      .then((data) => {
-                        data.features.forEach(
-                          (feature: {
-                            geometry: {
-                              type: string;
-                              coordinates: number[];
-                            };
-                            properties: {
-                              longitude: number;
-                              latitude: number;
-                            };
-                          }) => {
-                            // Check if there's already a valid geometry, otherwise reconstruct it
-                            if (!feature.geometry) {
-                              feature.geometry = {
-                                type: "Point",
-                                coordinates: [
-                                  Number(feature.properties.longitude),
-                                  Number(feature.properties.latitude),
-                                ],
+                layers.forEach(
+                  (
+                    layer:
+                      | GeoJSONFeatureLayer
+                      | RasterLayer
+                      | ImageLayer
+                      | VectorTileLayer
+                  ) => {
+                    if (layer["data-type"] === "geojson") {
+                      fetch(layer.url)
+                        .then((response) => response.json())
+                        .then((data) => {
+                          data.features.forEach(
+                            (feature: {
+                              geometry: {
+                                type: string;
+                                coordinates: number[];
                               };
+                              properties: {
+                                longitude: number;
+                                latitude: number;
+                              };
+                            }) => {
+                              // Check if there's already a valid geometry, otherwise reconstruct it
+                              if (!feature.geometry) {
+                                feature.geometry = {
+                                  type: "Point",
+                                  coordinates: [
+                                    Number(feature.properties.longitude),
+                                    Number(feature.properties.latitude),
+                                  ],
+                                };
+                              }
                             }
+                          );
+
+                          // Add source if it doesn't exist
+                          if (!map.getSource(layer.id)) {
+                            map.addSource(layer.id, {
+                              type: "geojson",
+                              data: data,
+                            });
                           }
-                        );
 
-                        // Add source if it doesn't exist
-                        if (!map.getSource(layer.id)) {
-                          map.addSource(layer.id, {
-                            type: "geojson",
-                            data: data,
-                          });
-                        }
+                          // Add layer if it doesn't already exist
+                          if (!map.getLayer(layer.id)) {
+                            map.addLayer({
+                              id: layer.id,
+                              type: layer["layer-type"],
+                              // @ts-expect-error expect source to be string via source above
+                              source: layer.id,
+                              // @ts-expect-error expect partial paint defs
+                              paint: layer.paint || {}, // Include paint if it exists
+                              layout: {
+                                visibility: layer.visible ? "visible" : "none",
+                              },
+                            });
+                          }
+                        });
+                    } else if (layer["data-type"] === "raster") {
+                      // Add source if it doesn't exist
+                      if (!map.getSource(layer.id)) {
+                        map.addSource(layer.id, {
+                          type: "raster",
+                          tiles: [layer.url || ""],
+                          tileSize: layer.tileSize || 256,
+                        });
+                      }
 
-                        // Add layer if it doesn't already exist
-                        if (!map.getLayer(layer.id)) {
-                          map.addLayer({
-                            id: layer.id,
-                            type: layer["layer-type"],
-                            // @ts-expect-error expect source to be string via source above
-                            source: layer.id,
-                            // @ts-expect-error expect partial paint defs
-                            paint: layer.paint || {}, // Include paint if it exists
-                            layout: {
-                              visibility: layer.visible ? "visible" : "none",
-                            },
-                          });
-                        }
-                      });
+                      // Add layer if it doesn't already exist
+                      if (!map.getLayer(layer.id)) {
+                        map.addLayer({
+                          id: layer.id,
+                          type: "raster",
+                          source: layer.id,
+                          // @ts-expect-error expect partial paint defs
+                          paint: layer.paint || {}, // Include paint if it exists
+                          layout: {
+                            visibility: layer.visible ? "visible" : "none",
+                          },
+                        });
+                      }
+                    } else if (layer["data-type"] === "image") {
+                      // Add source if it doesn't exist
+                      if (!map.getSource(layer.id)) {
+                        map.addSource(layer.id, {
+                          type: "image",
+                          url: layer.url || "",
+                          coordinates: layer.coordinates || [],
+                        });
+                      }
 
+                      // Add layer if it doesn't already exist
+                      if (!map.getLayer(layer.id)) {
+                        map.addLayer({
+                          id: layer.id,
+                          type: "raster",
+                          source: layer.id,
+                          // @ts-expect-error expect partial paint defs
+                          paint: layer.paint || {}, // Include paint if it exists
+                          layout: {
+                            visibility: layer.visible ? "visible" : "none",
+                          },
+                        });
+                      }
+                    } else if (layer["data-type"] === "vector") {
+                      // Add source if it doesn't exist
+                      if (!map.getSource(layer.id)) {
+                        map.addSource(layer.id, {
+                          type: "vector",
+                          tiles: [layer.url || ""],
+                          minzoom: layer.minzoom || 0,
+                          maxzoom: layer.maxzoom || 22,
+                        });
+                      }
+
+                      // Add layer if it doesn't already exist
+                      if (!map.getLayer(layer.id)) {
+                        map.addLayer({
+                          id: layer.id,
+                          type: layer["layer-type"],
+                          source: layer.id,
+                          "source-layer": layer["source-layer"] ?? layer.id,
+                          // @ts-expect-error expect partial paint defs
+                          paint: layer.paint || {}, // Include paint if it exists
+                          layout: {
+                            visibility: layer.visible ? "visible" : "none",
+                          },
+                        });
+                      }
+                    }
                     // Handle mouse events if defined
                     if (layer.mouseEvent) {
                       const popup = new maplibregl.Popup({ offset: 15 });
@@ -293,13 +353,16 @@ const {
                       });
                     }
                   }
-                });
+                );
               }
             });
           }
         }
 
-        window.customElements.define("maplibre-fullpage-map", MapLibreFullPageMap);
+        window.customElements.define(
+          "maplibre-fullpage-map",
+          MapLibreFullPageMap
+        );
       </script>
     </maplibre-fullpage-map>
   </div>
