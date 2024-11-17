@@ -148,7 +148,6 @@ main {
 /* Each section represents a new scrolling block */
 section {
   width: 50%;
-  
   min-height: 150vh; /* Each section takes up at least the full viewport height */
   border-bottom: 1px solid #ddd; /* Optional separator between sections */
   box-sizing: border-box;
@@ -165,6 +164,10 @@ section {
   width: 100vw;
   height: 100vh; /* Full viewport height */
   z-index: 1; /* Behind the scrolling content */
+}
+
+.maplibregl-popup-content {
+  color: var(--text-color); /* Replace 'your-color' with the desired color */
 }
 
 #maplibre-scrollytelling-map {
