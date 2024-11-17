@@ -1,64 +1,23 @@
 ---
-import type { LayerGroup } from "@types";
 import fs from "fs";
 import yaml from "js-yaml";
-import { default as MapLibre } from "@components/MapLibre.astro";
+import type { ContentBlock, MapBlock, MixedBlock } from "@types";
+
 // Load and parse the YAML file
 const fileContents = fs.readFileSync(
   "src/pages/_inline_map_components.yaml",
   "utf8"
 );
-
 const pageData = yaml.load(fileContents) as ContentBlock[];
-export interface ContentBlock {
-    type: "map" | "content";
-    content: MapBlock | MixedBlock;
-}
-
-export interface MapBlock {
-    type: "map";
-    latitude: number;
-    longitude: number;
-    zoom: number;
-    mapstyle: string;
-    container: string;
-    interactive?: boolean;
-    containerstyle?: string;
-    pitch?: number;
-    bearing?: number;
-    layers?: LayerGroup[];
-}
-
-export interface MixedBlock {
-    type: "content";
-    content: ContentTag[];
-}
-
-export interface ContentTag {
-  [key: string]:
-    | string
-    | {
-        property?: string; // Indicates a feature property to pull data from
-        else?: string;     // Fallback value if the property doesn't exist
-        str?: string;      // A raw string value to display
-        href?: string;     // Hyperlink for anchor tags
-        text?: string;     // Display text for anchor tags
-        src?: string;      // Image source URL for img tags
-        alt?: string;      // Alternate text for img tags
-      };
-}
-
-export interface Props {
-  fileContents: string;
-}
 
 // Function to dynamically load MapLibre map
-function loadMap(mapData: MapBlock, index: number) {
+export function loadMap(mapData: MapBlock, index: number) {
   const {
     latitude,
     longitude,
     zoom,
     mapstyle,
+    container = `map-${index ?? 0}`,
     interactive = true,
     containerstyle = "height: 61.8vh;",
     pitch = 0,
@@ -67,13 +26,28 @@ function loadMap(mapData: MapBlock, index: number) {
   } = mapData;
 
   const layersJson = layers ? JSON.stringify(layers) : undefined;
-
-  return (<div><p>hi</p></div>);
+  console.log(mapData);
+  return (
+    <div
+      id={container}
+      class="map-container my-4"
+      style={containerstyle}
+      data-latitude={latitude}
+      data-longitude={longitude}
+      data-zoom={zoom}
+      data-mapstyle={mapstyle}
+      data-interactive={interactive}
+      data-pitch={pitch}
+      data-bearing={bearing}
+      data-layers={layersJson}
+    >
+      {/* Map will initialize dynamically */}
+    </div>
+  );
 }
 
-
 // Function to dynamically render HTML content
-function renderHTMLContent(contentBlock: MixedBlock) {
+export function renderHTMLContent(contentBlock: MixedBlock) {
   return contentBlock.content.map((tag, index) => {
     if (typeof tag === "string") {
       return <p key={index}>{tag}</p>;
@@ -106,31 +80,35 @@ function renderHTMLContent(contentBlock: MixedBlock) {
 }
 ---
 
-<div class="inline-content-container">
-  {pageData.map((block, index) => {
-    if (block.type === "map") {
-      return loadMap(block.content as MapBlock, index);
+<main>
+  <div class="inline-content-container">
+    {
+      pageData.map((block, index) => {
+        console.log(block);
+        if (block.type === "map") {
+          return loadMap(block.content as MapBlock, index);
+        }
+        if (block.type === "content") {
+          return (
+            <div class="content-block my-4" key={`content-${index}`}>
+              {renderHTMLContent(block.content as MixedBlock)}
+            </div>
+          );
+        }
+        return null;
+      })
     }
-    if (block.type === "content") {
-      return (
-        <div class="content-block my-4" key={`content-${index}`}>
-          {renderHTMLContent(block.content as MixedBlock)}
-        </div>
-      );
-    }
-    return null;
-  })}
-</div>
+  </div>
+</main>
 
 <script>
   import maplibregl from "maplibre-gl";
   import { loadMapLayers } from "@lib/utils";
-
   // Initialize MapLibre for all map containers
   document.addEventListener("DOMContentLoaded", () => {
     const mapContainers = document.querySelectorAll(".map-container");
-    mapContainers.forEach((container) => {
-      const {
+    mapContainers.forEach((mapObject) => {
+      const {        
         latitude,
         longitude,
         zoom,
@@ -139,10 +117,10 @@ function renderHTMLContent(contentBlock: MixedBlock) {
         pitch,
         bearing,
         layers,
-      } = container.dataset;
+      } = mapObject.dataset;
 
       const map = new maplibregl.Map({
-        container: container.id,
+        container: mapObject.id,
         style: mapstyle,
         center: [parseFloat(longitude), parseFloat(latitude)],
         zoom: parseFloat(zoom),
@@ -157,4 +135,3 @@ function renderHTMLContent(contentBlock: MixedBlock) {
     });
   });
 </script>
-
