@@ -11,6 +11,7 @@ export interface Props {
   longitude,
   zoom,
   mapstyle,
+  interactive,
   container, // use container prop from block
   layers,
   pitch,
@@ -29,6 +30,7 @@ export interface Props {
   data-layers={JSON.stringify(layers)}
   data-pitch={pitch}
   data-bearing={bearing}
+    data-interactive={interactive}
 >
   <div id={container} class="map-container maplibre-inline" style={containerstyle}>
 
@@ -38,13 +40,17 @@ export interface Props {
     href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css"
   />
   <script>
-    import maplibregl from "maplibre-gl";
+    
+import maplibregl from "maplibre-gl";
+import { loadMapLayers } from "@lib/utils";
+
     class MapLibreMap extends HTMLElement {
         constructor() {
           super();
+          const isStatic = this.dataset.interactive === undefined;
           var map = new maplibregl.Map({
             container: this.dataset.container || "maplibre-map",
-            interactive: this.dataset.interactive === "true",
+            interactive: isStatic ? false : true,
             style: this.dataset.mapstyle || "mapbox://styles/mapbox/streets-v11",
             center: [parseFloat(this.dataset.longitude ?? "0"), parseFloat(this.dataset.latitude ?? "0")],
             zoom: parseFloat(this.dataset.zoom ?? "3") || 3,
@@ -52,6 +58,12 @@ export interface Props {
             bearing: parseFloat(this.dataset.bearing ?? "0") || 0,
           });
           
+          map.on("load", () => {
+            const layers = JSON.parse(this.dataset.layers || "[]");
+            if (layers){
+            loadMapLayers(map, layers);
+            }
+          });
         }
     }
     window.customElements.define("maplibre-map-inline", MapLibreMap);
