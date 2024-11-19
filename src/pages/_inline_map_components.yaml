@@ -1,6 +1,8 @@
 blocks:
   - type: "content"
     content:
+      - h1:
+        - str: "Example page with inline maps from a yaml file"
       - p: 
         - str: "An example of an interactive map"
 
@@ -56,7 +58,7 @@ blocks:
   - type: "content"
     content:
       - p: 
-        - str: "... and a static map. Note that the container ID must be unique."
+        - str: "... and below is a static map. Note that the container ID must be unique (in the example below it is maplibremap2)."
 
   - type: "map"
     content:
@@ -71,10 +73,9 @@ blocks:
   - type: "content"
     content:
       - p: 
-        - str: "... and a static map from an image you have composed"
+        - str: "... and a static map from an image you have composed." 
       - p: 
-        - str: "To add static images from a jpg or png file use the syntax below"
-        - str: "you must include the reference name that corresponds to the file path you have listed above"
+        - str: "To add static images from a jpg or png file save the image in the public/img folder and use the syntax below"
       - img:
         - src: "./img/fisk02.jpg"
           alt: "image description"
@@ -85,6 +86,8 @@ blocks:
         - str: "A subsection"
       - p: 
         - str: "You can go into more detail here."
+      - p: 
+        - str: "To start a new paragraph you must insert a new p section as shown here. "
 
   - type: "content"
     content:
