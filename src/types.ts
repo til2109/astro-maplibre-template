@@ -124,3 +124,45 @@ export interface MapEvent {
     [key: string]: string | ((e: maplibregl.MapLayerMouseEvent) => string);
   }>;
 }
+
+export interface LayerGroup {
+  layers: (GeoJSONFeatureLayer | RasterLayer | ImageLayer | VectorTileLayer)[];
+}
+
+export interface MapBlock {
+  type: "map";
+  latitude: number;
+  longitude: number;
+  zoom: number;
+  mapstyle: string;
+  container: string;
+  interactive?: boolean;
+  containerstyle?: string;
+  pitch?: number;
+  bearing?: number;
+  layers?: LayerGroup[];
+}
+
+export interface MixedBlock {
+  type: "content";
+  content: ContentTag[];
+}
+
+export interface ContentTag {
+  [key: string]:
+    | string
+    | {
+        property?: string; // Indicates a feature property to pull data from
+        else?: string; // Fallback value if the property doesn't exist
+        str?: string; // A raw string value to display
+        href?: string; // Hyperlink for anchor tags
+        text?: string; // Display text for anchor tags
+        src?: string; // Image source URL for img tags
+        alt?: string; // Alternate text for img tags
+      };
+}
+
+export interface ContentBlock {
+  type: "map" | "content";
+  content: MapBlock | MixedBlock;
+}

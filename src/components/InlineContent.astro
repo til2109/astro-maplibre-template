@@ -1,0 +1,29 @@
+---
+import type { MixedBlock } from "@types";
+export interface Props {
+  block: MixedBlock;
+}
+
+const { block } = Astro.props;
+
+const pageContent = JSON.stringify(block);
+---
+
+<inline-mixed-content data-block={pageContent}></inline-mixed-content>
+<div id="inline-mixed-content" class="inline-mixed-content">
+  <script>
+    import { parseMixedContent } from "../lib/utils";
+
+    class InlineMixedContent extends HTMLElement {
+      constructor() {
+        super();
+        const block = this.dataset.block ? JSON.parse(this.dataset.block) : {};
+        const parsedContent = parseMixedContent(block);
+        console.log(parsedContent);
+        this.innerHTML = parsedContent;
+      }
+    }
+
+    window.customElements.define("inline-mixed-content", InlineMixedContent);
+  </script>
+</div>
