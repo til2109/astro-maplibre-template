@@ -1,10 +1,23 @@
 blocks:
   - type: "content"
     content:
-      - h4:
+      - h3:
         - str: "Insensible Habitat Networks in the New York Metropolitan Area"
-      - p: 
+      - h5: 
         - str: "How do networks of trans species coexistence function in densely urban areas?"
+      - p: 
+        - str: "To question this binary relationship, Same Home focuses on habitat fragmentation calculations, a core metric in Landscape ecology analysis. Habitat fragmentation is a relational metric - the value of land is determined by its context - making it an inherently holistic metric. Its function allows us to understand systems without needing to know the details of its internal function. However, like other network analysis, the matrix of a landscape must be simplified at the cost of microclimatic resolution. Therefore, specific characteristics of a patch are not of value within fragmentation understanding where landscapes are deduced to homogeneous nodes."
+
+  - type: "content"
+    content:
+      - p: 
+        - str: "... and a static map from an image you have composed." 
+      - p: 
+        - str: "To add static images from a jpg or png file save the image in the public/img folder and use the syntax below"
+      - img:
+        - src: "./astro-maplibre-template/src/assets/img/Fragmentation_Frog Chart.png"
+          alt: "image description"
+
 
   - type: "map"
     content:
@@ -95,15 +108,8 @@ blocks:
             fill-color: "#ffff00"
           visible: true
 
-  - type: "content"
-    content:
-      - p: 
-        - str: "... and a static map from an image you have composed." 
-      - p: 
-        - str: "To add static images from a jpg or png file save the image in the public/img folder and use the syntax below"
-      - img:
-        - src: "./img/fisk02.jpg"
-          alt: "image description"
+
+
 
   - type: "content"
     content:
