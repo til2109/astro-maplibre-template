@@ -1,28 +1,28 @@
 blocks:
   - type: "content"
     content:
-      - h1:
-        - str: "Example page with inline maps from a yaml file"
+      - h4:
+        - str: "Insensible Habitat Networks in the New York Metropolitan Area"
       - p: 
-        - str: "An example of an interactive map"
+        - str: "How do networks of trans species coexistence function in densely urban areas?"
 
   - type: "map"
     content:
       container: "maplibremap"
-      latitude: 40.8075803
-      longitude: -73.9604192
-      zoom: 12
+      latitude: 40.72864
+      longitude: -74.01594
+      zoom: 10
       interactive: true
       mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
       containerstyle: "width: 100%; height: 70vh"
       layers:
-        - id: "pizza"
-          url: "https://data.cityofnewyork.us/resource/43nn-pn8j.geojson?cuisine_description=Pizza&$limit=10000"
+        - id: "Red Fox Seen"
+          url: "./public/data/Fox_NEW.geojson"
           data-type: "geojson"
           layer-type: "circle"
           paint:
-            circle-color: "#ff0000"
-            circle-radius: 5
+            circle-color: "#009dff"
+            circle-radius: 3
           mouseEvent:
             - type: "click"
               content:
@@ -45,15 +45,24 @@ blocks:
                     alt: "Feature image"
           toggle: true
           visible: true
-        - id: "bikes"
-          url: "https://data.cityofnewyork.us/resource/mzxg-pwib.geojson?$limit=10000"
+        - id: "American Bullfrog Seen"
+          url: "./public/data/FROG_new.geojson"
           data-type: "geojson"
-          layer-type: "line"
+          layer-type: "circle"
           paint:
-            line-color: "#000000"
-            line-width: 3
+            circle-color: "#ffff00"
+            circle-radius: 3
           toggle: true
-          visible: false
+          visible: true
+        - id: "Peregine Falcon Seen"
+          url: "./public/data/FALCON_new.geojson"
+          data-type: "geojson"
+          layer-type: "circle"
+          paint:
+            circle-color: "#ff8e8d"
+            circle-radius: 3
+          toggle: true
+          visible: true
 
   - type: "content"
     content:
@@ -63,12 +72,28 @@ blocks:
   - type: "map"
     content:
       container: "maplibremap2"
-      latitude: 32.795595
-      longitude: -117.259191
-      zoom: 3
+      latitude: 40.78254
+      longitude: -73.96367
+      zoom: 13
       interactive: false
-      mapstyle: "https://demotiles.maplibre.org/style.json"
-      containerstyle: "width: 100%; height: 256px"
+      mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+      containerstyle: "width: 75%; height: 256px"
+      layers:
+        - id: "American Bullfrog Seen"
+          url: "./public/data/FROG_new.geojson"
+          data-type: "geojson"
+          layer-type: "circle"
+          paint:
+            circle-color: "#ffff00"
+            circle-radius: 4
+          visible: true
+        - id: "Frog Habitat 2023"
+          url: "./public/data/Buffer_withLC_Frog_2013.geojson"
+          data-type: "geojson"
+          layer-type: "fill"
+          paint:
+            fill-color: "#ffff00"
+          visible: true
 
   - type: "content"
     content:
