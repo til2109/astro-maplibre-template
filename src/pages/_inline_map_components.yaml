@@ -73,10 +73,60 @@ blocks:
             fill-color: "#ffff00"
           visible: true
 
+  - type: "map"
+    content:
+      container: "maplibremap3"
+      latitude: 40.78254
+      longitude: -73.96367
+      zoom: 13
+      interactive: false
+      mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+      containerstyle: "width: 50%; height: 256px"
+      layers:
+        - id: "Peregine Falcon Seen"
+          url: "./public/data/FALCON_new.geojson"
+          data-type: "geojson"
+          layer-type: "circle"
+          paint:
+            circle-color: "#ff8e8d"
+            circle-radius: 3
+          visible: true
+        - id: "Frog Habitat 2023"
+          url: "./public/data/Buffer_withLC_Frog_2013.geojson"
+          data-type: "geojson"
+          layer-type: "fill"
+          paint:
+            fill-color: "#ffff00"
+
+  - type: "map"
+    content:
+      container: "maplibremap4"
+      latitude: 40.78254
+      longitude: -73.96367
+      zoom: 13
+      interactive: false
+      mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+      containerstyle: "width: 50%; height: 256px"
+      layers:
+        - id: "Red Fox Seen"
+          url: "./public/data/Fox_NEW.geojson"
+          data-type: "geojson"
+          layer-type: "circle"
+          paint:
+            circle-color: "#009dff"
+            circle-radius: 3
+          visible: true
+        - id: "Frog Habitat 2023"
+          url: "./public/data/Buffer_withLC_Frog_2013.geojson"
+          data-type: "geojson"
+          layer-type: "fill"
+          paint:
+            fill-color: "#ffff00"
+          visible: true
 
   - type: "content"
     content:
-      - h3: 
+      - h2: 
         - str: "See Who YOUR Neighbors Are!"
 
 
@@ -137,11 +187,3 @@ blocks:
             circle-radius: 3
           toggle: true
           visible: true
-
-
-  - type: "content"
-    content:
-      - h3: 
-        - str: "A further subsection"
-      - p: 
-        - str: "And even more detail here."
