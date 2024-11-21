@@ -3,20 +3,81 @@ blocks:
     content:
       - h3:
         - str: "Insensible Habitat Networks in the New York Metropolitan Area"
-      - h5: 
+      - em: 
         - str: "How do networks of trans species coexistence function in densely urban areas?"
       - p: 
+        - str: "Despite relentless efforts to quantify them, natural systems are complex beyond human understanding. As climates rapidly change, our understanding of environmental services and human impact on natural systems have been thoroughly researched in the hopes of preserving our built habitat. This research focus inherently contributes to an antagonistic binary between human habitation and other animal habitation. "
+
+  - type: "content"
+    content: 
+      - h4: 
+        - str: "What is Habitat Fragmentation?"
+      - p: 
+        - str: "Definition"
+      - p: 
         - str: "To question this binary relationship, Same Home focuses on habitat fragmentation calculations, a core metric in Landscape ecology analysis. Habitat fragmentation is a relational metric - the value of land is determined by its context - making it an inherently holistic metric. Its function allows us to understand systems without needing to know the details of its internal function. However, like other network analysis, the matrix of a landscape must be simplified at the cost of microclimatic resolution. Therefore, specific characteristics of a patch are not of value within fragmentation understanding where landscapes are deduced to homogeneous nodes."
+        - str: "The matrix understanding is dependent on a classification of land  that presupposes animals and humans occupy different spaces and the more “unnatural” the space the less likely animals are to be found there.  By this logic, we would not have diverse animal communities in densely urbanized areas, which we know is not true."
+      - img:
+        - src: "./src/assets/img/Fragmentation_Fragmentation OG.png"
+          alt: "Typical Habitat Fragmentation Calculation Diagram"
+      - img:
+        - src: "./src/assets/img/Fragmentation_Fragmentation NEW.png"
+          alt: "Typical Habitat Fragmentation Calculation Diagram"
+
+  - type: "content"
+    content: 
+      - h4: 
+        - str: "Different Homes in NYC "
+      - p: 
+        - str: "Same Home re-evaluates habitation metrics in the New York Metropolitan area to provide an imaginary of trans species cohabitation. Rather than just mapping standard habitat fragmentation, Same Home creates a metric of mobility that is used to measure the severity of fragmentation at species specific level to present an alternative classification of habitat. Ultimately, this can change our understanding of habitat connectivity and deemphasize the weight of area and edge condition in understanding biodiversity."
+        - str: "The binary between animal and human has become increasingly unfounded as numerous animal species have adapted to our anthropocentric constructed cities. I selected three animal species that have been found in the New York Metropolitan Area each with different habitation behaviors: migratory, territorial, and nomadic. Quantitative research for each species’ habitat preferences were then used to calculate a fragmentation distance based on those behaviors. These factors included average resting area, average mating area, average frequency of habitats per land type, as well as maximum and average home range. Each factor was then used to create a weighted average of area needed for survival, thus giving us a species specific fragmentation threshold."
+
+  - type: "content"
+    content: 
+      - h4: 
+        - str: "Urban Adaptive Species"
+      - img:
+        - src: "./src/assets/img/Fragmentation_Falcon Chart.png"
+          alt: "Typical Habitat Fragmentation Calculation Diagram"
+      - img:
+        - src: "./src/assets/img/Fragmentation_Frog Chart.png"
+          alt: "Typical Habitat Fragmentation Calculation Diagram"
+      - img:
+        - src: "src/assets/img/Fragmentation_Fox Chart.png"
+          alt: "Typical Habitat Fragmentation Calculation Diagram"
+
+
+  - type: "map"
+    content:
+      container: "maplibremap2"
+      latitude: 40.78254
+      longitude: -73.96367
+      zoom: 13
+      interactive: false
+      mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+      containerstyle: "width: 50%; height: 256px"
+      layers:
+        - id: "American Bullfrog Seen"
+          url: "./public/data/FROG_new.geojson"
+          data-type: "geojson"
+          layer-type: "circle"
+          paint:
+            circle-color: "#ffff00"
+            circle-radius: 4
+          visible: true
+        - id: "Frog Habitat 2023"
+          url: "./public/data/Buffer_withLC_Frog_2013.geojson"
+          data-type: "geojson"
+          layer-type: "fill"
+          paint:
+            fill-color: "#ffff00"
+          visible: true
+
 
   - type: "content"
     content:
-      - p: 
-        - str: "... and a static map from an image you have composed." 
-      - p: 
-        - str: "To add static images from a jpg or png file save the image in the public/img folder and use the syntax below"
-      - img:
-        - src: "./astro-maplibre-template/src/assets/img/Fragmentation_Frog Chart.png"
-          alt: "image description"
+      - h3: 
+        - str: "See Who YOUR Neighbors Are!"
 
 
   - type: "map"
@@ -77,48 +138,6 @@ blocks:
           toggle: true
           visible: true
 
-  - type: "content"
-    content:
-      - p: 
-        - str: "... and below is a static map. Note that the container ID must be unique (in the example below it is maplibremap2)."
-
-  - type: "map"
-    content:
-      container: "maplibremap2"
-      latitude: 40.78254
-      longitude: -73.96367
-      zoom: 13
-      interactive: false
-      mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
-      containerstyle: "width: 75%; height: 256px"
-      layers:
-        - id: "American Bullfrog Seen"
-          url: "./public/data/FROG_new.geojson"
-          data-type: "geojson"
-          layer-type: "circle"
-          paint:
-            circle-color: "#ffff00"
-            circle-radius: 4
-          visible: true
-        - id: "Frog Habitat 2023"
-          url: "./public/data/Buffer_withLC_Frog_2013.geojson"
-          data-type: "geojson"
-          layer-type: "fill"
-          paint:
-            fill-color: "#ffff00"
-          visible: true
-
-
-
-
-  - type: "content"
-    content:
-      - h2: 
-        - str: "A subsection"
-      - p: 
-        - str: "You can go into more detail here."
-      - p: 
-        - str: "To start a new paragraph you must insert a new p section as shown here. "
 
   - type: "content"
     content:
