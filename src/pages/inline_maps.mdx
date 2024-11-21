@@ -7,67 +7,87 @@ import { default as MapLibre } from "@components/MapLibre.astro";
 
 import fiskImg from "../assets/img/fisk02.jpg"
 
-
+import hawkchart from "/Users/trellaisabellopez/Documents/GitHub/astro-maplibre-template/src/assets/img/Fragmentation_Falcon Chart.png"
+import frag1 from "/Users/trellaisabellopez/Documents/GitHub/astro-maplibre-template/src/assets/img/Fragmentation_Fragmentation OG.png"
+import frag2 from "/Users/trellaisabellopez/Documents/GitHub/astro-maplibre-template/src/assets/img/Fragmentation_Fragmentation NEW.png"
+import foxchart from "/Users/trellaisabellopez/Documents/GitHub/astro-maplibre-template/src/assets/img/Fragmentation_Fox Chart.png"
+import frogchart from "/Users/trellaisabellopez/Documents/GitHub/astro-maplibre-template/src/assets/img/Fragmentation_Frog Chart.png"
 
 <PageLayout title={SITE.title} description={SITE.description}>
 
-    <Container>
-    # My Project
-    
-    An example of an interactive map
+
+<Container>
+<h5>Insensible Habitat Networks in the New York Metropolitan Area </h5>
+
+<p><i>How do networks of trans species coexistence function in densely urban areas?</i> </p>
+
+
+<p> Despite relentless efforts to quantify them, natural systems are complex beyond human understanding. 
+    As climates rapidly change, our understanding of environmental services and human impact on natural systems 
+    have been thoroughly researched in the hopes of preserving our built habitat. This research focus inherently
+     contributes to an antagonistic binary between human habitation and other animal habitation.</p>
+
+<p> To question this binary relationship, <i>Same Home</i> focuses on habitat fragmentation calculations, 
+    a core metric in Landscape ecology analysis. Habitat fragmentation is a relational metric - the value 
+    of land is determined by its context - making it an inherently holistic metric. Its function allows us 
+    to understand systems without needing to know the details of its internal function. However, like other 
+    network analysis, the matrix of a landscape must be simplified at the cost of microclimatic resolution. 
+    Therefore, specific characteristics of a patch are not of value within fragmentation understanding where 
+    landscapes are deduced to homogeneous nodes. </p>
+
+
+<div class="frag-container">
+  <img src={frag1.src} alt="image description" width="400" height="600" /> 
+<img src={frag2.src} alt="image description" width="400" height="600" /> 
+</div>
+
+<p> The matrix understanding is dependent on a classification of land  that presupposes animals and humans occupy different spaces and the more “unnatural” the space the less likely animals are to be found there.  By this logic, we would not have diverse animal communities in densely urbanized areas, which we know is not true.   </p>
+
+<p><i>Same Home</i> re-evaluates habitation metrics in the New York Metropolitan area to provide an imaginary of trans species cohabitation. Rather than just mapping standard habitat fragmentation, Same Home creates a metric of mobility that is used to measure the severity of fragmentation at species specific level to present an alternative classification of habitat. Ultimately, this can change our understanding of habitat connectivity and deemphasize the weight of area and edge condition in understanding biodiversity.</p>
+
+
+<div class="chart-container">
+   <img src={hawkchart.src} alt="image description" />
+     <img src={frogchart.src} alt="image description" />
+      <img src={foxchart.src} alt="image description" />
+</div>
+ <MapLibre
+    container="maplibremap2"
+    latitude={32.795595}
+    longitude={-117.259191}
+    zoom={3}
+    interactive="false"
+    mapstyle="https://demotiles.maplibre.org/style.json"
+    containerstyle="width: 100%; height: 256px" />
+
     <MapLibre
         container="maplibremap"
-        latitude={40.8075803}
-        longitude={-73.9604192}
-        zoom={12}
+        latitude={40.72864}
+        longitude={-74.01594}
+        zoom={9}
         interactive="true"
         mapstyle="https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
-        containerstyle="width: 100%; height: 50vh"
+        containerstyle="width: 100%; height: 50vh; align: center"
         layers={[
             { url:'https://data.cityofnewyork.us/resource/43nn-pn8j.geojson?cuisine_description=Pizza&$limit=10000', 'data-type':'geojson','layer-type':'circle', id:'pizza', paint:{'circle-color':'#ff0000','circle-radius':5},
-            mouseEvent: [
-                {
-                    type: "click", // same concept should work for mousemove
-                    content: [
-                        { "h2": [{'str':"Feature Info"}] }, // 
-                        { "p": [{'str':"Description of feature"}] },
-                        { "p": [{'str':'NTA Attribute: '}, {'property': 'dba', 'else':'N/A'}, {'str': " in CD "}, {'property': 'nta', 'else':'N/A'} ]}, 
-                        { "a": [{ "href": "https://example.com", "text": "Learn more about this feature" }] },
-                        { "img": [{ "src": "https://www.seriouseats.com/thmb/-_mziT2tl0F63I4kfji4S6bE-cA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2018__10__20181015-state-of-slice-delmar-clay-williams-2de043fa5a0d4475b6c567e4a974b13b.jpg", "alt": "Feature image" }] }
-                    ]
-                }
+        mouseEvent: [
+            {
+                type: "click", // same concept should work for mousemove
+                content: [
+                    { "h2": [{'str':"Feature Info"}] }, // 
+                    { "p": [{'str':"Description of feature"}] },
+                    { "p": [{'str':'NTA Attribute: '}, {'property': 'dba', 'else':'N/A'}, {'str': " in CD "}, {'property': 'nta', 'else':'N/A'} ]}, 
+                    { "a": [{ "href": "https://example.com", "text": "Learn more about this feature" }] },
+                    { "img": [{ "src": "https://www.seriouseats.com/thmb/-_mziT2tl0F63I4kfji4S6bE-cA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2018__10__20181015-state-of-slice-delmar-clay-williams-2de043fa5a0d4475b6c567e4a974b13b.jpg", "alt": "Feature image" }] }
                 ]
-            },
-            { url:'https://data.cityofnewyork.us/resource/mzxg-pwib.geojson?$limit=10000', 'data-type':'geojson', 'layer-type':'line', id:'bikes', paint:{'line-color':'#000000', 'line-width':3}},
-        ]}
+            }
+            ]
+        },
+        { url:'https://data.cityofnewyork.us/resource/mzxg-pwib.geojson?$limit=10000', 'data-type':'geojson', 'layer-type':'line', id:'bikes', paint:{'line-color':'#000000', 'line-width':3}},
+    ]}
     />
 
-    ... and a static map. Note that the container ID must be unique.
-
-    <MapLibre
-        container="maplibremap2"
-        latitude={32.795595}
-        longitude={-117.259191}
-        zoom={3}
-        interactive="false"
-        mapstyle="https://demotiles.maplibre.org/style.json"
-        containerstyle="width: 100%; height: 256px"
-    />
-
-
-    ... and a static map from an image you have composed 
-
-    /* To add static images from a jpg or png file use the syntax below*/
-    /* you must include the reference name that corresponds to the file path you have listed above */
-    <img src={fiskImg.src} alt="image description" />
-
-    ## A subsection 
-
-    You can go into more detail here.
-
-    ### A further subsection
-    And even more detail here.
-
+    
     </Container>
 
 </PageLayout>
