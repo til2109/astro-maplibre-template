@@ -1,12 +1,12 @@
 - id: 'bikes'
   label: 'Bike Lanes'
   toggle: true  
-  visible: false
+  visible: true
   data-type: 'geojson'
   layer-type: 'line'
   url: 'https://data.cityofnewyork.us/resource/mzxg-pwib.geojson?$limit=10000'
   paint:
-    line-color: '#000000'
+    line-color: '#00000'
     line-width: 3
 
 - id: 'vector-tile'
@@ -47,7 +47,7 @@
   layer-type: 'circle'
   url: 'https://data.cityofnewyork.us/resource/43nn-pn8j.geojson?cuisine_description=Pizza&$limit=10000'
   paint:
-    circle-color: '#ff0000'
+    circle-color: '#ff618e'
     circle-radius: 5
   mouseEvent:
     - type: "click"
