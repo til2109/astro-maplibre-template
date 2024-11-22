@@ -13,20 +13,24 @@ blocks:
       - h4: 
         - str: "What is Habitat Fragmentation?"
       - p: 
-        - str: "Habitat fragmentation decribes habitats reduction due to human development.
+        - str: 
+                "Habitat fragmentation decribes habitats reduction due to human development.
+                \n
                 Natural areas that provide curcial space for habitation become smaller and increasingly isolated deeply impacting population sizes and biodiversity at local scales. 
+                
                 Habitat fragmentation is based on the understanding of evolutionary progression as a network. 
+                \n
                 In order for species to avoid extinction, they must have high genetic diversity which only comes with high contact of other animals not from the same blood line.
                 The probability of this contact increases as habitats for species are closer to one another.
                 Habitats are therefore function as nodes and the distance between then are the linkages. "
       - p: 
         - str: "To question this binary relationship, Same Home focuses on habitat fragmentation calculations, a core metric in Landscape ecology analysis. Habitat fragmentation is a relational metric - the value of land is determined by its context - making it an inherently holistic metric. Its function allows us to understand systems without needing to know the details of its internal function. However, like other network analysis, the matrix of a landscape must be simplified at the cost of microclimatic resolution. Therefore, specific characteristics of a patch are not of value within fragmentation understanding where landscapes are deduced to homogeneous nodes."
         - str: "The matrix understanding is dependent on a classification of land that presupposes animals and humans occupy different spaces and the more “unnatural” the space the less likely animals are to be found there.  By this logic, we would not have diverse animal communities in densely urbanized areas, which we know is not true."
-      - img:
-        - src: "./src/assets/img/Fragmentation_Fragmentation OG.png"
+  - img:
+        - src: "./src/assets/img/Transp_Fragmentation_Fragmentation OG.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
-      - img:
-        - src: "./src/assets/img/Fragmentation_Fragmentation NEW.png"
+  - img:
+        - src: "./src/assets/img/Transp_Fragmentation_Fragmentation NEW.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
 
   - type: "content"
@@ -42,15 +46,14 @@ blocks:
       - h4: 
         - str: "Urban Adaptive Species"
       - img:
-        - src: "./src/assets/img/Fragmentation_Falcon Chart.png"
+        - src: "./src/assets/img/Transp_Fragmentation_Frog Chart.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
       - img:
-        - src: "./src/assets/img/Fragmentation_Frog Chart.png"
+        - src: "./src/assets/img/Transp_Fragmentation_Fox Chart.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
       - img:
-        - src: "src/assets/img/Fragmentation_Fox Chart.png"
+        - src: "./src/assets/img/Transp_Fragmentation_Falcon Chart.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
-
 
   - type: "map"
     content:
@@ -77,6 +80,25 @@ blocks:
           paint:
             fill-color: "#ffff00"
           visible: true
+
+  - type: "content"
+    content: 
+    - h3: 
+      - str: "Frog Preferences"
+      - em: 
+        - str: "Best"
+      - p: 
+      - str: "Wetland
+              Emergent Wetland
+              Forest, Deciduous
+              Forest, Mixed"
+      - em: 
+        - str: "Good"
+      - p: 
+      - str: "Wetland
+              Emergent Wetland
+              Forest, Deciduous
+              Forest, Mixed"
 
   - type: "map"
     content:
@@ -132,15 +154,8 @@ blocks:
 
   - type: "content"
     content:
-      - h2: 
+      - h3: 
         - str: "See Who YOUR Neighbors Are!"
-
-
-  - type: "content"
-    content:
-      - h2: 
-        - str: "See Who YOUR Neighbors Are!"
-
 
   - type: "map"
     content:
