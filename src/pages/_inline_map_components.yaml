@@ -13,10 +13,15 @@ blocks:
       - h4: 
         - str: "What is Habitat Fragmentation?"
       - p: 
-        - str: "Definition"
+        - str: "Habitat fragmentation decribes habitats reduction due to human development.
+                Natural areas that provide curcial space for habitation become smaller and increasingly isolated deeply impacting population sizes and biodiversity at local scales. 
+                Habitat fragmentation is based on the understanding of evolutionary progression as a network. 
+                In order for species to avoid extinction, they must have high genetic diversity which only comes with high contact of other animals not from the same blood line.
+                The probability of this contact increases as habitats for species are closer to one another.
+                Habitats are therefore function as nodes and the distance between then are the linkages. "
       - p: 
         - str: "To question this binary relationship, Same Home focuses on habitat fragmentation calculations, a core metric in Landscape ecology analysis. Habitat fragmentation is a relational metric - the value of land is determined by its context - making it an inherently holistic metric. Its function allows us to understand systems without needing to know the details of its internal function. However, like other network analysis, the matrix of a landscape must be simplified at the cost of microclimatic resolution. Therefore, specific characteristics of a patch are not of value within fragmentation understanding where landscapes are deduced to homogeneous nodes."
-        - str: "The matrix understanding is dependent on a classification of land  that presupposes animals and humans occupy different spaces and the more “unnatural” the space the less likely animals are to be found there.  By this logic, we would not have diverse animal communities in densely urbanized areas, which we know is not true."
+        - str: "The matrix understanding is dependent on a classification of land that presupposes animals and humans occupy different spaces and the more “unnatural” the space the less likely animals are to be found there.  By this logic, we would not have diverse animal communities in densely urbanized areas, which we know is not true."
       - img:
         - src: "./src/assets/img/Fragmentation_Fragmentation OG.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
@@ -49,7 +54,7 @@ blocks:
 
   - type: "map"
     content:
-      container: "maplibremap2"
+      container: "frogminimap"
       latitude: 40.78254
       longitude: -73.96367
       zoom: 13
@@ -66,7 +71,7 @@ blocks:
             circle-radius: 4
           visible: true
         - id: "Frog Habitat 2023"
-          url: "./public/data/Buffer_withLC_Frog_2013.geojson"
+          url: "./public/data/FOR GIT_Buffer_withLC_Frog_2023_.geojson"
           data-type: "geojson"
           layer-type: "fill"
           paint:
@@ -75,9 +80,9 @@ blocks:
 
   - type: "map"
     content:
-      container: "maplibremap3"
-      latitude: 40.78254
-      longitude: -73.96367
+      container: "falconminimap"
+      latitude: 40.65273
+      longitude: -73.99461
       zoom: 13
       interactive: false
       mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
@@ -100,9 +105,9 @@ blocks:
 
   - type: "map"
     content:
-      container: "maplibremap4"
-      latitude: 40.78254
-      longitude: -73.96367
+      container: "foxminimap"
+      latitude: 40.74749
+      longitude: -73.80447
       zoom: 13
       interactive: false
       mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
@@ -118,11 +123,18 @@ blocks:
           visible: true
         - id: "Frog Habitat 2023"
           url: "./public/data/Buffer_withLC_Frog_2013.geojson"
-          data-type: "geojson"
+          data-type: "feature"
           layer-type: "fill"
           paint:
             fill-color: "#ffff00"
+            fill-opacity: 
           visible: true
+
+  - type: "content"
+    content:
+      - h2: 
+        - str: "See Who YOUR Neighbors Are!"
+
 
   - type: "content"
     content:
