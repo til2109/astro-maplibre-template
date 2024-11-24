@@ -314,7 +314,6 @@ export function parseMixedContent(block: ContentTag[]) {
             "id" in tag[tagName][0]
               ? `id="${tag[tagName][0].id}"`
               : "";
-          console.log(tag[tagName]);
           if (tagName === "iframe") {
             if (
               Array.isArray(tag[tagName]) &&
