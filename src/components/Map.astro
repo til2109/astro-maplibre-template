@@ -78,8 +78,12 @@ import { loadMapLayers } from "@lib/utils";
           });
 
           // apply classList and id to the parent block element
-          this.id = id;
-          this.className += ` ${classList}`;
+          if (classList.length > 0) {
+            this.className += ` ${classList}`;
+          }
+          if (id.length > 0) {
+            this.id = id;
+          }
         }
     }
     window.customElements.define("maplibre-map-inline", MapLibreMap);

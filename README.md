@@ -45,7 +45,29 @@ To add a block of text, images, or other non-map elements, you can add a "conten
       - p: 
         - str: "To start a new paragraph you must insert a new p section as shown here. "
 ```
-Note that you can add a classList and id to the content block to style it as needed, and then add rules in the `styles/global.css` file to customize how the content is displayed. Further documentation on the syntax for the content block is provided below, and in the `_inline_map_components.yaml` file. 
+Note that you can add a classList and id to the content block to style it as needed, and then add rules in the `styles/global.css` file to customize how the content is displayed. For example, to change the font size of the content block, you could add the following rule to the `styles/global.css` file:
+```
+.test-div-class {
+  font-size: 1.5em;
+}
+```
+
+Now, all content blocks with the class "test-div-class" will have a font size of 1.5em. You can apply the same logic to any other CSS properties you want to customize, such as color, font family, how columns or rows are handled, etc.
+
+Further documentation on the syntax for the content block is provided below, and in the `_inline_map_components.yaml` file. 
+
+You can also add external content via `iframe`. To do so, create a content block with the type "iframe" and pass the URL of the content you want to embed. For example, to embed a Mapbox map, you would use the following syntax:
+```
+  - type: "content"
+    content:
+      - h2: 
+        - str: "An iframe example"
+      - iframe:
+        - src: <iframe width='100%' height='400px' src="https://api.mapbox.com/styles/v1/marioag/clzbybnep002n01p646zu2qpk.html?title=false&access_token=pk.eyJ1IjoibWFyaW9hZyIsImEiOiJjamxncWNoMDcwMDhtM3FteDZ5dDZwZHd2In0.YzWCU25slWawKWGNYbhNjQ&zoomwheel=false#2/38/-34" title="Sample Style" style="border:none;"></iframe>
+```
+
+The above code should produce the following output:
+![alt text](image.png)
 
 ##### Map content
 To add a map, you can use the "map" type block. This will allow you to create a map with specified attributes, as well as layers and layer properties (including what happens when you click on the layer). For example, to add a map with a bike lane layer, you would use the following syntax:

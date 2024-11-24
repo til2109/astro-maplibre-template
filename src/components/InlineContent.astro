@@ -26,8 +26,12 @@ import { parseMixedContent } from "../lib/utils";
         const parsedContent = parseMixedContent(block);
         this.innerHTML = parsedContent;
         // apply classList and id to the parent block element
-        this.id = id;
-        this.className += ` ${classList}`;
+        if (classList.length > 0) {
+          this.className += ` ${classList}`;
+        }
+        if (id.length > 0) {
+          this.id = id;
+        }
       }
     }    
     window.customElements.define("inline-mixed-content", InlineMixedContent);
