@@ -233,7 +233,7 @@ export function loadMapLayers(
               const popupContent = event.content
                 .map((tag: { [key: string]: unknown }) => {
                   const tagName = Object.keys(tag)[0];
-                  console.log(tag[tagName]);
+
                   const value = Array.isArray(tag[tagName])
                     ? tag[tagName]
                         .map(
@@ -302,7 +302,18 @@ export function parseMixedContent(block: ContentTag[]) {
     ? block
         .map((tag) => {
           const tagName = Object.keys(tag)[0];
-          console.log(tag[tagName]);
+          const classList =
+            Array.isArray(tag[tagName]) &&
+            typeof tag[tagName][0] === "object" &&
+            "classList" in tag[tagName][0]
+              ? `class="${tag[tagName][0].classList}"`
+              : "";
+          const id =
+            Array.isArray(tag[tagName]) &&
+            typeof tag[tagName][0] === "object" &&
+            "id" in tag[tagName][0]
+              ? `id="${tag[tagName][0].id}"`
+              : "";
           const value = Array.isArray(tag[tagName])
             ? tag[tagName]
                 .map(
@@ -317,6 +328,8 @@ export function parseMixedContent(block: ContentTag[]) {
                           text?: string;
                           src?: string;
                           alt?: string;
+                          class?: string;
+                          id?: string;
                         };
                   }) => {
                     if ("str" in item) {
@@ -340,7 +353,7 @@ export function parseMixedContent(block: ContentTag[]) {
                 .join(" ") // Join all parts together to form the full tag content
             : tag[tagName];
 
-          return `<${tagName}>${value}</${tagName}>`;
+          return `<${tagName} ${classList} ${id}>${value}</${tagName}>`;
         })
         .join(" ")
     : "not yet";

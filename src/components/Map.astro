@@ -2,9 +2,11 @@
 import type { MapBlock } from "@types";
 
 export interface Props {
-    block: MapBlock;
+  id?: string;
+  classList?: string;  
+  block: MapBlock;
   }
-  const { block } = Astro.props;
+  const { id, classList, block } = Astro.props;
 // use props from block
   const {
   latitude,
@@ -33,6 +35,8 @@ const layersJson = JSON.stringify(layers);
     data-pitch={pitch}
     data-bearing={bearing}
     data-interactive={interactive}
+    data-classlist={classList}
+    data-id={id}
 >
   <div id={container} class="map-container maplibre-inline" style={containerstyle}>
     {
@@ -62,13 +66,20 @@ import { loadMapLayers } from "@lib/utils";
             pitch: parseFloat(this.dataset.pitch ?? "0") || 0,
             bearing: parseFloat(this.dataset.bearing ?? "0") || 0,
           });
-          
+
+          const classList = this.dataset.classlist ? this.dataset.classlist : "";
+          const id = this.dataset.id ? this.dataset.id : "";
+ 
           map.on("load", () => {
             const layers = JSON.parse(this.dataset.layers || "[]");
             if (layers){
             loadMapLayers(map, layers);
             }
           });
+
+          // apply classList and id to the parent block element
+          this.id = id;
+          this.className += ` ${classList}`;
         }
     }
     window.customElements.define("maplibre-map-inline", MapLibreMap);
