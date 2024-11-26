@@ -36,7 +36,7 @@ export interface Props {
           );
         } else if (block.type == "mixed") {
           return (
-            <div id={`${block.type}-${index}`} class="inline-mixed">
+            <div id={`${block.type}-${index}`} class={block.classList? block.classList + " inline-multiple" : "inline-multiple"}>
               {
                 Array.isArray(block.content) ? 
                  (block.content.map((content, index) => {
