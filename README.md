@@ -103,6 +103,29 @@ To add a map, you can use the "map" type block. This will allow you to create a 
                 - str: "This is a bike lane."
 ```
 
+##### Map + Mixed content
+If you feel so inclinded, you can add maps and other mixed content types to the same div, which allows for better control over how content is rendered (e.g. positioning maps and other content in a row together using css). You can achieve the following using the `mixed` content block type:
+
+```
+  - type: "mixed"
+    id: 'mixed-test'
+    content:
+    - type: "map"
+      content:
+        container: "maplibremapxyz"
+        latitude: 40.8075803
+        longitude: -73.9604192
+        zoom: 12
+        interactive: true
+        mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+        containerstyle: "width: 100%; height: 70vh"
+    - type: "content"
+      content:
+        - p: 
+          - str: "This is a paragraph of text that is not related to the map."
+```
+
+As always, be mindful of indentation when editing the YAML file. The YAML parser is very sensitive to indentation, and will throw an error if the indentation is not correct.
 
 ## Scrollytelling
 Uses a YAML convention to pass arguments to the map object. Steps are defined in `pages/scrollytelling_steps.yaml`, which is invoked in `payes/scrolltelling.mdx`. That's where the initial position and map style should be defined. Otherwise text, images, etc. should be defined in the yaml file. I'd like to continue to add features to the steps, including passing the hidden variable, animation control, and more layer control. This is just a matter of copying the mapbox scrollytelling logic over. 

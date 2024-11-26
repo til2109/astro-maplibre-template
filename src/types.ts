@@ -165,8 +165,8 @@ export interface ContentTag {
 }
 
 export interface ContentBlock {
-  type: "map" | "content";
+  type: "map" | "content" | "mixed";
   id?: string;
   classList?: string;
-  content: MapBlock | MixedBlock;
+  content: MapBlock | MixedBlock | ContentBlock[]; // Mixed content allows nesting
 }
