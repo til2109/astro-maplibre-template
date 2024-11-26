@@ -25,6 +25,85 @@ Replace npm with your package manager of choice. `npm`, `pnpm`, `yarn`, `bun`, e
 ## Inline
 Inline maps using MDX are shown in the `inline_maps.mdx` file in `/pages`. Within the `<Container />` object you can use traditional markdown as well as the MDX `Maplibre` object. You can pass styles and layers to the map. It would be good to be able to pass the option to control layer visibility and onClick behavior from the layers arg that's passed in as well, to come.
 
+### Inline map options
+
+#### Inline map YAML options
+
+##### Mixed content
+To add a block of text, images, or other non-map elements, you can add a "content" type block. This block can contain any number of elements, including headers, paragraphs, images, etc. Each element is defined as a key-value pair, where the key is the element type and the value is an array of objects that define the element's content. For example, to add a header and two paragraphs, you would use the following syntax:
+```
+  - type: "content"
+    classList: "test-div-class"
+    id: "test-div-id"
+    content:
+      - h2: 
+        - str: "A subsection"
+          classList: "text-center-test"
+          id: "subsection-id"
+      - p: 
+        - str: "You can go into more detail here."
+      - p: 
+        - str: "To start a new paragraph you must insert a new p section as shown here. "
+```
+Note that you can add a classList and id to the content block to style it as needed, and then add rules in the `styles/global.css` file to customize how the content is displayed. For example, to change the font size of the content block, you could add the following rule to the `styles/global.css` file:
+```
+.test-div-class {
+  font-size: 1.5em;
+}
+```
+
+Now, all content blocks with the class "test-div-class" will have a font size of 1.5em. You can apply the same logic to any other CSS properties you want to customize, such as color, font family, how columns or rows are handled, etc.
+
+Further documentation on the syntax for the content block is provided below, and in the `_inline_map_components.yaml` file. 
+
+You can also add external content via `iframe`. To do so, create a content block with the type "iframe" and pass the URL of the content you want to embed. For example, to embed a Mapbox map, you would use the following syntax:
+```
+  - type: "content"
+    content:
+      - h2: 
+        - str: "An iframe example"
+      - iframe:
+        - src: <iframe width='100%' height='400px' src="https://api.mapbox.com/styles/v1/marioag/clzbybnep002n01p646zu2qpk.html?title=false&access_token=pk.eyJ1IjoibWFyaW9hZyIsImEiOiJjamxncWNoMDcwMDhtM3FteDZ5dDZwZHd2In0.YzWCU25slWawKWGNYbhNjQ&zoomwheel=false#2/38/-34" title="Sample Style" style="border:none;"></iframe>
+```
+
+The above code should produce the following output:
+![alt text](image.png)
+
+##### Map content
+To add a map, you can use the "map" type block. This will allow you to create a map with specified attributes, as well as layers and layer properties (including what happens when you click on the layer). For example, to add a map with a bike lane layer, you would use the following syntax:
+```
+   - type: "map"
+    id: "maplibremap2-test"
+    classList: "test-class"
+    content:
+      container: "maplibremap"
+      latitude: 40.8075803
+      longitude: -73.9604192
+      zoom: 12
+      interactive: true
+      mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+      containerstyle: "width: 100%; height: 70vh"
+      layers:
+        - id: "bikes"
+        label: "Bike Lanes"
+        toggle: true
+        visible: true
+        data-type: "geojson"
+        layer-type: "line"
+        url: "https://data.cityofnewyork.us/resource/mzxg-pwib.geojson?$limit=10000"
+        paint: 
+            line-color: "#000000"
+            line-width: 3
+        mouseEvent:
+            - type: "click"
+            content:
+                - h1: 
+                - str: "Feature Info"
+                - p: 
+                - str: "This is a bike lane."
+```
+
+
 ## Scrollytelling
 Uses a YAML convention to pass arguments to the map object. Steps are defined in `pages/scrollytelling_steps.yaml`, which is invoked in `payes/scrolltelling.mdx`. That's where the initial position and map style should be defined. Otherwise text, images, etc. should be defined in the yaml file. I'd like to continue to add features to the steps, including passing the hidden variable, animation control, and more layer control. This is just a matter of copying the mapbox scrollytelling logic over. 
 

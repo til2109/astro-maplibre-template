@@ -233,7 +233,7 @@ export function loadMapLayers(
               const popupContent = event.content
                 .map((tag: { [key: string]: unknown }) => {
                   const tagName = Object.keys(tag)[0];
-                  console.log(tag[tagName]);
+
                   const value = Array.isArray(tag[tagName])
                     ? tag[tagName]
                         .map(
@@ -302,45 +302,69 @@ export function parseMixedContent(block: ContentTag[]) {
     ? block
         .map((tag) => {
           const tagName = Object.keys(tag)[0];
-          console.log(tag[tagName]);
-          const value = Array.isArray(tag[tagName])
-            ? tag[tagName]
-                .map(
-                  (item: {
-                    [key: string]:
-                      | string
-                      | {
-                          property?: string;
-                          else?: string;
-                          str?: string;
-                          href?: string;
-                          text?: string;
-                          src?: string;
-                          alt?: string;
-                        };
-                  }) => {
-                    if ("str" in item) {
-                      return item.str;
-                    } else if (
-                      tagName === "a" &&
-                      "href" in item &&
-                      "text" in item
-                    ) {
-                      // Handle link tag with href and text
-                      return `<a href="${item.href}" target="_blank">${item.text}</a>`;
-                    } else if (tagName === "img" && "src" in item) {
-                      // Handle image tag with src and optional alt
-                      const altText = item.alt || "";
-                      return `<img src="${item.src}" alt="${altText}" />`;
-                    } else {
-                      return ""; // Fallback for any unexpected structure
+          const classList =
+            Array.isArray(tag[tagName]) &&
+            typeof tag[tagName][0] === "object" &&
+            "classList" in tag[tagName][0]
+              ? `class="${tag[tagName][0].classList}"`
+              : "";
+          const id =
+            Array.isArray(tag[tagName]) &&
+            typeof tag[tagName][0] === "object" &&
+            "id" in tag[tagName][0]
+              ? `id="${tag[tagName][0].id}"`
+              : "";
+          if (tagName === "iframe") {
+            if (
+              Array.isArray(tag[tagName]) &&
+              typeof tag[tagName][0] === "object" &&
+              "src" in tag[tagName][0]
+            ) {
+              return tag[tagName][0]["src"];
+            }
+            return "";
+          } else {
+            const value = Array.isArray(tag[tagName])
+              ? tag[tagName]
+                  .map(
+                    (item: {
+                      [key: string]:
+                        | string
+                        | {
+                            property?: string;
+                            else?: string;
+                            str?: string;
+                            href?: string;
+                            text?: string;
+                            src?: string;
+                            alt?: string;
+                            class?: string;
+                            id?: string;
+                          };
+                    }) => {
+                      if ("str" in item) {
+                        return item.str;
+                      } else if (
+                        tagName === "a" &&
+                        "href" in item &&
+                        "text" in item
+                      ) {
+                        // Handle link tag with href and text
+                        return `<a href="${item.href}" target="_blank">${item.text}</a>`;
+                      } else if (tagName === "img" && "src" in item) {
+                        // Handle image tag with src and optional alt
+                        const altText = item.alt || "";
+                        return `<img src="${item.src}" alt="${altText}" />`;
+                      } else {
+                        return ""; // Fallback for any unexpected structure
+                      }
                     }
-                  }
-                )
-                .join(" ") // Join all parts together to form the full tag content
-            : tag[tagName];
+                  )
+                  .join(" ") // Join all parts together to form the full tag content
+              : tag[tagName];
 
-          return `<${tagName}>${value}</${tagName}>`;
+            return `<${tagName} ${classList} ${id}>${value}</${tagName}>`;
+          }
         })
         .join(" ")
     : "not yet";

@@ -159,10 +159,14 @@ export interface ContentTag {
         text?: string; // Display text for anchor tags
         src?: string; // Image source URL for img tags
         alt?: string; // Alternate text for img tags
+        class: string; // Class name for the tag
+        id?: string; // ID for the tag
       };
 }
 
 export interface ContentBlock {
   type: "map" | "content";
+  id?: string;
+  classList?: string;
   content: MapBlock | MixedBlock;
 }
