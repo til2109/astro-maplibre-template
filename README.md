@@ -103,8 +103,32 @@ To add a map, you can use the "map" type block. This will allow you to create a 
                 - str: "This is a bike lane."
 ```
 
+##### Adding a legend
+
+There is a div with the class `map-overlay` that can be used to display a legend for the map. The legend is defined in the `legend` object in the layer options. The `legend` object should contain an array of items, each of which is an object with a `color` and `label` property. For example, to add a legend entry for a layer with a single symbology, you would use the following syntax:
+```
+legend:
+    items:
+      - color: '#cc0000'
+        label: 'Pizza Places'
+```
+You can add multiple items to the legend array to display multiple symbologies. YOu can optionally add a title to the legend by adding a `title` property to the `legend` object. For example:
+```
+legend:
+    title: 'Legend'
+    items:
+      - color: '#cc0000'
+        label: 'Pizza Places'
+      - color: '#00cc00'
+        label: 'Bike Lanes'
+```
+
+This gives you some flexibility in how you organize items in the legend.
+
+You can update the legend div's properties based on the class and id associated with the legend div in the `styles/global.css` file. The legend has these properties and accessors, which are based on the `FullPageMap`'s container property: `<div class="map-overlay" id={`${container}-legend`}></div>` (i.e. in the basic example the id is `maplibremap-legend`). By default, the legend will appear in the top left corner; use the css rules in `styles/global.css` for `.map-overlay` and `.legend-color` to adjust the position as needed.
+
 ##### Map + Mixed content
-If you feel so inclinded, you can add maps and other mixed content types to the same div, which allows for better control over how content is rendered (e.g. positioning maps and other content in a row together using css). You can achieve the following using the `mixed` content block type:
+If you feel so inclined, you can add maps and other mixed content types to the same div, which allows for better control over how content is rendered (e.g. positioning maps and other content in a row together using css). You can achieve the following using the `mixed` content block type:
 
 ```
   - type: "mixed"
@@ -138,7 +162,7 @@ Full page maps are shown in the `full_page_map.mdx` file in `/pages`. This is a 
 
 #### Adding a legend
 
-There is a div with the class `legend` that can be used to display a legend for the map. The legend is defined in the `legend` object in the layer options. The `legend` object should contain an array of items, each of which is an object with a `color` and `label` property. For example, to add a legend entry for a layer with a single symbology, you would use the following syntax:
+There is a div with the class `map-overlay` that can be used to display a legend for the map. The legend is defined in the `legend` object in the layer options. The `legend` object should contain an array of items, each of which is an object with a `color` and `label` property. For example, to add a legend entry for a layer with a single symbology, you would use the following syntax:
 ```
 legend:
     items:

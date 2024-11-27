@@ -273,7 +273,9 @@ section {
   position: absolute;
   left: 10px;
   z-index: 1;
-  color: black
+  color: black;
+  bottom: 10px;
+  left: 10px;
 }
 
 .legend-color {
@@ -281,4 +283,8 @@ section {
   height: 12px;
   display: inline-block;
   margin-right: 8px;
+}
+
+.inline-map {
+  position: relative;
 }
