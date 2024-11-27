@@ -44,7 +44,7 @@ const {
     style={{ width: "100vw", height: "100vh" }}
   >
     <nav id={`${container}-menu`} class="menu"></nav>
-    <div class="map-overlay" id={`${container}-legend`}></div>
+    <div class="map-overlay" id={`${container}-legend`} style="display:none"></div>
     <maplibre-fullpage-map
       data-latitude={latitude}
       data-longitude={longitude}
@@ -143,8 +143,11 @@ const {
                           </div>`
                       )
                       .join("");
+                    
+                    menu.style.display = "block";
+
                   }
-                }
+                } 
               }
             });
           }
