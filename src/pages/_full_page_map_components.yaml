@@ -8,10 +8,6 @@
   paint:
     line-color: '#000000'
     line-width: 3
-  legend:
-    items:
-      - color: '#000000'
-        label: 'Bike Lanes'
 
 - id: 'vector-tile'
   label: 'Vector Tiles'
