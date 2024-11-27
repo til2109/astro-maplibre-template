@@ -112,7 +112,7 @@ legend:
       - color: '#cc0000'
         label: 'Pizza Places'
 ```
-You can add multiple items to the legend array to display multiple symbologies. YOu can optionally add a title to the legend by adding a `title` property to the `legend` object. For example:
+You can add multiple items to the legend array to display multiple symbologies. You can optionally add a title to the legend by adding a `title` property to the `legend` object. For example:
 ```
 legend:
     title: 'Legend'
@@ -169,7 +169,7 @@ legend:
       - color: '#cc0000'
         label: 'Pizza Places'
 ```
-You can add multiple items to the legend array to display multiple symbologies. YOu can optionally add a title to the legend by adding a `title` property to the `legend` object. For example:
+You can add multiple items to the legend array to display multiple symbologies. You can optionally add a title to the legend by adding a `title` property to the `legend` object. For example:
 ```
 legend:
     title: 'Legend'
