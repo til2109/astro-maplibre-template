@@ -84,7 +84,6 @@ import type {
             loadMapLayers(map, layers);
 
             // add legend if layers have legend items
-            console.log(layers);
             if (
                   layers.some(
                     (
@@ -102,7 +101,6 @@ import type {
                   const menu = document.getElementById(
                     `${this.dataset.container}-legend`
                   );
-                  console.log("in here");
                   if (menu) {
                     menu.innerHTML = layers
                       .map(
