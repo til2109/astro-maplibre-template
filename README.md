@@ -130,6 +130,23 @@ As always, be mindful of indentation when editing the YAML file. The YAML parser
 ## Scrollytelling
 Uses a YAML convention to pass arguments to the map object. Steps are defined in `pages/scrollytelling_steps.yaml`, which is invoked in `payes/scrolltelling.mdx`. That's where the initial position and map style should be defined. Otherwise text, images, etc. should be defined in the yaml file. I'd like to continue to add features to the steps, including passing the hidden variable, animation control, and more layer control. This is just a matter of copying the mapbox scrollytelling logic over. 
 
+#### Scrollytelling step options
+
+| **Option**         | **Type**               | **Required** | **Description**                                                                                                    | **Example**                                                   |
+|---------------------|------------------------|--------------|--------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| `title`            | `string`              | Yes          | The title of the map step.                                                                                         | `"London"`                                                    |
+| `center`           | `[number, number]`    | Yes          | Geographic coordinates `[longitude, latitude]` for the map center.                                                | `[-0.1278, 51.5074]`                                          |
+| `zoom`             | `number`              | Yes          | Zoom level for the map.                                                                                            | `8`                                                           |
+| `pitch`            | `number`              | No           | The tilt angle of the map in degrees (0-60).                                                                       | `30`                                                          |
+| `bearing`          | `number`              | No           | The rotation angle of the map in degrees.                                                                          | `-10`                                                         |
+| `description`      | `string`              | No           | A descriptive text for the map step.                                                                               | `"You can change the position of the overlay div..."`         |
+| `media`            | `string` (URL)        | No           | URL of an image or media to display with the map step.                                                             | `"https://img.atlasobscura.com/OGZXBPY6..."`                  |
+| `position`         | `"left", "right", "centered", "full"` | No           | The position of the overlay div relative to the map.                                                               | `"right"`                                                     |
+| `mapAnimation`     | `"flyTo", "easeTo", "jumpTo"`   | No           | The type of animation used to transition between map steps.                                                        | `"jumpTo"`                                                    |
+| `rotateAnimation`  | `boolean`             | No           | Enables map rotation when the step is active.                                                                      | `true`                                                        |
+| `layers`           | `Array` of objects    | No           | A list of layers to add to the map.                                                                                | See layer object example below.                               |
+
+
 
 ## Full page
 Full page maps are shown in the `full_page_map.mdx` file in `/pages`. This is a simple map that takes the same arguments as the inline map, but is rendered as a full page map. Layers are defined in the `_full_map_map_components.yaml` file in the `/components` directory.
