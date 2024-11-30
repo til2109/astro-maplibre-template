@@ -155,37 +155,19 @@ const layersJson = layers ? JSON.stringify(layers) : undefined;
                         essential: true,
                       });
 
+                      const rotateAnimation =
+                        entry.target.getAttribute(
+                          "data-map-rotate-animation"
+                        ) === "true";
                       
-
-const rotateAnimation =
-  entry.target.getAttribute("data-map-rotate-animation") === "true";
-
-console.log(rotateAnimation);
-
-if (rotateAnimation) {
-  if (!isRotating) {
-    // Start the rotation if it's not already running
-    isRotating = true;
-
-    const rotate = () => {
-      if (isRotating) {
-        map.rotateTo(map.getBearing() + 180, {
-          duration: 30000,
-          easing: (t) => t,
-        });
-      }
-    };
-
-    map.on("moveend", rotate);
-    rotate(); // Trigger the first rotation immediately
-  }
-} else {
-  if (isRotating) {
-    // Stop the rotation when leaving a rotating block
-    isRotating = false;
-    map.off("moveend"); // Remove the `moveend` event listener
-  }
-}
+                      if (rotateAnimation === true) {
+                        map.once("moveend", () => {
+                          map.rotateTo(map.getBearing() + 180, {
+                            duration: 30000,
+                            easing: (t: number) => t,
+                          });
+                        });
+                      } 
                     } else {
                       if (!entry.target.getAttribute("data-persist")) {
                         // Remove the active class from the section
