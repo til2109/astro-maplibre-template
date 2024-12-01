@@ -103,8 +103,32 @@ To add a map, you can use the "map" type block. This will allow you to create a 
                 - str: "This is a bike lane."
 ```
 
+##### Adding a legend
+
+There is a div with the class `map-overlay` that can be used to display a legend for the map. The legend is defined in the `legend` object in the layer options. The `legend` object should contain an array of items, each of which is an object with a `color` and `label` property. For example, to add a legend entry for a layer with a single symbology, you would use the following syntax:
+```
+legend:
+    items:
+      - color: '#cc0000'
+        label: 'Pizza Places'
+```
+You can add multiple items to the legend array to display multiple symbologies. You can optionally add a title to the legend by adding a `title` property to the `legend` object. For example:
+```
+legend:
+    title: 'Legend'
+    items:
+      - color: '#cc0000'
+        label: 'Pizza Places'
+      - color: '#00cc00'
+        label: 'Bike Lanes'
+```
+
+This gives you some flexibility in how you organize items in the legend.
+
+You can update the legend div's properties based on the class and id associated with the legend div in the `styles/global.css` file. The legend has these properties and accessors, which are based on the `FullPageMap`'s container property: `<div class="map-overlay" id={`${container}-legend`}></div>` (i.e. in the basic example the id is `maplibremap-legend`). By default, the legend will appear in the top left corner; use the css rules in `styles/global.css` for `.map-overlay` and `.legend-color` to adjust the position as needed.
+
 ##### Map + Mixed content
-If you feel so inclinded, you can add maps and other mixed content types to the same div, which allows for better control over how content is rendered (e.g. positioning maps and other content in a row together using css). You can achieve the following using the `mixed` content block type:
+If you feel so inclined, you can add maps and other mixed content types to the same div, which allows for better control over how content is rendered (e.g. positioning maps and other content in a row together using css). You can achieve the following using the `mixed` content block type:
 
 ```
   - type: "mixed"
@@ -135,6 +159,30 @@ Uses a YAML convention to pass arguments to the map object. Steps are defined in
 Full page maps are shown in the `full_page_map.mdx` file in `/pages`. This is a simple map that takes the same arguments as the inline map, but is rendered as a full page map. Layers are defined in the `_full_map_map_components.yaml` file in the `/components` directory.
 
 ### Full page map options
+
+#### Adding a legend
+
+There is a div with the class `map-overlay` that can be used to display a legend for the map. The legend is defined in the `legend` object in the layer options. The `legend` object should contain an array of items, each of which is an object with a `color` and `label` property. For example, to add a legend entry for a layer with a single symbology, you would use the following syntax:
+```
+legend:
+    items:
+      - color: '#cc0000'
+        label: 'Pizza Places'
+```
+You can add multiple items to the legend array to display multiple symbologies. You can optionally add a title to the legend by adding a `title` property to the `legend` object. For example:
+```
+legend:
+    title: 'Legend'
+    items:
+      - color: '#cc0000'
+        label: 'Pizza Places'
+      - color: '#00cc00'
+        label: 'Bike Lanes'
+```
+
+This gives you some flexibility in how you organize items in the legend.
+
+You can update the legend div's properties based on the class and id associated with the legend div in the `styles/global.css` file. The legend has these properties and accessors, which are based on the `FullPageMap`'s container property: `<div class="map-overlay" id={`${container}-legend`}></div>` (i.e. in the basic example the id is `maplibre-full-map-legend`). By default, the legend will appear in the top left corner; use the css rules in `styles/global.css` for `.map-overlay` and `.legend-color` to adjust the position as needed.
 
 #### Map `Props` Interface
 
@@ -167,6 +215,7 @@ Baseline map options. Note that map layers are added via the `_full_map_map_comp
 | `url`        | `string`  | Yes      | URL to the GeoJSON data source for this layer.                                                                     | `'https://data.cityofnewyork.us/resource/mzxg-pwib.geojson?$limit=10000'` |
 | `paint`      | `object`  | No       | MapLibre paint properties for styling the layer. Values depend on the `layer-type`.                                | `{ "line-color": "#000000", "line-width": 3 }`   |
 | `mouseEvent` | `array`   | No       | Array of events to listen for on this layer, specifying popup content on event.                                    | See detailed `mouseEvent` table below            |
+| `legend`     | `object`  | No       | Legend properties for the layer.                                                                                   | ```legend: {items: [{color:'#fff', label:'white orb'}]} ``` |
 
 #### `mouseEvent` Content
 
