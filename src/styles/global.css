@@ -292,6 +292,22 @@ section {
 .multi-columns {
   columns: 2;
   display: flex;
-  gap: 20px;
+  gap: 8px;
   justify-content: center;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+#nyc_gifs {
+  height: 35vh;
+}
+
+#jb_gifs {
+  height: 25vh;
+  align: center;
+}
+
+#inwood_gifs {
+  height: 25vh;
+  align: center;
 }
