@@ -27,10 +27,10 @@ blocks:
         - str: "To question this binary relationship, Same Home focuses on habitat fragmentation calculations, a core metric in Landscape ecology analysis. Habitat fragmentation is a relational metric - the value of land is determined by its context - making it an inherently holistic metric. Its function allows us to understand systems without needing to know the details of its internal function. However, like other network analysis, the matrix of a landscape must be simplified at the cost of microclimatic resolution. Therefore, specific characteristics of a patch are not of value within fragmentation understanding where landscapes are deduced to homogeneous nodes."
         - str: "The matrix understanding is dependent on a classification of land that presupposes animals and humans occupy different spaces and the more “unnatural” the space the less likely animals are to be found there.  By this logic, we would not have diverse animal communities in densely urbanized areas, which we know is not true."
   - img:
-        - src: "./src/assets/img/Transp_Fragmentation_Fragmentation OG.png"
+        - src: "./src/assets/img/TRANP_Fragmentation_Fragmentation NEW.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
   - img:
-        - src: "./src/assets/img/Transp_Fragmentation_Fragmentation NEW.png"
+        - src: "./src/assets/img/TRANP_Fragmentation_Fragmentation NEW.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
 
   - type: "content"
@@ -46,13 +46,13 @@ blocks:
       - h4: 
         - str: "Urban Adaptive Species"
       - img:
-        - src: "./src/assets/img/Transp_Fragmentation_Frog Chart.png"
+        - src: "./src/assets/img/TRANP_Fragmentation_Frog Chart.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
       - img:
-        - src: "./src/assets/img/Transp_Fragmentation_Fox Chart.png"
+        - src: "./src/assets/img/TRANP_Fragmentation_Fox Chart.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
       - img:
-        - src: "./src/assets/img/Transp_Fragmentation_Falcon Chart.png"
+        - src: "./src/assets/img/TRANP_Fragmentation_Falcon Chart.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
 
   - type: "map"
