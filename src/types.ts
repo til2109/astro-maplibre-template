@@ -47,6 +47,13 @@ export interface GeoJSONFeatureLayer {
     | CircleLayerSpecification
     | SymbolLayerSpecification;
   mouseEvent: MapEvent[];
+  legend?: {
+    title?: string;
+    items: {
+      color: string;
+      label: string;
+    }[];
+  };
 }
 
 /**
@@ -67,6 +74,13 @@ export interface RasterLayer {
   visible?: boolean;
   paint?: RasterLayerSpecification;
   mouseEvent: MapEvent[];
+  legend?: {
+    title?: string;
+    items: {
+      color: string;
+      label: string;
+    }[];
+  };
 }
 
 /**
@@ -83,6 +97,13 @@ export interface ImageLayer {
   toggle?: boolean; // currently used in full page map map toggle
   visible?: boolean;
   mouseEvent: MapEvent[];
+  legend?: {
+    title?: string;
+    items: {
+      color: string;
+      label: string;
+    }[];
+  };
 }
 
 export interface VectorTileLayer {
@@ -114,6 +135,13 @@ export interface VectorTileLayer {
     | LineLayerSpecification
     | CircleLayerSpecification
     | SymbolLayerSpecification;
+  legend?: {
+    title?: string;
+    items: {
+      color: string;
+      label: string;
+    }[];
+  }[];
 }
 
 type CoordinatePair = [number, number];
@@ -159,10 +187,14 @@ export interface ContentTag {
         text?: string; // Display text for anchor tags
         src?: string; // Image source URL for img tags
         alt?: string; // Alternate text for img tags
+        class: string; // Class name for the tag
+        id?: string; // ID for the tag
       };
 }
 
 export interface ContentBlock {
-  type: "map" | "content";
-  content: MapBlock | MixedBlock;
+  type: "map" | "content" | "mixed";
+  id?: string;
+  classList?: string;
+  content: MapBlock | MixedBlock | ContentBlock[]; // Mixed content allows nesting
 }

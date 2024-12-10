@@ -25,13 +25,36 @@ export interface Props {
         if (block.type == "map") {
           return (
             <div id={`${block.type}-${index}`} class="inline-map">
-              <Map block={block.content as MapBlock} />
+              <Map id={block.id? block.id : undefined} classList={block.classList? block.classList :undefined} block={block.content as MapBlock} />
             </div>
           );
         } else if (block.type == "content") {
           return (
             <div id={`${block.type}-${index}`} class="inline-mixed">
-              <Content block={block.content as MixedBlock} />
+              <Content id={block.id? block.id : undefined} classList={block.classList? block.classList :undefined} block={block.content as MixedBlock} />
+            </div>
+          );
+        } else if (block.type == "mixed") {
+          return (
+            <div id={`${block.type}-${index}`} class={block.classList? block.classList + " inline-multiple" : "inline-multiple"}>
+              {
+                Array.isArray(block.content) ? 
+                 (block.content.map((content, index) => {
+                    if (content.type == "map") {
+                      return (
+                        <div id={`${content.type}-${index}`} class="inline-map">
+                          <Map id={content.id? content.id : undefined} classList={content.classList? content.classList :undefined} block={content.content as MapBlock} />
+                        </div>
+                      );
+                    } else if (content.type == "content") {
+                      return (
+                        <div id={`${content.type}-${index}`} class="inline-mixed">
+                          <Content id={content.id? content.id : undefined} classList={content.classList? content.classList :undefined} block={content.content as MixedBlock} />
+                        </div>
+                      );
+                    }
+                  })) : null
+                }              
             </div>
           );
         }

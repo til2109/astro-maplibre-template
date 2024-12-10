@@ -2,9 +2,11 @@
 import type { MapBlock } from "@types";
 
 export interface Props {
-    block: MapBlock;
+  id?: string;
+  classList?: string;  
+  block: MapBlock;
   }
-  const { block } = Astro.props;
+  const { id, classList, block } = Astro.props;
 // use props from block
   const {
   latitude,
@@ -33,6 +35,8 @@ const layersJson = JSON.stringify(layers);
     data-pitch={pitch}
     data-bearing={bearing}
     data-interactive={interactive}
+    data-classlist={classList}
+    data-id={id}
 >
   <div id={container} class="map-container maplibre-inline" style={containerstyle}>
     {
@@ -41,6 +45,8 @@ const layersJson = JSON.stringify(layers);
         null
       }
   </div>
+  
+  <div class="map-overlay" id={`${container}-legend`} style="display:none"></div>
   <link
     rel="stylesheet"
     href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css"
@@ -49,6 +55,12 @@ const layersJson = JSON.stringify(layers);
     
 import maplibregl from "maplibre-gl";
 import { loadMapLayers } from "@lib/utils";
+import type {
+  GeoJSONFeatureLayer,
+  RasterLayer,
+  ImageLayer,
+  VectorTileLayer,
+} from "@types";
     class MapLibreMap extends HTMLElement {
         constructor() {
           super();
@@ -62,13 +74,76 @@ import { loadMapLayers } from "@lib/utils";
             pitch: parseFloat(this.dataset.pitch ?? "0") || 0,
             bearing: parseFloat(this.dataset.bearing ?? "0") || 0,
           });
-          
+
+          const classList = this.dataset.classlist ? this.dataset.classlist : "";
+          const id = this.dataset.id ? this.dataset.id : "";
+ 
           map.on("load", () => {
             const layers = JSON.parse(this.dataset.layers || "[]");
             if (layers){
             loadMapLayers(map, layers);
+
+            // add legend if layers have legend items
+            if (
+                  layers.some(
+                    (
+                      layer:
+                        | GeoJSONFeatureLayer
+                        | RasterLayer
+                        | ImageLayer
+                        | VectorTileLayer
+                    ) =>
+                      layer.legend &&
+                      !Array.isArray(layer.legend) &&
+                      layer.legend.items.length > 0
+                  )
+                ) {
+                  const menu = document.getElementById(
+                    `${this.dataset.container}-legend`
+                  );
+                  if (menu) {
+                    menu.innerHTML = layers
+                      .map(
+                        (
+                          layer:
+                            | GeoJSONFeatureLayer
+                            | RasterLayer
+                            | ImageLayer
+                            | VectorTileLayer
+                        ) =>
+                          layer.legend &&
+                          !Array.isArray(layer.legend) && layer.legend.items.length > 0 &&
+                          `<div class="menu-item">
+                            ${layer.legend.title ? `<h3>${layer.legend.title}</h3>` : ""}
+                            <ul>
+                              ${layer.legend.items
+                                .map(
+                                  (item) =>
+                                    `<li>
+                                      <span class="legend-color" style="background-color: ${item.color}"></span>
+                                      <span class="legend-label">${item.label}</span>
+                                    </li>`
+                                )
+                                .join("")}
+                            </ul>
+                          </div>`
+                      )
+                      .join("");
+                    
+                    menu.style.display = "block";
+
+                  }
+                }
             }
           });
+
+          // apply classList and id to the parent block element
+          if (classList.length > 0) {
+            this.className += ` ${classList}`;
+          }
+          if (id.length > 0) {
+            this.id = id;
+          }
         }
     }
     window.customElements.define("maplibre-map-inline", MapLibreMap);
