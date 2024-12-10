@@ -288,3 +288,9 @@ section {
 .inline-map {
   position: relative;
 }
+
+.multi-columns {
+  columns: 2;
+  display: flex;
+  gap: 10px;
+}
