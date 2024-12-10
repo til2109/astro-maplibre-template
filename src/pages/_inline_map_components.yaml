@@ -8,44 +8,20 @@ blocks:
       - p: 
         - str: "Despite relentless efforts to quantify them, natural systems are complex beyond human understanding. As climates rapidly change, our understanding of environmental services and human impact on natural systems have been thoroughly researched in the hopes of preserving our built habitat. This research focus inherently contributes to an antagonistic binary between human habitation and other animal habitation. "
 
-
-  - type: "mixed"
-    id: 'mixed-test'
-    classList: "multi-columns"
-    content:
-    - type: "map"
-      content:
-        container: "maplibremapxyz"
-        latitude: 40.8075803
-        longitude: -73.9604192
-        zoom: 12
-        interactive: true
-        mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
-        containerstyle: "width: 50%; height: 30vh"
-    - type: "map"
-      content:
-        container: "maplibremapxyz"
-        latitude: 40.8075803
-        longitude: -73.9604192
-        zoom: 12
-        interactive: true
-        mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
-        containerstyle: "width: 50%; height: 30vh"   
-  
   - type: "content"
     classList: "multi-columns"
     id: "image-test"
     content:
-      - h2: 
-        - str: "A subsection"
-          classList: "text-center-test"
-          id: "subsection-id"
       - img:
-        - src: "./src/assets/img/TRANP_Fragmentation_Fragmentation NEW.png"
+        - src: "./src/assets/img/NYC LCLC.gif"
+          style: "width: 100%; height: 10vh"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
+          id: "nycsat"
       - img:
-        - src: "./src/assets/img/TRANP_Fragmentation_Fragmentation NEW.png"
+        - src: "./src/assets/img/NYC_LC.gif"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
+          style: "width: 100%; height: 5vh"
+          id: "nyclc"
 
 
   - type: "content"
