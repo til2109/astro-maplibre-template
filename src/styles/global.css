@@ -33,13 +33,13 @@ body {
 body {
   @apply font-sans antialiased;
   @apply flex flex-col;
-  @apply bg-stone-100 dark:bg-stone-900;
+  @apply bg-white;
   @apply text-black/50 dark:text-white/75;
 }
 
 header {
   @apply fixed top-0 left-0 right-0 z-50 py-5;
-  @apply bg-stone-100/75 dark:bg-stone-900/25;
+  @apply bg-white/60;
   @apply backdrop-blur-sm saturate-200;
 }
 
@@ -311,6 +311,8 @@ section {
   display: flex;
   gap: 8px;
   justify-content: center;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
 }
 
 #nyc_gifs {
@@ -329,4 +331,12 @@ section {
 
 #jb {
   text-align: center;
+}
+
+#animal_icons {
+  height: 30vh;
+}
+
+#habitatfrag {
+  height: 70vh;
 }

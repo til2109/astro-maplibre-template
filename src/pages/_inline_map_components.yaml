@@ -74,11 +74,18 @@ blocks:
           alt: "Typical Habitat Fragmentation Calculation Diagram"
           id: "nyclc"
 
-
   - type: "content"
     content: 
       - h2: 
         - str: "What is Habitat Fragmentation?"
+
+  - type: "content"
+    classList: "multi-columns"
+    id: "habitatfrag"
+    content: 
+      - img:
+        - src: "./src/assets/img/Fragmentation_Fragmentation Diagram copy.png"
+          alt: "Typical Habitat Fragmentation Calculation Diagram"
       - p: 
         - str: 
                 "Habitat fragmentation decribes habitats reduction due to human development.
@@ -90,15 +97,9 @@ blocks:
                 In order for species to avoid extinction, they must have high genetic diversity which only comes with high contact of other animals not from the same blood line.
                 The probability of this contact increases as habitats for species are closer to one another.
                 Habitats are therefore function as nodes and the distance between then are the linkages. "
-      - p: 
         - str: "To question this binary relationship, Same Home focuses on habitat fragmentation calculations, a core metric in Landscape ecology analysis. Habitat fragmentation is a relational metric - the value of land is determined by its context - making it an inherently holistic metric. Its function allows us to understand systems without needing to know the details of its internal function. However, like other network analysis, the matrix of a landscape must be simplified at the cost of microclimatic resolution. Therefore, specific characteristics of a patch are not of value within fragmentation understanding where landscapes are deduced to homogeneous nodes."
         - str: "The matrix understanding is dependent on a classification of land that presupposes animals and humans occupy different spaces and the more “unnatural” the space the less likely animals are to be found there.  By this logic, we would not have diverse animal communities in densely urbanized areas, which we know is not true."
-  - img:
-        - src: "./src/assets/img/TRANP_Fragmentation_Fragmentation NEW.png"
-          alt: "Typical Habitat Fragmentation Calculation Diagram"
-  - img:
-        - src: "./src/assets/img/TRANP_Fragmentation_Fragmentation NEW.png"
-          alt: "Typical Habitat Fragmentation Calculation Diagram"
+
 
   - type: "content"
     content: 
@@ -115,9 +116,30 @@ blocks:
     content: 
       - h2: 
         - str: "Urban Adaptive Species"
+      - p: 
+        - str: "In a place as urbanized as New York, we don't automatically think of 
+                wild animals. However, wild animals have as big as bears have been spotted in the
+                reminats of natural areas in our city. "
+
+  - type: "content"
+    classList: "multi-columns"
+    id: "animal_icons"
+    style: "width: auto; height: 1vh"
+    content:
       - img:
-        - src: "./src/assets/img/TRANP_Fragmentation_Frog Chart.png"
-          alt: "Typical Habitat Fragmentation Calculation Diagram"
+        - src: "./src/assets/img/Fragmentation_TRANS_Frog Icon.png"
+          alt: "FROG"
+          id: "FROG_ICON"
+      - img:
+        - src: "./src/assets/img/Fragmentation_TRANS_Fox Icon.png"
+          alt: "FOX"
+          id: "FOX_ICON"
+      - img:
+        - src: "./src/assets/img/Fragmentation_TRANS_Falcon Icon.png"
+          alt: "FALCON"
+          id: "FALCON_ICON"
+
+
 
   - type: "mixed"
     classList: "multi-columns"
