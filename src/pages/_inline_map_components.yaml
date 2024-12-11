@@ -13,19 +13,19 @@ blocks:
       - p: 
         - str: "Despite relentless efforts to quantify them, natural systems are complex beyond human understanding. As climates rapidly change, our understanding of environmental services and human impact on natural systems have been thoroughly researched in the hopes of preserving our built habitat. This research focus inherently contributes to an antagonistic binary between human habitation and other animal habitation. "
 
-  - type: "content"
-    content: 
-      - h2: 
-        - str: "New York City is Changing"
 
-  - type: "content"
-    classList: "multi-columns"
-    id: "gif_headers"
-    content:
-      - h4: 
-        - str: "Google Satellite Imagery"
-      - h4: 
-        - str: "Land Cover Classification"
+  - type: "mixed"
+    classList: "multi-column"
+    id: "frog_iconintro"
+    content: 
+      - type: "content"
+        content:
+         - h3: 
+            - str: "Google Satellite Imagery"
+      - type: "content"
+        content:
+        - h3: 
+          - str: "Land Cover Classification"
 
   - type: "content"
     classList: "multi-columns"
@@ -41,6 +41,7 @@ blocks:
           id: "nyclc"
  
   - type: "content"
+    id: 
     content: 
       - em: 
         - str: "New York Metro Area"
@@ -122,10 +123,6 @@ blocks:
     content: 
       - h2: 
         - str: "Urban Adaptive Species"
-      - p: 
-        - str: "In a place as urbanized as New York, we don't automatically think of 
-                wild animals. However, wild animals have as big as bears have been spotted in the
-                reminats of natural areas in our city. "
 
   - type: "content"
     classList: "multi-columns"
@@ -133,23 +130,42 @@ blocks:
     style: "width: auto; height: 1vh"
     content:
       - img:
-        - src: "./src/assets/img/Fragmentation_TRANS_Frog Icon.png"
+        - src: "./src/assets/img/Fragmentation_Outline_Frog Icon.png"
           alt: "FROG"
           id: "FROG_ICON"
       - img:
-        - src: "./src/assets/img/Fragmentation_TRANS_Fox Icon.png"
+        - src: "./src/assets/img/Fragmentation_Outline_Fox Icon.png"
           alt: "FOX"
           id: "FOX_ICON"
       - img:
-        - src: "./src/assets/img/Fragmentation_TRANS_Falcon Icon.png"
+        - src: "./src/assets/img/Fragmentation_Outline_Falcon Icon.png"
           alt: "FALCON"
           id: "FALCON_ICON"
+
+  - type: "content"
+    content: 
+      - p: 
+        - str: "In a place as urbanized as New York, we don't automatically think of 
+                wild animals. However, wild animals have as big as bears have been spotted in the
+                reminats of natural areas in our city. "
+
+  - type: "content"
+    classList: "containerfrog"
+    id: "frogblock"
+    content: 
+      - h3: 
+        - str: "American Bullfrog Home"
+      - img:
+        - src: "./src/assets/img/Fragmentation_Frog Chart Short.png"
+          alt: "Typical Habitat Fragmentation Calculation Diagram"
+      - img:
+        - src: "./src/assets/img/Fragmentation_Clean_Frog Habitat Diagram.png"
 
 
 
   - type: "mixed"
     classList: "multi-columns"
-    id: "frog_intro"
+    id: "frog_intro2"
     content: 
     - type: "map"
       content:
@@ -179,7 +195,7 @@ blocks:
     - type: "content"
       content:
         - h3: 
-          - str: "Frog Preferences"
+          - str: "Habitat Preferences"
         - em: 
           - str: "Best"
         - p: 
@@ -190,24 +206,15 @@ blocks:
         - em: 
           - str: "Good"
         - p: 
-          - str: "Wetland
-              Emergent Wetland
-              Forest, Deciduous
-              Forest, Mixed"
-
-  - type: "content"
-    content: 
-      - h2: 
-        - str: "Urban Adaptive Species"
-      - img:
-        - src: "./src/assets/img/TRANP_Fragmentation_Frog Chart.png"
-          alt: "Typical Habitat Fragmentation Calculation Diagram"
-      - img:
-        - src: "./src/assets/img/TRANP_Fragmentation_Fox Chart.png"
-          alt: "Typical Habitat Fragmentation Calculation Diagram"
-      - img:
-        - src: "./src/assets/img/TRANP_Fragmentation_Falcon Chart.png"
-          alt: "Typical Habitat Fragmentation Calculation Diagram"
+          - str: "Open Developed Space, Drawf Scrub, 
+              Shrub/Scrub
+              Evergreen Forest, 
+              Pasture, Grassland, Sedge"
+        - em: 
+          - str: "Ok"
+        - p: 
+          - str: "Low Developed Land,
+                  Cultivated Crops"
 
   - type: "map"
     content:

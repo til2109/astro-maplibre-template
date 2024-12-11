@@ -86,11 +86,6 @@ html.scrolled #back-to-top {
   @apply opacity-100 pointer-events-auto;
 }
 
-@font-face {
-  font-family: "New-Edge";
-  src: "./node_modules/@fontsource/inter/files/NewEdge666-LightRounded.otf";
-}
-
 h1,
 h2,
 h3,
@@ -99,26 +94,28 @@ h5,
 p,
 em {
 	line-height: initial;
-	font-family: "New-Egde", normal;
+	font-family: "Inter", normal;
 }
 
 h1 {
 	margin-top: 0.25em;
   margin-bottom: 0.25em;
   font-size: 1.75em;
-	font-weight: 300;
+	font-weight: 600;
 }
 
 h2 {
   margin-top: 0.25em;
   margin-bottom: 0.5em;
   font-size: 1.5em;
-	font-weight: 100;
+	font-weight: 60;
 }
 
 h3 {
 	font-size: 1.25em;
 	font-weight: 100;
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
 }
 
 h4 {
@@ -133,7 +130,7 @@ h5 {
 
 em {
   margin-top: 0.25em;
-  margin-bottom: 0.75em;
+  margin-bottom: 0.5em;
   font-size: 1em;
 	font-weight: light;
 }
@@ -141,7 +138,7 @@ em {
 p {
   margin-top: 1em;
   margin-bottom: 0.75em;
-  font-size: 0.95em;
+  font-size: 0.85em;
 	font-weight: light;
 }
 
@@ -336,7 +333,7 @@ section {
 }
 
 #jb {
-  text-align: center;
+  align: center;
 }
 
 #animal_icons {
@@ -345,4 +342,28 @@ section {
 
 #habitatfrag {
   height: 70vh;
+}
+
+#frog_iconintro {
+  height: 5vh;
+}
+
+.multi-column {
+  columns: 2;
+  gap: 8px;
+  justify-content: center;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+}
+
+#frogblock {
+  border-style: solid;
+  border-radius: 5px;
+  border-color: magenta;
+}
+
+.containerfrog {
+  border-style: solid;
+  border-radius: 5px;
+  border-color: magenta;
 }
