@@ -94,7 +94,7 @@ h5,
 p,
 em {
 	line-height: initial;
-	font-family: "Inter", normal;
+	font-family: "Gill Sans", normal;
 }
 
 h1 {
@@ -131,15 +131,15 @@ h5 {
 em {
   margin-top: 0.25em;
   margin-bottom: 0.5em;
-  font-size: 1em;
-	font-weight: light;
+  font-size: 1.25 em;
+	font-weight: 60;
 }
 
 p {
   margin-top: 1em;
   margin-bottom: 0.75em;
-  font-size: 0.85em;
-	font-weight: light;
+  font-size: 0.95em;
+	font-weight: 60;
 }
 
 .maplibre-inline {
@@ -318,6 +318,15 @@ section {
   padding-bottom: 0.5vh;
 }
 
+.multi-column {
+  columns: 2;
+  gap: 8px;
+  justify-content: center;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+}
+
+
 #nyc_gifs {
   height: 25vh;
 }
@@ -332,38 +341,10 @@ section {
   align: center;
 }
 
-#jb {
-  align: center;
-}
-
-#animal_icons {
+#frog_title {
   height: 30vh;
 }
 
-#habitatfrag {
-  height: 70vh;
-}
-
-#frog_iconintro {
-  height: 5vh;
-}
-
-.multi-column {
-  columns: 2;
-  gap: 8px;
-  justify-content: center;
-  padding-top: 0.5vh;
-  padding-bottom: 0.5vh;
-}
-
-#frogblock {
-  border-style: solid;
-  border-radius: 5px;
-  border-color: magenta;
-}
-
-.containerfrog {
-  border-style: solid;
-  border-radius: 5px;
-  border-color: magenta;
+#frogminimap {
+  padding: 50px
 }

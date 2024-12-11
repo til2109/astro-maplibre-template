@@ -14,18 +14,6 @@ blocks:
         - str: "Despite relentless efforts to quantify them, natural systems are complex beyond human understanding. As climates rapidly change, our understanding of environmental services and human impact on natural systems have been thoroughly researched in the hopes of preserving our built habitat. This research focus inherently contributes to an antagonistic binary between human habitation and other animal habitation. "
 
 
-  - type: "mixed"
-    classList: "multi-column"
-    id: "frog_iconintro"
-    content: 
-      - type: "content"
-        content:
-         - h3: 
-            - str: "Google Satellite Imagery"
-      - type: "content"
-        content:
-        - h3: 
-          - str: "Land Cover Classification"
 
   - type: "content"
     classList: "multi-columns"
@@ -41,11 +29,10 @@ blocks:
           id: "nyclc"
  
   - type: "content"
-    id: 
+    id: "metroarea"
     content: 
       - em: 
         - str: "New York Metro Area"
-          align: center
 
   - type: "content"
     classList: "multi-columns"
@@ -86,6 +73,8 @@ blocks:
       - em: 
         - str: "Van Courtland Park"
 
+
+
   - type: "content"
     content: 
       - h2: 
@@ -93,15 +82,22 @@ blocks:
       - p: 
         - str: 
                 "Habitat fragmentation decribes habitats reduction due to human development.
-                \n
-                Natural areas that provide curcial space for habitation become smaller and increasingly isolated deeply impacting population sizes and biodiversity at local scales. 
-                
-                Habitat fragmentation is based on the understanding of evolutionary progression as a network. 
-                \n
+                Natural areas that provide curcial space for habitation become smaller and 
+                increasingly isolated deeply impacting population sizes and biodiversity at local scales."
+      - h2:
+        - str: 
+      - p: 
+        - str:  "Habitat fragmentation is based on the understanding of evolutionary progression as a network. 
                 In order for species to avoid extinction, they must have high genetic diversity which only comes with high contact of other animals not from the same blood line.
                 The probability of this contact increases as habitats for species are closer to one another.
-                Habitats are therefore function as nodes and the distance between then are the linkages. "
+                Habitats are therefore function as nodes and the distance between then are the linkages."
+      - h2:
+        - str: 
+      - p:
         - str: "To question this binary relationship, Same Home focuses on habitat fragmentation calculations, a core metric in Landscape ecology analysis. Habitat fragmentation is a relational metric - the value of land is determined by its context - making it an inherently holistic metric. Its function allows us to understand systems without needing to know the details of its internal function. However, like other network analysis, the matrix of a landscape must be simplified at the cost of microclimatic resolution. Therefore, specific characteristics of a patch are not of value within fragmentation understanding where landscapes are deduced to homogeneous nodes."
+      - h2:
+        - str: 
+      - p:
         - str: "The matrix understanding is dependent on a classification of land that presupposes animals and humans occupy different spaces and the more “unnatural” the space the less likely animals are to be found there.  By this logic, we would not have diverse animal communities in densely urbanized areas, which we know is not true."
       - img:
         - src: "./src/assets/img/Fragmentation_2_Fragmentation Diagram_Fragmentation Diagram copy 2.png"
@@ -114,58 +110,39 @@ blocks:
         - str: "Different Homes in NYC "
       - p: 
         - str: "Same Home re-evaluates habitation metrics in the New York Metropolitan area to provide an imaginary of trans species cohabitation. Rather than just mapping standard habitat fragmentation, Same Home creates a metric of mobility that is used to measure the severity of fragmentation at species specific level to present an alternative classification of habitat. Ultimately, this can change our understanding of habitat connectivity and deemphasize the weight of area and edge condition in understanding biodiversity."
-        - str: "The binary between animal and human has become increasingly unfounded as numerous animal species have adapted to our anthropocentric constructed cities. I selected three animal species that have been found in the New York Metropolitan Area each with different habitation behaviors: migratory, territorial, and nomadic. Quantitative research for each species’ habitat preferences were then used to calculate a fragmentation distance based on those behaviors. These factors included average resting area, average mating area, average frequency of habitats per land type, as well as maximum and average home range. Each factor was then used to create a weighted average of area needed for survival, thus giving us a species specific fragmentation threshold."
-
-
-
-
-  - type: "content"
-    content: 
       - h2: 
-        - str: "Urban Adaptive Species"
-
-  - type: "content"
-    classList: "multi-columns"
-    id: "animal_icons"
-    style: "width: auto; height: 1vh"
-    content:
-      - img:
-        - src: "./src/assets/img/Fragmentation_Outline_Frog Icon.png"
-          alt: "FROG"
-          id: "FROG_ICON"
-      - img:
-        - src: "./src/assets/img/Fragmentation_Outline_Fox Icon.png"
-          alt: "FOX"
-          id: "FOX_ICON"
-      - img:
-        - src: "./src/assets/img/Fragmentation_Outline_Falcon Icon.png"
-          alt: "FALCON"
-          id: "FALCON_ICON"
+        - str:
+      - p:
+        - str: "The binary between animal and human has become increasingly unfounded as numerous animal species have adapted to our anthropocentric constructed cities. I selected three animal species that have been found in the New York Metropolitan Area each with different habitation behaviors: migratory, territorial, and nomadic. Quantitative research for each species’ habitat preferences were then used to calculate a fragmentation distance based on those behaviors. These factors included average resting area, average mating area, average frequency of habitats per land type, as well as maximum and average home range. Each factor was then used to create a weighted average of area needed for survival, thus giving us a species specific fragmentation threshold."
 
   - type: "content"
     content: 
       - p: 
         - str: "In a place as urbanized as New York, we don't automatically think of 
                 wild animals. However, wild animals have as big as bears have been spotted in the
-                reminats of natural areas in our city. "
+                reminats of natural areas in our city."
+      - h2: 
+        - str: 
+
+  - type: "content"
+    content: 
+      - h2: 
+        - str: 
+      - h2: 
+        - str: "Urban Adaptive Species"
 
   - type: "content"
     classList: "containerfrog"
     id: "frogblock"
     content: 
-      - h3: 
-        - str: "American Bullfrog Home"
-      - img:
-        - src: "./src/assets/img/Fragmentation_Frog Chart Short.png"
-          alt: "Typical Habitat Fragmentation Calculation Diagram"
+      - img: 
+        - src: "./src/assets/img/Animal Banner-21.png"
       - img:
         - src: "./src/assets/img/Fragmentation_Clean_Frog Habitat Diagram.png"
 
-
-
   - type: "mixed"
     classList: "multi-columns"
-    id: "frog_intro2"
+    id: "frog_intro"
     content: 
     - type: "map"
       content:
@@ -175,7 +152,7 @@ blocks:
         zoom: 13
         interactive: false
         mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
-        containerstyle: "width: 400px; height: 300px;"
+        containerstyle: "width: 575px; height: 400px;"
         layers:
           - id: "American Bullfrog Seen"
             url: "./public/data/FROG_new.geojson"
@@ -207,6 +184,70 @@ blocks:
           - str: "Good"
         - p: 
           - str: "Open Developed Space, Drawf Scrub, 
+              Shrub/Scrub,
+              Evergreen Forest, 
+              Pasture, Grassland, Sedge"
+        - em: 
+          - str: "Ok"
+        - p: 
+          - str: "Low Developed Land,
+                  Cultivated Crops"
+
+  - type: "content"
+    classList: "containerfx"
+    id: "foxblock"
+    content: 
+      - img: 
+        - src: "./src/assets/img/Animal Banner-22.png"
+      - img:
+        - src: "./src/assets/img/Fragmentation_Clean_Fox Habiitat Diagram.png"
+
+
+  - type: "mixed"
+    classList: "multi-columns"
+    id: "fox_intro"
+    content: 
+    - type: "map"
+      content:
+        container: "foxminimap"
+        latitude: 40.78254
+        longitude: -73.96367
+        zoom: 13
+        interactive: false
+        mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+        containerstyle: "width: 575px; height: 400px;"
+        padding: "25px"
+        layers:
+          - id: "Red Fox Seen"
+            url: "./public/data/FROG_new.geojson"
+            data-type: "geojson"
+            layer-type: "circle"
+            paint:
+              circle-color: "#ffff00"
+              circle-radius: 4
+            visible: true
+          - id: "Fox Habitat 2023"
+            url: "./public/data/FOR GIT_Buffer_withLC_Frog_2023_.geojson"
+            data-type: "geojson"
+            layer-type: "fill"
+            paint:
+              fill-color: "#ffff00"
+            visible: true
+    - type: "content"
+      content:
+        - h3: 
+          - str: "Habitat Preferences"
+        - em: 
+          - str: "Best"
+        - p: 
+          - str: "Wetland,
+              Emergent Wetland,
+              Forest, Deciduous
+              Forest, Mixed Forest"
+        - em: 
+          - str: "Good"
+        - p: 
+          - str: "Open Developed Space, Drawf Scrub, 
               Shrub/Scrub
               Evergreen Forest, 
               Pasture, Grassland, Sedge"
@@ -216,6 +257,15 @@ blocks:
           - str: "Low Developed Land,
                   Cultivated Crops"
 
+  - type: "content"
+    classList: "containerfalcon"
+    id: "falconblock"
+    content: 
+      - img: 
+        - src: "./src/assets/img/Animal Banner-23.png"
+      - img:
+        - src: ""
+
   - type: "map"
     content:
       container: "falconminimap"
@@ -224,7 +274,7 @@ blocks:
       zoom: 13
       interactive: false
       mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
-      containerstyle: "width: 50%; height: 256px"
+      containerstyle: "width: 575px; height: 400px"
       layers:
         - id: "Peregine Falcon Seen"
           url: "./public/data/FALCON_new.geojson"
@@ -241,6 +291,8 @@ blocks:
           paint:
             fill-color: "#ffff00"
 
+
+
   - type: "map"
     content:
       container: "foxminimap"
@@ -249,7 +301,7 @@ blocks:
       zoom: 13
       interactive: false
       mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
-      containerstyle: "width: 50%; height: 256px"
+      containerstyle: "width: 575px; height: 400px"
       layers:
         - id: "Red Fox Seen"
           url: "./public/data/Fox_NEW.geojson"
@@ -268,6 +320,60 @@ blocks:
             fill-opacity: 
           visible: true
 
+  - type: "mixed"
+    classList: "multi-columns"
+    id: "foxvsfalcon"
+    content: 
+    - type: "map"
+      content:
+        container: "foxcomparison"
+        latitude: 40.78254
+        longitude: -73.96367
+        zoom: 13
+        interactive: false
+        mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+        containerstyle: "width: 450px; height: 400px;"
+        layers:
+          - id: "American Bullfrog Seen"
+            url: "./public/data/FROG_new.geojson"
+            data-type: "geojson"
+            layer-type: "circle"
+            paint:
+              circle-color: "#ffff00"
+              circle-radius: 4
+            visible: true
+          - id: "Frog Habitat 2023"
+            url: "./public/data/FOR GIT_Buffer_withLC_Frog_2023_.geojson"
+            data-type: "geojson"
+            layer-type: "fill"
+            paint:
+              fill-color: "#ffff00"
+            visible: true
+    - type: "map"
+      content:
+        container: "falconcomparison"
+        latitude: 40.78254
+        longitude: -73.96367
+        zoom: 13
+        interactive: false
+        mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+        containerstyle: "width: 450px; height: 400px;"
+        layers:
+          - id: "American Bullfrog Seen"
+            url: "./public/data/FROG_new.geojson"
+            data-type: "geojson"
+            layer-type: "circle"
+            paint:
+              circle-color: "#ffff00"
+              circle-radius: 4
+            visible: true
+          - id: "Frog Habitat 2023"
+            url: "./public/data/FOR GIT_Buffer_withLC_Frog_2023_.geojson"
+            data-type: "geojson"
+            layer-type: "fill"
+            paint:
+              fill-color: "#ffff00"
+            visible: true
   - type: "content"
     content:
       - h3: 
