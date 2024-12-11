@@ -8,7 +8,7 @@ blocks:
       - em: 
         - str: "How do networks of trans species coexistence function in densely urban areas?"
       - img: 
-        - src: "./src/assets/img/SameHome Banner-13.png"
+        - src: "./src/assets/img/Same Home Banner.png"
           alt: "Same Home"
       - p: 
         - str: "Despite relentless efforts to quantify them, natural systems are complex beyond human understanding. As climates rapidly change, our understanding of environmental services and human impact on natural systems have been thoroughly researched in the hopes of preserving our built habitat. This research focus inherently contributes to an antagonistic binary between human habitation and other animal habitation. "
@@ -20,15 +20,16 @@ blocks:
     id: "nyc_gifs"
     content:
       - img:
-        - src: "./src/assets/img/NYC LCLC.gif"
+        - src: "./src/assets/img/NYC_PS_SAT.gif"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
           id: "nycsat"
       - img:
-        - src: "./src/assets/img/NYC_LC.gif"
+        - src: "./src/assets/img/NYC_PS_LC.gif"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
           id: "nyclc"
  
   - type: "content"
+    classList: "centered"
     id: "metroarea"
     content: 
       - em: 
@@ -40,11 +41,11 @@ blocks:
     style: "width: auto; height: 5vh"
     content:
       - img:
-        - src: "./src/assets/img/JamaicaBay_LCLC.gif"
+        - src: "./src/assets/img/JB_PS_SAT.gif"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
           id: "nyclc"
       - img:
-        - src: "./src/assets/img/JB_LC.gif"
+        - src: "./src/assets/img/JB_PS_LC.gif"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
           id: "nycsat"
 
@@ -60,11 +61,11 @@ blocks:
     style: "width: auto; height: 5vh"
     content:
       - img:
-        - src: "./src/assets/img/Inwood_LCLC.gif"
+        - src: "./src/assets/img/Inwood_PS_SAT.gif"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
           id: "nycsat"
       - img:
-        - src: "./src/assets/img/Inwood_LC.gif"
+        - src: "./src/assets/img/Inwood_PS_LC.gif"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
           id: "nyclc"
 
@@ -106,8 +107,8 @@ blocks:
 
   - type: "content"
     content: 
-      - h3: 
-        - str: "Different Homes in NYC "
+      - h2: 
+        - str: "Urban Adaptive Species"
       - p: 
         - str: "Same Home re-evaluates habitation metrics in the New York Metropolitan area to provide an imaginary of trans species cohabitation. Rather than just mapping standard habitat fragmentation, Same Home creates a metric of mobility that is used to measure the severity of fragmentation at species specific level to present an alternative classification of habitat. Ultimately, this can change our understanding of habitat connectivity and deemphasize the weight of area and edge condition in understanding biodiversity."
       - h2: 
@@ -123,13 +124,6 @@ blocks:
                 reminats of natural areas in our city."
       - h2: 
         - str: 
-
-  - type: "content"
-    content: 
-      - h2: 
-        - str: 
-      - h2: 
-        - str: "Urban Adaptive Species"
 
   - type: "content"
     classList: "containerfrog"
@@ -377,7 +371,7 @@ blocks:
   - type: "content"
     content:
       - h3: 
-        - str: "See Who YOUR Neighbors Are!"
+        - str: "Explore New York's Multispecies Homes"
 
   - type: "map"
     content:
