@@ -11,7 +11,16 @@ blocks:
   - type: "content"
     content: 
       - h2: 
-        - str: "What is Habitat Fragmentation?"
+        - str: "How is New York City Changing?"
+
+  - type: "content"
+    classList: "multi-columns"
+    id: "gif_headers"
+    content:
+      - em: 
+        - str: "Satellite Imagery"
+      - em: 
+        - str: "Land Cover Classification"
 
   - type: "content"
     classList: "multi-columns"
@@ -27,18 +36,29 @@ blocks:
           id: "nyclc"
 
   - type: "content"
+    id: "jb"
+    content: 
+      - em: 
+        - str: "Jamica Bay"
+
+  - type: "content"
     classList: "multi-columns"
     id: "jb_gifs"
     style: "width: auto; height: 5vh"
     content:
       - img:
+        - src: "./src/assets/img/JamaicaBay_LCLC.gif"
+          alt: "Typical Habitat Fragmentation Calculation Diagram"
+          id: "nyclc"
+      - img:
         - src: "./src/assets/img/JB_LC.gif"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
           id: "nycsat"
-      - img:
-        - src: "./src/assets/img/Inwood_LC.gif"
-          alt: "Typical Habitat Fragmentation Calculation Diagram"
-          id: "nyclc"
+
+  - type: "content"
+    content: 
+      - em: 
+        - str: "Van Courtland Park"
 
   - type: "content"
     classList: "multi-columns"
@@ -46,7 +66,7 @@ blocks:
     style: "width: auto; height: 5vh"
     content:
       - img:
-        - src: "./src/assets/img/JB_LC.gif"
+        - src: "./src/assets/img/Inwood_LCLC.gif"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
           id: "nycsat"
       - img:
@@ -57,6 +77,8 @@ blocks:
 
   - type: "content"
     content: 
+      - h2: 
+        - str: "What is Habitat Fragmentation?"
       - p: 
         - str: 
                 "Habitat fragmentation decribes habitats reduction due to human development.
