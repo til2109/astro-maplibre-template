@@ -29,11 +29,11 @@ blocks:
           id: "nyclc"
  
   - type: "content"
-    classList: "centered"
+    classList: "p1"
     id: "metroarea"
     content: 
-      - em: 
-        - str: "New York Metro Area"
+      - p: 
+        - str: "New York Metro Area (2017-2023)"
 
   - type: "content"
     classList: "multi-columns"
@@ -51,9 +51,10 @@ blocks:
 
   - type: "content"
     id: "jb"
+    classList: "p1"
     content: 
-      - em: 
-        - str: "Jamica Bay"
+      - p: 
+        - str: "Jamica Bay (2017-2023)"
 
   - type: "content"
     classList: "multi-columns"
@@ -70,9 +71,10 @@ blocks:
           id: "nyclc"
 
   - type: "content"
+    classList: "p1"
     content: 
-      - em: 
-        - str: "Van Courtland Park"
+      - p: 
+        - str: "Van Courtland Park (2017-2023)"
 
 
 
@@ -125,6 +127,9 @@ blocks:
       - h2: 
         - str: 
 
+
+
+
   - type: "content"
     classList: "containerfrog"
     id: "frogblock"
@@ -147,7 +152,7 @@ blocks:
           longitude: -73.96367
           zoom: 13
           interactive: false
-          mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+          mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
           containerstyle: "width: 525px; height: 400px;"
           layers:
             - id: "American Bullfrog Seen"
@@ -159,12 +164,14 @@ blocks:
                 circle-radius: 4
               visible: true
             - id: "Frog Habitat 2023"
-              url: "./public/data/FOR GIT_Buffer_withLC_Frog_2023_.geojson"
+              url: "./public/data/Frog_Buffer_LC_2023.geojson"
               data-type: "geojson"
               layer-type: "fill"
               paint:
-                fill-color: "#ffff00"
+                fill-color: "#3c5c3d"
+                fill-opacity: .5
               visible: true
+            
 
 
 
@@ -188,10 +195,10 @@ blocks:
         container: "foxminimap"
         latitude: 40.74749
         longitude: -73.80447
-        zoom: 13
+        zoom: 14
         interactive: false
-        mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
-        containerstyle: "width: 575px; height: 400px"
+        mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
+        containerstyle: "width: 525px; height: 400px"
         layers:
           - id: "Red Fox Seen"
             url: "./public/data/Fox_NEW.geojson"
@@ -201,8 +208,8 @@ blocks:
               circle-color: "#009dff"
               circle-radius: 3
             visible: true
-          - id: "F"
-            url: "./public/data/Buffer_withLC_Frog_2013.geojson"
+          - id: "Fox Habitat"
+            url: 
             data-type: "feature"
             layer-type: "fill"
             paint:
@@ -228,7 +235,7 @@ blocks:
       longitude: -73.99461
       zoom: 13
       interactive: false
-      mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+      mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
       containerstyle: "width: 525px; height: 400px"
       layers:
         - id: "Peregine Falcon Seen"
@@ -240,7 +247,7 @@ blocks:
             circle-radius: 3
           visible: true
         - id: "Falcon LC"
-          url: "./public/data/Buffer_withLC_Frog_2013.geojson"
+          url: ""
           data-type: "geojson"
           layer-type: "fill"
           paint:
@@ -261,8 +268,8 @@ blocks:
         latitude: 40.72864
         longitude: -74.01594
         zoom: 10
-        interactive: false
-        mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+        interactive: true
+        mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
         containerstyle: "width: 450px; height: 400px;"
         layers:
           - id: "American Bullfrog Seen"
@@ -274,7 +281,7 @@ blocks:
               circle-radius: 4
             visible: true
           - id: "Frog Habitat 2023"
-            url: "./public/data/FOR GIT_Buffer_withLC_Frog_2023_.geojson"
+            url: ""
             data-type: "geojson"
             layer-type: "fill"
             paint:
@@ -286,8 +293,8 @@ blocks:
         latitude: 40.72864
         longitude: -74.01594
         zoom: 10
-        interactive: false
-        mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+        interactive: true
+        mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
         containerstyle: "width: 450px; height: 400px;"
         layers:
           - id: "Red Fox Seen"
@@ -299,7 +306,7 @@ blocks:
               circle-radius: 4
             visible: true
           - id: "Fox LC"
-            url: "./public/data/FOR GIT_Buffer_withLC_Frog_2023_.geojson"
+            url: 
             data-type: "geojson"
             layer-type: "fill"
             paint:
@@ -314,7 +321,7 @@ blocks:
   - type: "content"
     content:
       - h3: 
-        - str: "Explore New York's Multispecies Homes"
+        - str: "Explore New York's Shared Land"
 
   - type: "map"
     content:
@@ -323,7 +330,7 @@ blocks:
       longitude: -74.01594
       zoom: 10
       interactive: true
-      mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+      mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
       containerstyle: "width: 100%; height: 70vh"
       layers:
         - id: "Red Fox Seen"
@@ -333,26 +340,6 @@ blocks:
           paint:
             circle-color: "#009dff"
             circle-radius: 3
-          mouseEvent:
-            - type: "click"
-              content:
-                - h2:
-                  - str: "Feature Info"
-                - p:
-                  - str: "Description of feature"
-                - p:
-                  - str: "NTA Attribute: "
-                  - property: "dba"
-                    else: "N/A"
-                  - str: " in CD "
-                  - property: "nta"
-                    else: "N/A"
-                - a:
-                  - href: "https://example.com"
-                    text: "Learn more about this feature"
-                - img:
-                  - src: "https://www.seriouseats.com/thmb/-_mziT2tl0F63I4kfji4S6bE-cA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2018__10__20181015-state-of-slice-delmar-clay-williams-2de043fa5a0d4475b6c567e4a974b13b.jpg"
-                    alt: "Feature image"
           toggle: true
           visible: true
         - id: "American Bullfrog Seen"
@@ -373,3 +360,21 @@ blocks:
             circle-radius: 3
           toggle: true
           visible: true
+        - id: "Landcover 2023"
+          url: "./public/data/Landcover_Base.geojson"
+          data-type: "geojson"
+          layer-type: "fill"
+          paint:
+            fill-color: "#ff8e8d"
+          toggle: false 
+
+  - type: "content"
+    content:
+      - h2: 
+        - str:
+      - p: 
+        - str: "Data Credit"
+      - p: 
+        - str: "iNaturalist,  "
+      
+      

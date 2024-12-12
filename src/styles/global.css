@@ -142,6 +142,10 @@ p {
 	font-weight: 60;
 }
 
+.p1 {
+  text-align: center;
+}
+
 .maplibre-inline {
   margin-bottom: 1rem;
 }
@@ -281,7 +285,7 @@ section {
 }
 
 .map-overlay {
-  background-color: #fff;
+  background-color: #ffc3c3;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   font:
@@ -303,6 +307,7 @@ section {
   height: 12px;
   display: inline-block;
   margin-right: 8px;
+  color:rgb(97, 37, 37)
 }
 
 .inline-map {
