@@ -5,7 +5,7 @@
 /* Base styles */
 :root {
   --bg-color: rgb(255, 255, 255); /* Light mode */
-  --text-color: #333; /* Darker text for light mode */
+  --text-color: #000000; /* Darker text for light mode */
 }
 
 /* Dark mode */
@@ -34,7 +34,7 @@ body {
   @apply font-sans antialiased;
   @apply flex flex-col;
   @apply bg-white;
-  @apply text-black/50 dark:text-white/75;
+  @apply text-black/100 dark:text-white/75;
 }
 
 header {
