@@ -237,34 +237,42 @@ blocks:
     id: "falconblock"
     content: 
       - img: 
-        - src: "./src/assets/img/Banner_Final Falcon.png"
+        - src: "./src/assets/img/Fragmentation_Final Falcon.png"
       - img:
         - src: ""
 
-  - type: "map"
-    content:
-      container: "falconminimap"
-      latitude: 40.65273
-      longitude: -73.99461
-      zoom: 13
-      interactive: false
-      mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
-      containerstyle: "width: 525px; height: 400px"
-      layers:
-        - id: "Peregine Falcon Seen"
-          url: "./public/data/FALCON_new.geojson"
-          data-type: "geojson"
-          layer-type: "circle"
-          paint:
-            circle-color: "#ff8e8d"
-            circle-radius: 3
-          visible: true
-        - id: "Falcon LC"
-          url: ""
-          data-type: "geojson"
-          layer-type: "fill"
-          paint:
-            fill-color: "#ffff00"
+  - type: "mixed"
+    classList: "multi-columns"
+    id: "falcon_intro"
+    content: 
+    - type: "content"
+      content:
+      - img:
+        - src: "./src/assets/img/Fragmentation_Falcon Habitat Diagram.png"
+    - type: "map"
+      content:
+        container: "falconminimap"
+        latitude: 40.65273
+        longitude: -73.99461
+        zoom: 13
+        interactive: false
+        mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
+        containerstyle: "width: 525px; height: 400px"
+        layers:
+          - id: "Peregine Falcon Seen"
+            url: "./public/data/FALCON_new.geojson"
+            data-type: "geojson"
+            layer-type: "circle"
+            paint:
+              circle-color: "#ff8e8d"
+              circle-radius: 3
+            visible: true
+          - id: "Falcon LC"
+            url: ""
+            data-type: "geojson"
+            layer-type: "fill"
+            paint:
+              fill-color: "#ffff00"
 
 
 
@@ -361,7 +369,7 @@ blocks:
               Resilient design has begun to effectively tackle multispecies design 
               for small animals such as birds and bugs. Larger animals, however, are 
               limited to habitat corridors 
-
+              animals have complex preferences like humans 
               Subtext is we dotn want to give away large ammount of land 
 
               Animals have adapted to us 
@@ -377,10 +385,6 @@ blocks:
         - src: "./src/assets/img/Frog_LC_Change.gif"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
           id: "nycsat"
-      - img:
-        - src: "./src/assets/img/FOX_LC_Chnage.gif"
-          alt: "Typical Habitat Fragmentation Calculation Diagram"
-          id: "nyclc"
       - img:
         - src: "./src/assets/img/FOX_LC_Chnage.gif"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
@@ -430,11 +434,15 @@ blocks:
             circle-radius: 3
           toggle: true
           visible: true
-        - id: "Landcover 2023"
-          url: "./public/data/Annual_NLCD_LndCov_2023_CU_C1V0_clipped.tif"
-          data-type: "raster"
-          layer-type: "raster"
-          toggle: false 
+        - id: "Population"
+          url: "./public/data/Population_NTA.geojson"
+          data-type: "geojson"
+          layer-type: "fill"
+          paint:
+            fill-color: "#ffff00"
+            fill-opacity: .5
+          toggle: true 
+          visible: true
 
   - type: "content"
     content:
