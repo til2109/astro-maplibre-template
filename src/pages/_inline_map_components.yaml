@@ -166,6 +166,8 @@ blocks:
                 fill-color: "#ffff00"
               visible: true
 
+
+
   - type: "content"
     classList: "containerfx"
     id: "foxblock"
@@ -184,29 +186,30 @@ blocks:
     - type: "map"
       content:
         container: "foxminimap"
-        latitude: 40.78254
-        longitude: -73.96367
+        latitude: 40.74749
+        longitude: -73.80447
         zoom: 13
         interactive: false
         mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
-        containerstyle: "width: 525px; height: 400px;"
-        padding: "25px"
+        containerstyle: "width: 575px; height: 400px"
         layers:
           - id: "Red Fox Seen"
-            url: "./public/data/FROG_new.geojson"
+            url: "./public/data/Fox_NEW.geojson"
             data-type: "geojson"
             layer-type: "circle"
             paint:
-              circle-color: "#ffff00"
-              circle-radius: 4
+              circle-color: "#009dff"
+              circle-radius: 3
             visible: true
-          - id: "Fox Habitat 2023"
-            url: "./public/data/FOR GIT_Buffer_withLC_Frog_2023_.geojson"
-            data-type: "geojson"
+          - id: "F"
+            url: "./public/data/Buffer_withLC_Frog_2013.geojson"
+            data-type: "feature"
             layer-type: "fill"
             paint:
               fill-color: "#ffff00"
+              fill-opacity: 
             visible: true
+
 
 
   - type: "content"
@@ -236,7 +239,7 @@ blocks:
             circle-color: "#ff8e8d"
             circle-radius: 3
           visible: true
-        - id: "Frog Habitat 2023"
+        - id: "Falcon LC"
           url: "./public/data/Buffer_withLC_Frog_2013.geojson"
           data-type: "geojson"
           layer-type: "fill"
@@ -245,32 +248,8 @@ blocks:
 
 
 
-  - type: "map"
-    content:
-      container: "foxminimap"
-      latitude: 40.74749
-      longitude: -73.80447
-      zoom: 13
-      interactive: false
-      mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
-      containerstyle: "width: 575px; height: 400px"
-      layers:
-        - id: "Red Fox Seen"
-          url: "./public/data/Fox_NEW.geojson"
-          data-type: "geojson"
-          layer-type: "circle"
-          paint:
-            circle-color: "#009dff"
-            circle-radius: 3
-          visible: true
-        - id: "Frog Habitat 2023"
-          url: "./public/data/Buffer_withLC_Frog_2013.geojson"
-          data-type: "feature"
-          layer-type: "fill"
-          paint:
-            fill-color: "#ffff00"
-            fill-opacity: 
-          visible: true
+
+
 
   - type: "mixed"
     classList: "multi-columns"
@@ -279,19 +258,19 @@ blocks:
     - type: "map"
       content:
         container: "foxcomparison"
-        latitude: 40.78254
-        longitude: -73.96367
-        zoom: 13
+        latitude: 40.72864
+        longitude: -74.01594
+        zoom: 10
         interactive: false
         mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
         containerstyle: "width: 450px; height: 400px;"
         layers:
           - id: "American Bullfrog Seen"
-            url: "./public/data/FROG_new.geojson"
+            url: "./public/data/FALCON_new.geojson"
             data-type: "geojson"
             layer-type: "circle"
             paint:
-              circle-color: "#ffff00"
+              circle-color: "#ff8e8d"
               circle-radius: 4
             visible: true
           - id: "Frog Habitat 2023"
@@ -304,28 +283,34 @@ blocks:
     - type: "map"
       content:
         container: "falconcomparison"
-        latitude: 40.78254
-        longitude: -73.96367
-        zoom: 13
+        latitude: 40.72864
+        longitude: -74.01594
+        zoom: 10
         interactive: false
         mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
         containerstyle: "width: 450px; height: 400px;"
         layers:
-          - id: "American Bullfrog Seen"
-            url: "./public/data/FROG_new.geojson"
+          - id: "Red Fox Seen"
+            url: "./public/data/Fox_NEW.geojson"
             data-type: "geojson"
             layer-type: "circle"
             paint:
               circle-color: "#ffff00"
               circle-radius: 4
             visible: true
-          - id: "Frog Habitat 2023"
+          - id: "Fox LC"
             url: "./public/data/FOR GIT_Buffer_withLC_Frog_2023_.geojson"
             data-type: "geojson"
             layer-type: "fill"
             paint:
               fill-color: "#ffff00"
             visible: true
+  
+
+
+
+
+
   - type: "content"
     content:
       - h3: 
