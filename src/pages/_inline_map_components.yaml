@@ -8,7 +8,7 @@ blocks:
       - em: 
         - str: "How do networks of trans species coexistence function in densely urban areas?"
       - img: 
-        - src: "./src/assets/img/Same Home Banner.png"
+        - src: "./src/assets/img/Same Home Banner_update.png"
           alt: "Same Home"
       - p: 
         - str: "Despite relentless efforts to quantify them, natural systems are complex beyond human understanding. As climates rapidly change, our understanding of environmental services and human impact on natural systems have been thoroughly researched in the hopes of preserving our built habitat. This research focus inherently contributes to an antagonistic binary between human habitation and other animal habitation. "
@@ -103,7 +103,7 @@ blocks:
       - p:
         - str: "The matrix understanding is dependent on a classification of land that presupposes animals and humans occupy different spaces and the more “unnatural” the space the less likely animals are to be found there.  By this logic, we would not have diverse animal communities in densely urbanized areas, which we know is not true."
       - img:
-        - src: "./src/assets/img/Fragmentation Diagram Black.png"
+        - src: "./src/assets/img/Fragmentation Diagram Black_update.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
 
 
@@ -164,11 +164,18 @@ blocks:
                 circle-radius: 4
               visible: true
             - id: "Frog Habitat 2023"
-              url: "./public/data/Frog_Buffer_LC_2023.geojson"
+              url: "./public/data/Frog_Buffer_LC_2023_small.geojson"
               data-type: "geojson"
               layer-type: "fill"
               paint:
-                fill-color: "#3c5c3d"
+                fill-color: [
+                  'step',
+                  ['get','FROGRANK_2'],
+                  '#ffcca5', ##color for all values < first value
+                  1, '#00441b', ##value, color,
+                  2, '#3da75a',
+                  3, '#b2e0ab',
+                  4, '#ffcca5']
                 fill-opacity: .5
               visible: true
             
@@ -206,15 +213,21 @@ blocks:
             layer-type: "circle"
             paint:
               circle-color: "#009dff"
-              circle-radius: 3
+              circle-radius: 4
             visible: true
           - id: "Fox Habitat"
-            url: 
-            data-type: "feature"
+            url: "./public/data/Fox_Buffer_LC_2023_small.geojson"
+            data-type: "geojson"
             layer-type: "fill"
             paint:
-              fill-color: "#ffff00"
-              fill-opacity: 
+                fill-color: [
+                  'step',
+                  ['get','FOXRANK'],
+                  '#ffcca5', ##color for all values < first value
+                  1, '#67000d', ##value, color,
+                  2, '#fb0050',
+                  3, '#ff8e8d',]
+                fill-opacity: .5
             visible: true
 
 
@@ -272,7 +285,7 @@ blocks:
         mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
         containerstyle: "width: 450px; height: 400px;"
         layers:
-          - id: "American Bullfrog Seen"
+          - id: "Falcon Seen"
             url: "./public/data/FALCON_new.geojson"
             data-type: "geojson"
             layer-type: "circle"
@@ -302,26 +315,48 @@ blocks:
             data-type: "geojson"
             layer-type: "circle"
             paint:
-              circle-color: "#ffff00"
+              circle-color: "#009dff"
               circle-radius: 4
             visible: true
-          - id: "Fox LC"
-            url: 
+          - id: "Fox Habitat"
+            url: "./public/data/Fox_Buffer_LC_2023_small.geojson"
             data-type: "geojson"
             layer-type: "fill"
             paint:
-              fill-color: "#ffff00"
+                fill-color: [
+                  'step',
+                  ['get','FOXRANK'],
+                  '#ffcca5', ##color for all values < first value
+                  1, '#67000d', ##value, color,
+                  2, '#fb0050',
+                  3, '#ff8e8d',]
+                fill-opacity: .5
             visible: true
   
-
-
-
+  - type: "content"
+    classList: "multi-columns"
+    id: "habitat_loss"
+    content:
+      - img:
+        - src: "./src/assets/img/Frog_LC_Change.gif"
+          alt: "Typical Habitat Fragmentation Calculation Diagram"
+          id: "nycsat"
+      - img:
+        - src: "./src/assets/img/FOX_LC_Chnage.gif"
+          alt: "Typical Habitat Fragmentation Calculation Diagram"
+          id: "nyclc"
+      - img:
+        - src: "./src/assets/img/FOX_LC_Chnage.gif"
+          alt: "Typical Habitat Fragmentation Calculation Diagram"
+          id: "nyclc"
+ 
 
 
   - type: "content"
     content:
       - h3: 
         - str: "Explore New York's Shared Land"
+
 
   - type: "map"
     content:

@@ -353,3 +353,7 @@ section {
 #frogminimap {
   padding: 50px
 }
+
+#habitat_loss {
+  height: 27vh;
+}
