@@ -101,7 +101,7 @@ blocks:
       - p:
         - str: "The matrix understanding is dependent on a classification of land that presupposes animals and humans occupy different spaces and the more “unnatural” the space the less likely animals are to be found there.  By this logic, we would not have diverse animal communities in densely urbanized areas, which we know is not true."
       - img:
-        - src: "./src/assets/img/Fragmentation Diagram.png"
+        - src: "./src/assets/img/Fragmentation Diagram Black.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
 
 
@@ -130,69 +130,48 @@ blocks:
     id: "frogblock"
     content: 
       - img: 
-        - src: "./src/assets/img/Animal Banner-21.png"
-      - img:
-        - src: "./src/assets/img/Fragmentation_Clean_Frog Habitat Diagram.png"
+        - src: "./src/assets/img/banner test_3.png"
 
   - type: "mixed"
     classList: "multi-columns"
     id: "frog_intro"
     content: 
-    - type: "map"
-      content:
-        container: "frogminimap"
-        latitude: 40.78254
-        longitude: -73.96367
-        zoom: 13
-        interactive: false
-        mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
-        containerstyle: "width: 575px; height: 400px;"
-        layers:
-          - id: "American Bullfrog Seen"
-            url: "./public/data/FROG_new.geojson"
-            data-type: "geojson"
-            layer-type: "circle"
-            paint:
-              circle-color: "#ffff00"
-              circle-radius: 4
-            visible: true
-          - id: "Frog Habitat 2023"
-            url: "./public/data/FOR GIT_Buffer_withLC_Frog_2023_.geojson"
-            data-type: "geojson"
-            layer-type: "fill"
-            paint:
-              fill-color: "#ffff00"
-            visible: true
-    - type: "content"
-      content:
-        - h3: 
-          - str: "Habitat Preferences"
-        - em: 
-          - str: "Best"
-        - p: 
-          - str: "Wetland,
-              Emergent Wetland,
-              Forest, Deciduous
-              Forest, Mixed Forest"
-        - em: 
-          - str: "Good"
-        - p: 
-          - str: "Open Developed Space, Drawf Scrub, 
-              Shrub/Scrub,
-              Evergreen Forest, 
-              Pasture, Grassland, Sedge"
-        - em: 
-          - str: "Ok"
-        - p: 
-          - str: "Low Developed Land,
-                  Cultivated Crops"
+      - type: "content"
+        content:
+        - img:
+          - src: "./src/assets/img/Fragmentation_Clean_Frog Habitat Diagram.png"
+      - type: "map"
+        content:
+          container: "frogminimap"
+          latitude: 40.78254
+          longitude: -73.96367
+          zoom: 13
+          interactive: false
+          mapstyle: "https://api.maptiler.com/maps/dataviz/style.json?key=WlatIY6MghFCwInJhBkl"
+          containerstyle: "width: 550px; height: 400px;"
+          layers:
+            - id: "American Bullfrog Seen"
+              url: "./public/data/FROG_new.geojson"
+              data-type: "geojson"
+              layer-type: "circle"
+              paint:
+                circle-color: "#ffff00"
+                circle-radius: 4
+              visible: true
+            - id: "Frog Habitat 2023"
+              url: "./public/data/FOR GIT_Buffer_withLC_Frog_2023_.geojson"
+              data-type: "geojson"
+              layer-type: "fill"
+              paint:
+                fill-color: "#ffff00"
+              visible: true
 
   - type: "content"
     classList: "containerfx"
     id: "foxblock"
     content: 
       - img: 
-        - src: "./src/assets/img/Animal Banner-22.png"
+        - src: "./src/assets/img/Animal Banner_Fox Banner.png"
       - img:
         - src: "./src/assets/img/Fragmentation_Clean_Fox Habiitat Diagram.png"
 
@@ -256,7 +235,7 @@ blocks:
     id: "falconblock"
     content: 
       - img: 
-        - src: "./src/assets/img/Animal Banner-23.png"
+        - src: "./src/assets/img/Animal Banner_Falcon Banner.png"
       - img:
         - src: ""
 
