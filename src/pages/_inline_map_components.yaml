@@ -144,7 +144,7 @@ blocks:
       - type: "content"
         content:
         - img:
-          - src: "./src/assets/img/Fragmentation_Clean_Frog Habitat Diagram.png"
+          - src: "./src/assets/img/Fragmentation_Frog Habitat Diagram copy.png"
       - type: "map"
         content:
           container: "frogminimap"
@@ -196,7 +196,7 @@ blocks:
     - type: "content"
       content:
       - img:
-        - src: "./src/assets/img/Fragmentation_Clean_Fox Habiitat Diagram.png"
+        - src: "./src/assets/img/Fragmentation_Fox Habiitat_Legend.png"
     - type: "map"
       content:
         container: "foxminimap"
@@ -268,7 +268,18 @@ blocks:
 
 
 
-
+  - type: "content"
+    content:
+      - h3: 
+        - str: "What is a Home?"
+      - p: 
+        - str: "When home range dynamics of a species micmic our own territorial tendencies, such as a the American Bullfrog, the species specfic habitat
+              fragmentation calculations can accurately predict habitat network. Terrorital species, like humans, follow a point and buffer logic in their
+              conception of ownership of land. Migratory species or nomadic species naavigate land with a more blurred undestanding of borders.  "
+      - h3: 
+        - str: ""
+      - p: 
+        - str: "Species size. // falcon example sectional occupation of space / buffer size too big"
 
 
   - type: "mixed"
@@ -280,7 +291,39 @@ blocks:
         container: "foxcomparison"
         latitude: 40.72864
         longitude: -74.01594
-        zoom: 10
+        zoom: 9
+        interactive: true
+        mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
+        containerstyle: "width: 450px; height: 400px;"
+        layers:
+          - id: "Fox Seen"
+            url: "./public/data/Fox_NEW.geojson"
+            data-type: "geojson"
+            layer-type: "circle"
+            paint:
+              circle-color: "#009dff"
+              circle-radius: 4
+            visible: true
+          - id: "Fox Habitat 2023"
+            url: "./public/data/SIMPLE_Fox_Buffer_LC_2023_small.json"
+            data-type: "geojson"
+            layer-type: "fill"
+            paint:
+                fill-color: [
+                  'step',
+                  ['get','FOXRANK'],
+                  '#ffcca5', ##color for all values < first value
+                  1, '#67000d', ##value, color,
+                  2, '#fb0050',
+                  3, '#ff8e8d',]
+                fill-opacity: .5
+            visible: true
+    - type: "map"
+      content:
+        container: "falconcomparison"
+        latitude: 40.72864
+        longitude: -74.01594
+        zoom: 9
         interactive: true
         mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
         containerstyle: "width: 450px; height: 400px;"
@@ -293,33 +336,8 @@ blocks:
               circle-color: "#ff8e8d"
               circle-radius: 4
             visible: true
-          - id: "Frog Habitat 2023"
+          - id: "Falcon Habitat"
             url: ""
-            data-type: "geojson"
-            layer-type: "fill"
-            paint:
-              fill-color: "#ffff00"
-            visible: true
-    - type: "map"
-      content:
-        container: "falconcomparison"
-        latitude: 40.72864
-        longitude: -74.01594
-        zoom: 10
-        interactive: true
-        mapstyle: "https://api.maptiler.com/maps/347cab70-3948-4333-9bed-61ff8eaad17a/style.json?key=gOnmzsKUb4xivTKT0w7F"
-        containerstyle: "width: 450px; height: 400px;"
-        layers:
-          - id: "Red Fox Seen"
-            url: "./public/data/Fox_NEW.geojson"
-            data-type: "geojson"
-            layer-type: "circle"
-            paint:
-              circle-color: "#009dff"
-              circle-radius: 4
-            visible: true
-          - id: "Fox Habitat"
-            url: "./public/data/Fox_Buffer_LC_2023_small.geojson"
             data-type: "geojson"
             layer-type: "fill"
             paint:
@@ -333,6 +351,24 @@ blocks:
                 fill-opacity: .5
             visible: true
   
+
+  - type: "content"
+    content:
+      - h3: 
+        - str: "Multispecies Planning"
+      - p: 
+        - str: "Preserving biodiveristy is synomous with planning resilient cities. 
+              Resilient design has begun to effectively tackle multispecies design 
+              for small animals such as birds and bugs. Larger animals, however, are 
+              limited to habitat corridors 
+
+              Subtext is we dotn want to give away large ammount of land 
+
+              Animals have adapted to us 
+              
+              They are here already so how to we plan for a more integrated coexisitence "
+
+
   - type: "content"
     classList: "multi-columns"
     id: "habitat_loss"
@@ -350,12 +386,11 @@ blocks:
           alt: "Typical Habitat Fragmentation Calculation Diagram"
           id: "nyclc"
  
-
-
   - type: "content"
+    id: "explore"
     content:
-      - h3: 
-        - str: "Explore New York's Shared Land"
+      - h2: 
+        - str: "Explore New York's Shared Landscape"
 
 
   - type: "map"
@@ -396,11 +431,9 @@ blocks:
           toggle: true
           visible: true
         - id: "Landcover 2023"
-          url: "./public/data/Landcover_Base.geojson"
-          data-type: "geojson"
-          layer-type: "fill"
-          paint:
-            fill-color: "#ff8e8d"
+          url: "./public/data/Annual_NLCD_LndCov_2023_CU_C1V0_clipped.tif"
+          data-type: "raster"
+          layer-type: "raster"
           toggle: false 
 
   - type: "content"

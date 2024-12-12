@@ -351,9 +351,17 @@ section {
 }
 
 #frogminimap {
-  padding: 50px
+  margin-left: 15px
 }
 
 #habitat_loss {
   height: 27vh;
+  margin-top: 25px;
+  margin-bottom: 45px;
+}
+
+#explore {
+  height: 10vh;
+  margin-top: 5px;
+  text-align: center;
 }
