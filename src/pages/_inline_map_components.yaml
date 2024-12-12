@@ -5,14 +5,23 @@ blocks:
         - str: "SAME HOME"
       - h2:
         - str: "Insensible Habitat Networks in the New York Metropolitan Area"
-      - em: 
-        - str: "How do networks of trans species coexistence function in densely urban areas?"
       - img: 
         - src: "./src/assets/img/Same Home Banner_update.png"
           alt: "Same Home"
       - p: 
-        - str: "Despite relentless efforts to quantify them, natural systems are complex beyond human understanding. As climates rapidly change, our understanding of environmental services and human impact on natural systems have been thoroughly researched in the hopes of preserving our built habitat. This research focus inherently contributes to an antagonistic binary between human habitation and other animal habitation. "
-
+        - str: "Despite relentless efforts to quantify them, natural systems are complex 
+              beyond human understanding. As climates rapidly change, our understanding of 
+              environmental services and human impact on natural systems have been 
+              thoroughly researched in the hopes of preserving our built habitat. 
+              This research focus inherently contributes to an antagonistic binary 
+              between human habitation and other animal habitation."
+      - h2: 
+        - str:
+      - p: 
+        - str: "Nonetheless coexistence quietly persists for certain resilient species. 
+              Same Home tries to visualize these coexistence networks in New York City. 
+              Without properly understanding the spatial occupation of resilient species, 
+              small changes in urban development may make these networks fail entirely. "
 
 
   - type: "content"
@@ -84,24 +93,34 @@ blocks:
         - str: "What is Habitat Fragmentation?"
       - p: 
         - str: 
-                "Habitat fragmentation decribes habitats reduction due to human development.
-                Natural areas that provide curcial space for habitation become smaller and 
-                increasingly isolated deeply impacting population sizes and biodiversity at local scales."
+                "Same Home starts at the revaluation of a common habitat metric 
+                known as Habitat fragmentation. Habitat Fragmentation describes 
+                habitat reduction due to human Development.  Habitat fragmentation is 
+                based on the understanding of evolutionary progression as a network. 
+                In order for species to avoid extinction, they must have high genetic 
+                diversity which only comes with high contact of other animals 
+                not from the same blood line. The probability of this contact increases 
+                as habitats for species are closer to one another. Habitats therefore 
+                function as nodes and the distance between them are the linkages."
       - h2:
         - str: 
       - p: 
-        - str:  "Habitat fragmentation is based on the understanding of evolutionary progression as a network. 
-                In order for species to avoid extinction, they must have high genetic diversity which only comes with high contact of other animals not from the same blood line.
-                The probability of this contact increases as habitats for species are closer to one another.
-                Habitats are therefore function as nodes and the distance between then are the linkages."
+        - str:  "Habitat fragmentation is a relational metric - the value of land is 
+            determined by its context - making it an inherently holistic metric. Its function 
+            allows us to understand systems without needing to know the details of its internal 
+            function. However, like other network analysis, the matrix of a landscape must be 
+            simplified at the cost of microclimatic resolution. Therefore, specific characteristics 
+            of a patch are not of value within fragmentation understanding where landscapes are 
+            deduced to homogeneous nodes."
       - h2:
         - str: 
       - p:
-        - str: "To question this binary relationship, Same Home focuses on habitat fragmentation calculations, a core metric in Landscape ecology analysis. Habitat fragmentation is a relational metric - the value of land is determined by its context - making it an inherently holistic metric. Its function allows us to understand systems without needing to know the details of its internal function. However, like other network analysis, the matrix of a landscape must be simplified at the cost of microclimatic resolution. Therefore, specific characteristics of a patch are not of value within fragmentation understanding where landscapes are deduced to homogeneous nodes."
+        - str: "This matrix understanding is dependent on a classification of land that presupposes 
+              animals and humans occupy different spaces and the more “unnatural” the space the 
+              less likely animals are to be found there.  By this logic, we would not have 
+              diverse animal communities in densely urbanized areas, which we know is not true"
       - h2:
         - str: 
-      - p:
-        - str: "The matrix understanding is dependent on a classification of land that presupposes animals and humans occupy different spaces and the more “unnatural” the space the less likely animals are to be found there.  By this logic, we would not have diverse animal communities in densely urbanized areas, which we know is not true."
       - img:
         - src: "./src/assets/img/Fragmentation Diagram Black_update.png"
           alt: "Typical Habitat Fragmentation Calculation Diagram"
@@ -112,22 +131,26 @@ blocks:
       - h2: 
         - str: "Urban Adaptive Species"
       - p: 
-        - str: "Same Home re-evaluates habitation metrics in the New York Metropolitan area to provide an imaginary of trans species cohabitation. Rather than just mapping standard habitat fragmentation, Same Home creates a metric of mobility that is used to measure the severity of fragmentation at species specific level to present an alternative classification of habitat. Ultimately, this can change our understanding of habitat connectivity and deemphasize the weight of area and edge condition in understanding biodiversity."
+        - str: "Same Home re-evaluates habitation metrics in the New York Metropolitan 
+            area to provide a visualization of cohabitation spatial dynamics. Rather 
+            than just mapping standard habitat fragmentation, Same Home creates a metric 
+            of mobility that is used to measure the severity of fragmentation at species 
+            specific level to present an alternative classification of habitat. Ultimately, 
+            this can change our understanding of habitat connectivity and deemphasize the 
+            weight of area and edge condition in understanding biodiversity."
       - h2: 
         - str:
       - p:
-        - str: "The binary between animal and human has become increasingly unfounded as numerous animal species have adapted to our anthropocentric constructed cities. I selected three animal species that have been found in the New York Metropolitan Area each with different habitation behaviors: migratory, territorial, and nomadic. Quantitative research for each species’ habitat preferences were then used to calculate a fragmentation distance based on those behaviors. These factors included average resting area, average mating area, average frequency of habitats per land type, as well as maximum and average home range. Each factor was then used to create a weighted average of area needed for survival, thus giving us a species specific fragmentation threshold."
-
-  - type: "content"
-    content: 
-      - p: 
-        - str: "In a place as urbanized as New York, we don't automatically think of 
-                wild animals. However, wild animals have as big as bears have been spotted in the
-                reminats of natural areas in our city."
-      - h2: 
-        - str: 
-
-
+        - str: "The binary between animal and human has become increasingly unfounded as 
+              numerous animal species have adapted to our anthropocentric constructed cities. 
+              I selected three animal species that have been found in the New York Metropolitan 
+              Area each with different habitation behaviors: migratory, territorial, and nomadic. 
+              Quantitative research for each species habitat preferences were then used to 
+              calculate a fragmentation distance based on those behaviors. These 
+              factors included average resting area, average mating area, average frequency 
+              of habitats per land type, as well as maximum and average home range. Each factor was 
+              then used to create a weighted average of area needed for survival, thus giving us a 
+              species specific fragmentation threshold."
 
 
   - type: "content"
@@ -281,14 +304,19 @@ blocks:
       - h3: 
         - str: "What is a Home?"
       - p: 
-        - str: "When home range dynamics of a species micmic our own territorial tendencies, such as a the American Bullfrog, the species specfic habitat
-              fragmentation calculations can accurately predict habitat network. Terrorital species, like humans, follow a point and buffer logic in their
-              conception of ownership of land. Migratory species or nomadic species naavigate land with a more blurred undestanding of borders.  "
+        - str: "When home range dynamics of a species mimic our own territorial tendencies, 
+              such as the American Bullfrog, the species specific habitat fragmentation calculations 
+              can accurately predict habitat networks. Territorial species, like humans, follow a 
+              point and buffer logic in their occupation of land. Migratory species or nomadic species 
+              navigate land with a more blurred understanding of borders."
       - h3: 
         - str: ""
       - p: 
-        - str: "Species size. // falcon example sectional occupation of space / buffer size too big"
-
+        - str: "A species specific Habitat Fragmentation model therefore worked best for territorial 
+              animals. As animal size contributes to the mean range of a species, smaller 
+              animal are also easier to track with this revised logic. While a species specific 
+              model revises the logic of the matrix, it still depends on a planimetric understanding of 
+              landscape achieved by satellite imagery. "
 
   - type: "mixed"
     classList: "multi-columns"
@@ -365,16 +393,7 @@ blocks:
       - h3: 
         - str: "Multispecies Planning"
       - p: 
-        - str: "Preserving biodiveristy is synomous with planning resilient cities. 
-              Resilient design has begun to effectively tackle multispecies design 
-              for small animals such as birds and bugs. Larger animals, however, are 
-              limited to habitat corridors 
-              animals have complex preferences like humans 
-              Subtext is we dotn want to give away large ammount of land 
-
-              Animals have adapted to us 
-              
-              They are here already so how to we plan for a more integrated coexisitence "
+        - str: "With understanding these networks in fine detail, we can achive resilient planning that considered "
 
 
   - type: "content"
@@ -433,15 +452,6 @@ blocks:
             circle-color: "#ff8e8d"
             circle-radius: 3
           toggle: true
-          visible: true
-        - id: "Population"
-          url: "./public/data/Population_NTA.geojson"
-          data-type: "geojson"
-          layer-type: "fill"
-          paint:
-            fill-color: "#ffff00"
-            fill-opacity: .5
-          toggle: true 
           visible: true
 
   - type: "content"
