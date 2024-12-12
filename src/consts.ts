@@ -2,13 +2,13 @@ import type { Metadata, Site, Socials } from "@types";
 
 export const SITE: Site = {
   NAME: "Same Home",
-  EMAIL: "<your email address here>",
+  EMAIL: "<til2109@columbia.edu>",
   DESCRIPTION: "Same Home by Trella Isabel Lopez",
 };
 
 export const HOME: Metadata = {
   TITLE: "Home",
-  DESCRIPTION: "<A description of your home page>",
+  DESCRIPTION: "<Insensible Habitat Networks in the New York Metropolitan Area>",
 };
 
 export const SOCIALS: Socials = [
@@ -22,6 +22,6 @@ export const SOCIALS: Socials = [
   },
   {
     NAME: "linkedin",
-    HREF: "<your linkedin url here>",
+    HREF: "<https://www.linkedin.com/in/trella-isabel-lopez/>",
   },
 ];
