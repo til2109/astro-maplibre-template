@@ -186,21 +186,17 @@ blocks:
                 circle-color: "#ffff00"
                 circle-radius: 4
               visible: true
-            - id: "Frog Habitat 2023"
-              url: "./public/data/Frog_Buffer_LC_2023_small.geojson"
-              data-type: "geojson"
-              layer-type: "fill"
-              paint:
-                fill-color: [
-                  'step',
-                  ['get','FROGRANK_2'],
-                  '#ffcca5', ##color for all values < first value
-                  1, '#00441b', ##value, color,
-                  2, '#3da75a',
-                  3, '#b2e0ab',
-                  4, '#ffcca5']
-                fill-opacity: .5
+            - id: "Frog Habitat"
+              url: "./public/data/FROG_LC_2023_Raster_0005.tif"
+              data-type: "image"
+              coordinates: [
+                  [-74.7119755199999958, 40.3184720260000020], 
+                  [-73.1129755200000062, 40.3184720260000020],
+                  [-73.1129755200000062, 41.3144720259999971],
+                  [-74.7119755199999958, 41.3144720259999971]
+                ]
               visible: true
+              toggle: true  
             
 
 
@@ -354,6 +350,9 @@ blocks:
                   3, '#ff8e8d',]
                 fill-opacity: .5
             visible: true
+            toggle: true
+
+
     - type: "map"
       content:
         container: "falconcomparison"
